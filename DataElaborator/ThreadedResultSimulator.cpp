@@ -88,7 +88,7 @@ void ThreadedResultSimulator::Simulate()
 
 ExperimentSimulator * ThreadedResultSimulator::CreateSim()
 {
-    double variables[fenditureN];
+    double variables[fenditureN*3];
     double _f1Pos = (*f1PosRangeDistribution)(rng);
     double _f2Dis = (*f2DistanceDistribution)(rng);
     double _aper = (*apertureDistribution)(rng);
@@ -98,6 +98,12 @@ ExperimentSimulator * ThreadedResultSimulator::CreateSim()
     variables[3] = variables[0] + _f2Dis;
     variables[4] = 0.5;
     variables[5] = _aper/2;
+    
+    /* for (int i = 0; i < 6; i++)
+    {
+        cout << i<<"= "<<variables[i] << "\t";
+    }
+    cout << endl; */
     
     lastId++;
     results[lastId*4]=_f1Pos;
@@ -111,8 +117,6 @@ ExperimentSimulator * ThreadedResultSimulator::CreateSim()
     return sim;
 }
 
-using namespace std;
-
 void ThreadedResultSimulator::PrintSingleSimulation(int id, ostream& myout)
 {
     double _f1Pos = results[id*4];
@@ -124,7 +128,7 @@ void ThreadedResultSimulator::PrintSingleSimulation(int id, ostream& myout)
     myout << "_f2Dis= " << _f2Dis << endl;
     myout << "_aper= " << _aper << endl;
     
-    double variables[fenditureN];
+    double variables[fenditureN*3];
     variables[0] = _f1Pos;
     variables[1] = 0.5;
     variables[2] = _aper;

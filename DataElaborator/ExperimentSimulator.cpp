@@ -103,7 +103,7 @@ void ExperimentSimulator::Check()
     error /= xMaxIndex-xMinIndex;
     //std::cout << "worker ID: "<< uniqueID << " - has calculated error= "<< error<<std::endl;
     delete cMax;
-    PrintSimulatedDataToFile();
+    //PrintSimulatedDataToFile();
 }
 
 void ExperimentSimulator::PrintSimulatedDataToFile()
