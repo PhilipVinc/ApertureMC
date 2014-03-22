@@ -45,12 +45,16 @@ protected:
     std::mt19937 rng;
 	std::uniform_real_distribution<double>* f1PosRangeDistribution;
     std::uniform_real_distribution<double>* f2DistanceDistribution;
-    std::uniform_real_distribution<double>* apertureDistribution;
+    std::uniform_real_distribution<double>* f1apertureDistribution;
+    std::uniform_real_distribution<double>* f2apertureDistribution;
+    
+    int simDataN = 4;
+    int resultsN = 2;
     
     /* ------------------------  Simulation setup data ---------------------- */
-    double f1PosRange = 0.2;
+    double f1PosRange = 0.02;
     double f2DistRange = 0.5;
-    double aperture = 5;
+    double aperture = 7;
     int fenditureN=2;
     
     void SetupArrayResults();

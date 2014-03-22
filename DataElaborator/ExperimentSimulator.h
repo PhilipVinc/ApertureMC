@@ -31,6 +31,7 @@ public:
     void PrintSimulatedDataToFile();
     
     double error;
+    double errorSmall;
     int uniqueID;
     
 protected:
@@ -43,6 +44,8 @@ protected:
     double range;
     int xMinIndex;
     int xMaxIndex;
+    
+    double scaleValue;
     
 };
 

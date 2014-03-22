@@ -132,7 +132,7 @@ int main(int argc, char * argv[])
     }
     addXls=true;
     //cout << "Inserire nome file [se si usa -x, senza estensione]: "; cin >> inputPath;
-    inputPath = "data2";
+    inputPath = "data";
     ElaborateFile(inputPath, addXls);
 	return 0;
 }

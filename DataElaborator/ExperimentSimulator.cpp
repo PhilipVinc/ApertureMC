@@ -87,12 +87,16 @@ void ExperimentSimulator::Check()
     // Rescale data
     simulatedData->ComputeSplineCoefficients();
     CalculatorMax * cMax = new CalculatorMax(simulatedData);
-    TransformerSimple::ScaleY(simulatedData, 1/cMax->GetMaxYPosition());
+    scaleValue = 1/cMax->GetMaxYPosition();
+    TransformerSimple::ScaleY(simulatedData,scaleValue);
     
     error = 0.0;
+    
     double diff = 0.0;
     int simIndex = 0;
-    for (int i = xMinIndex; i != xMaxIndex; i++)
+   
+    //for (int i = xMinIndex; i != xMaxIndex; i++)
+    for (int i = (xMinIndex*3+xMaxIndex)/4; i != (3*xMaxIndex+xMinIndex)/4; i++)
     {
         simIndex = i - xMinIndex;
         double a1= simulatedData->yp[simIndex];
@@ -101,6 +105,21 @@ void ExperimentSimulator::Check()
         error += diff*diff;
     }
     error /= xMaxIndex-xMinIndex;
+    error *= 100;
+    
+    int center = (xMinIndex+xMaxIndex)/2;
+    errorSmall = 0.0;
+    for (int i = center - 5; i != center + 5; i++)
+    {
+        simIndex = i - xMinIndex;
+        double a1= simulatedData->yp[simIndex];
+        double a2 = experimentalData->yp[i];
+        diff = fabs(a1-a2);
+        errorSmall += diff*diff;
+    }
+    errorSmall /= 10 ;
+    errorSmall *= 100;
+
     //std::cout << "worker ID: "<< uniqueID << " - has calculated error= "<< error<<std::endl;
     delete cMax;
     //PrintSimulatedDataToFile();
@@ -110,7 +129,7 @@ void ExperimentSimulator::PrintSimulatedDataToFile()
 {
     std::ofstream datFile("sim-" + std::to_string(uniqueID)+".dat");
     datFile << "#Simulated data with id:"<< uniqueID<< std::endl;
-    datFile << "# "; scene->PrintFormula(datFile);
+    datFile << "# "; scene->PrintFormula(datFile); datFile << "*" << scaleValue << std::endl;
     simulatedData->PrintData(datFile);
     datFile.close();
 }

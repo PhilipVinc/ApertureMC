@@ -73,6 +73,8 @@ DataSet::~DataSet()
     xp.clear();
     yp.clear();
     zs.clear();
+    
+    free xp;
 }
 
 void DataSet::OrderAlongXAxis()

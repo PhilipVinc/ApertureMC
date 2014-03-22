@@ -100,11 +100,14 @@ double PhysicalScene2::operator()(double x)
 /* ------------------------   Print Functions  ---------------------- */
 void PhysicalScene2::PrintFormula(std::ostream& myout)
 {
+    myout << "( ";
     for (vector<Function*>::size_type i=0; i != components.size(); i++)
     {
         components[i]->PrintFormula(myout);
         if (i!=(components.size()-1)) myout << " + "; // If this is not the last element in the row, print +
     }
+    myout << ") ";
+
 }
 
 
