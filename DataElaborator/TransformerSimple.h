@@ -1,0 +1,24 @@
+//
+//  TransformerSimple.h
+//  DataElaborator
+//
+//  Created by Filippo Vicentini on 19/03/14.
+//  Copyright (c) 2014 Filippo Vicentini. All rights reserved.
+//
+
+#ifndef __DataElaborator__TransformerSimple__
+#define __DataElaborator__TransformerSimple__
+
+#include <iostream>
+#include "DataSet.h"
+
+class TransformerSimple
+{
+public:
+    static void ShiftX(DataSet * data, double value);
+    static void ShiftY(DataSet * data, double value);
+    static void ScaleX(DataSet * data, double value);
+    static void ScaleY(DataSet * data, double value);
+};
+
+#endif /* defined(__DataElaborator__TransformerSimple__) */

@@ -9,6 +9,19 @@
 /* Begin PBXBuildFile section */
 		4168294D18DDD5AE00EE461F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4168294C18DDD5AE00EE461F /* main.cpp */; };
 		4168294F18DDD5AE00EE461F /* DataElaborator.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4168294E18DDD5AE00EE461F /* DataElaborator.1 */; };
+		4168295B18DDD62000EE461F /* CalculatorMaxMin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4168295618DDD62000EE461F /* CalculatorMaxMin.cpp */; };
+		4168295C18DDD62000EE461F /* CalculatorMax.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4168295818DDD62000EE461F /* CalculatorMax.cpp */; };
+		4168295D18DDD62000EE461F /* Calculator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4168295A18DDD62000EE461F /* Calculator.cpp */; };
+		4168296818DDD62E00EE461F /* Function.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4168295F18DDD62E00EE461F /* Function.cpp */; };
+		4168296918DDD62E00EE461F /* Fissure.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4168296118DDD62E00EE461F /* Fissure.cpp */; };
+		4168296A18DDD62E00EE461F /* ExperimentSimulator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4168296318DDD62E00EE461F /* ExperimentSimulator.cpp */; };
+		4168296B18DDD62E00EE461F /* Elaborator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4168296518DDD62E00EE461F /* Elaborator.cpp */; };
+		4168296C18DDD62E00EE461F /* DataSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4168296718DDD62E00EE461F /* DataSet.cpp */; };
+		4168297718DDD63500EE461F /* TransformerSimple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4168296E18DDD63500EE461F /* TransformerSimple.cpp */; };
+		4168297818DDD63500EE461F /* Transformer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4168297018DDD63500EE461F /* Transformer.cpp */; };
+		4168297918DDD63500EE461F /* ThreadedResultSimulator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4168297218DDD63500EE461F /* ThreadedResultSimulator.cpp */; };
+		4168297A18DDD63500EE461F /* PhysicalScene2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4168297418DDD63500EE461F /* PhysicalScene2.cpp */; };
+		4168297B18DDD63500EE461F /* PhysicalScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4168297618DDD63500EE461F /* PhysicalScene.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +41,32 @@
 		4168294918DDD5AE00EE461F /* DataElaborator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DataElaborator; sourceTree = BUILT_PRODUCTS_DIR; };
 		4168294C18DDD5AE00EE461F /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		4168294E18DDD5AE00EE461F /* DataElaborator.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = DataElaborator.1; sourceTree = "<group>"; };
+		4168295518DDD62000EE461F /* CalculatorMaxMin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculatorMaxMin.h; sourceTree = "<group>"; };
+		4168295618DDD62000EE461F /* CalculatorMaxMin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CalculatorMaxMin.cpp; sourceTree = "<group>"; };
+		4168295718DDD62000EE461F /* CalculatorMax.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculatorMax.h; sourceTree = "<group>"; };
+		4168295818DDD62000EE461F /* CalculatorMax.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CalculatorMax.cpp; sourceTree = "<group>"; };
+		4168295918DDD62000EE461F /* Calculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Calculator.h; sourceTree = "<group>"; };
+		4168295A18DDD62000EE461F /* Calculator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Calculator.cpp; sourceTree = "<group>"; };
+		4168295E18DDD62E00EE461F /* Function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Function.h; sourceTree = "<group>"; };
+		4168295F18DDD62E00EE461F /* Function.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Function.cpp; sourceTree = "<group>"; };
+		4168296018DDD62E00EE461F /* Fissure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fissure.h; sourceTree = "<group>"; };
+		4168296118DDD62E00EE461F /* Fissure.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Fissure.cpp; sourceTree = "<group>"; };
+		4168296218DDD62E00EE461F /* ExperimentSimulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExperimentSimulator.h; sourceTree = "<group>"; };
+		4168296318DDD62E00EE461F /* ExperimentSimulator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ExperimentSimulator.cpp; sourceTree = "<group>"; };
+		4168296418DDD62E00EE461F /* Elaborator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Elaborator.h; sourceTree = "<group>"; };
+		4168296518DDD62E00EE461F /* Elaborator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Elaborator.cpp; sourceTree = "<group>"; };
+		4168296618DDD62E00EE461F /* DataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSet.h; sourceTree = "<group>"; };
+		4168296718DDD62E00EE461F /* DataSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DataSet.cpp; sourceTree = "<group>"; };
+		4168296D18DDD63500EE461F /* TransformerSimple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransformerSimple.h; sourceTree = "<group>"; };
+		4168296E18DDD63500EE461F /* TransformerSimple.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TransformerSimple.cpp; sourceTree = "<group>"; };
+		4168296F18DDD63500EE461F /* Transformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transformer.h; sourceTree = "<group>"; };
+		4168297018DDD63500EE461F /* Transformer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Transformer.cpp; sourceTree = "<group>"; };
+		4168297118DDD63500EE461F /* ThreadedResultSimulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadedResultSimulator.h; sourceTree = "<group>"; };
+		4168297218DDD63500EE461F /* ThreadedResultSimulator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ThreadedResultSimulator.cpp; sourceTree = "<group>"; };
+		4168297318DDD63500EE461F /* PhysicalScene2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysicalScene2.h; sourceTree = "<group>"; };
+		4168297418DDD63500EE461F /* PhysicalScene2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PhysicalScene2.cpp; sourceTree = "<group>"; };
+		4168297518DDD63500EE461F /* PhysicalScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysicalScene.h; sourceTree = "<group>"; };
+		4168297618DDD63500EE461F /* PhysicalScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PhysicalScene.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,10 +99,76 @@
 		4168294B18DDD5AE00EE461F /* DataElaborator */ = {
 			isa = PBXGroup;
 			children = (
+				4168297D18DDD69200EE461F /* MonteCarlo */,
+				4168297C18DDD68300EE461F /* Transformers */,
+				4168297F18DDD6A300EE461F /* Calculators */,
+				4168297E18DDD69A00EE461F /* Data Cruncher */,
+				4168298018DDD6C500EE461F /* Data */,
 				4168294C18DDD5AE00EE461F /* main.cpp */,
 				4168294E18DDD5AE00EE461F /* DataElaborator.1 */,
 			);
 			path = DataElaborator;
+			sourceTree = "<group>";
+		};
+		4168297C18DDD68300EE461F /* Transformers */ = {
+			isa = PBXGroup;
+			children = (
+				4168296D18DDD63500EE461F /* TransformerSimple.h */,
+				4168296E18DDD63500EE461F /* TransformerSimple.cpp */,
+				4168296F18DDD63500EE461F /* Transformer.h */,
+				4168297018DDD63500EE461F /* Transformer.cpp */,
+			);
+			name = Transformers;
+			sourceTree = "<group>";
+		};
+		4168297D18DDD69200EE461F /* MonteCarlo */ = {
+			isa = PBXGroup;
+			children = (
+				4168297118DDD63500EE461F /* ThreadedResultSimulator.h */,
+				4168297218DDD63500EE461F /* ThreadedResultSimulator.cpp */,
+				4168297318DDD63500EE461F /* PhysicalScene2.h */,
+				4168297418DDD63500EE461F /* PhysicalScene2.cpp */,
+				4168297518DDD63500EE461F /* PhysicalScene.h */,
+				4168297618DDD63500EE461F /* PhysicalScene.cpp */,
+				4168295E18DDD62E00EE461F /* Function.h */,
+				4168295F18DDD62E00EE461F /* Function.cpp */,
+				4168296018DDD62E00EE461F /* Fissure.h */,
+				4168296118DDD62E00EE461F /* Fissure.cpp */,
+				4168296218DDD62E00EE461F /* ExperimentSimulator.h */,
+				4168296318DDD62E00EE461F /* ExperimentSimulator.cpp */,
+			);
+			name = MonteCarlo;
+			sourceTree = "<group>";
+		};
+		4168297E18DDD69A00EE461F /* Data Cruncher */ = {
+			isa = PBXGroup;
+			children = (
+				4168296418DDD62E00EE461F /* Elaborator.h */,
+				4168296518DDD62E00EE461F /* Elaborator.cpp */,
+			);
+			name = "Data Cruncher";
+			sourceTree = "<group>";
+		};
+		4168297F18DDD6A300EE461F /* Calculators */ = {
+			isa = PBXGroup;
+			children = (
+				4168295518DDD62000EE461F /* CalculatorMaxMin.h */,
+				4168295618DDD62000EE461F /* CalculatorMaxMin.cpp */,
+				4168295718DDD62000EE461F /* CalculatorMax.h */,
+				4168295818DDD62000EE461F /* CalculatorMax.cpp */,
+				4168295918DDD62000EE461F /* Calculator.h */,
+				4168295A18DDD62000EE461F /* Calculator.cpp */,
+			);
+			name = Calculators;
+			sourceTree = "<group>";
+		};
+		4168298018DDD6C500EE461F /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				4168296618DDD62E00EE461F /* DataSet.h */,
+				4168296718DDD62E00EE461F /* DataSet.cpp */,
+			);
+			name = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -117,7 +222,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4168297918DDD63500EE461F /* ThreadedResultSimulator.cpp in Sources */,
+				4168297A18DDD63500EE461F /* PhysicalScene2.cpp in Sources */,
+				4168297818DDD63500EE461F /* Transformer.cpp in Sources */,
 				4168294D18DDD5AE00EE461F /* main.cpp in Sources */,
+				4168295D18DDD62000EE461F /* Calculator.cpp in Sources */,
+				4168296C18DDD62E00EE461F /* DataSet.cpp in Sources */,
+				4168296B18DDD62E00EE461F /* Elaborator.cpp in Sources */,
+				4168296818DDD62E00EE461F /* Function.cpp in Sources */,
+				4168297718DDD63500EE461F /* TransformerSimple.cpp in Sources */,
+				4168295B18DDD62000EE461F /* CalculatorMaxMin.cpp in Sources */,
+				4168295C18DDD62000EE461F /* CalculatorMax.cpp in Sources */,
+				4168297B18DDD63500EE461F /* PhysicalScene.cpp in Sources */,
+				4168296918DDD62E00EE461F /* Fissure.cpp in Sources */,
+				4168296A18DDD62E00EE461F /* ExperimentSimulator.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
