@@ -65,7 +65,7 @@ void ExperimentSimulator::Work()
 void ExperimentSimulator::CreateExperiment()
 {
     simulatedData = new DataSet();
-    scene =  new PhysicalScene();
+    scene =  new PhysicalScene2();
     for (int i = 0; i != fissureN; i++)
     {
         scene->AddFissure(values[i*3], values[i*3+1], values[i*3+2]);
@@ -103,6 +103,7 @@ void ExperimentSimulator::Check()
     error /= xMaxIndex-xMinIndex;
     //std::cout << "worker ID: "<< uniqueID << " - has calculated error= "<< error<<std::endl;
     delete cMax;
+    PrintSimulatedDataToFile();
 }
 
 void ExperimentSimulator::PrintSimulatedDataToFile()

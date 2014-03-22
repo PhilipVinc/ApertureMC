@@ -97,7 +97,7 @@ void ElaborateFile(string inputName, bool addXls = false)
     
     
     
-    ThreadedResultSimulator * sim = new ThreadedResultSimulator(data, 3);
+    ThreadedResultSimulator * sim = new ThreadedResultSimulator(data, 1000, 3);
     sim->Simulate();
     ofstream pincoFIle("FIGO");
     sim->Print(pincoFIle);

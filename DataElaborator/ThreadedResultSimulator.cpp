@@ -130,12 +130,14 @@ void ThreadedResultSimulator::PrintSingleSimulation(int id, ostream& myout)
     variables[2] = _aper;
     variables[3] = variables[0] + _f2Dis;
     variables[4] = 0.5;
-    variables[5] = _aper/2;
+    variables[5] = _aper/2.0;
     ExperimentSimulator * sim = new ExperimentSimulator(experimentalData);
     sim->uniqueID = id;
     sim->Setup(fenditureN, variables, 1);
     sim->Work();
     sim->PrintSimulatedDataToFile();
+    
+    delete sim;
 }
 
 

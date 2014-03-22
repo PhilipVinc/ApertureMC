@@ -124,18 +124,18 @@
 		4168297D18DDD69200EE461F /* MonteCarlo */ = {
 			isa = PBXGroup;
 			children = (
-				4168297118DDD63500EE461F /* ThreadedResultSimulator.h */,
-				4168297218DDD63500EE461F /* ThreadedResultSimulator.cpp */,
-				4168297318DDD63500EE461F /* PhysicalScene2.h */,
-				4168297418DDD63500EE461F /* PhysicalScene2.cpp */,
-				4168297518DDD63500EE461F /* PhysicalScene.h */,
-				4168297618DDD63500EE461F /* PhysicalScene.cpp */,
 				4168295E18DDD62E00EE461F /* Function.h */,
 				4168295F18DDD62E00EE461F /* Function.cpp */,
 				4168296018DDD62E00EE461F /* Fissure.h */,
 				4168296118DDD62E00EE461F /* Fissure.cpp */,
+				4168297518DDD63500EE461F /* PhysicalScene.h */,
+				4168297618DDD63500EE461F /* PhysicalScene.cpp */,
+				4168297318DDD63500EE461F /* PhysicalScene2.h */,
+				4168297418DDD63500EE461F /* PhysicalScene2.cpp */,
 				4168296218DDD62E00EE461F /* ExperimentSimulator.h */,
 				4168296318DDD62E00EE461F /* ExperimentSimulator.cpp */,
+				4168297118DDD63500EE461F /* ThreadedResultSimulator.h */,
+				4168297218DDD63500EE461F /* ThreadedResultSimulator.cpp */,
 			);
 			name = MonteCarlo;
 			sourceTree = "<group>";

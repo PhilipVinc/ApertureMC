@@ -32,6 +32,6 @@ double Fissure::operator()(double x)
 
 void Fissure::PrintFormula(std::ostream& myout)
 {
-    myout << "4*"<< relativeIntensity*relativeIntensity << "*sin( (x - " << position << " )*" <<halfAperture << ")**2 /(( x-"<< position <<")**2)" <<std::endl;
+    myout << "4*"<< relativeIntensity*relativeIntensity << "*sin( (x - " << position << " )*" <<halfAperture << ")**2 /(( x-"<< position <<")**2)";
 }
 

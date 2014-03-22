@@ -11,7 +11,7 @@
 
 #include <iostream>
 #include "DataSet.h"
-#include "PhysicalScene.h"
+#include "PhysicalScene2.h"
 
 class ExperimentSimulator
 {
@@ -34,7 +34,7 @@ public:
     int uniqueID;
     
 protected:
-    PhysicalScene * scene;
+    PhysicalScene2 * scene;
     DataSet * experimentalData;
     DataSet * simulatedData;
     
