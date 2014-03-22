@@ -48,8 +48,8 @@ public:
     
 	void PrintData(std::ostream& myout);
 
-    std::vector<double> xp;
-    std::vector<double> yp;
+    std::vector<double>  xp;
+    std::vector<double>  yp;
     std::vector<double> zs; // spline
 
  	int n;

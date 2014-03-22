@@ -25,9 +25,9 @@ DataSet::DataSet()
 	meanYDirty = false;
     n=0;
     
-    xp = *new vector<double>();
-    yp = *new vector<double>();
-    zs = *new vector<double>();
+    //xp = *new vector<double>();
+    //yp = *new vector<double>();
+    //zs = *new vector<double>();
 }
 
 DataSet::DataSet(string inputPath, bool enableDebug)
@@ -37,8 +37,8 @@ DataSet::DataSet(string inputPath, bool enableDebug)
 	meanYDirty = false;
     n=0;
     
-    xp = *new vector<double>();
-    yp = *new vector<double>();
+    //xp =new vector<double>();
+    //yp = new vector<double>();
     
 	int lines=0;
     {
@@ -73,8 +73,6 @@ DataSet::~DataSet()
     xp.clear();
     yp.clear();
     zs.clear();
-    
-    free xp;
 }
 
 void DataSet::OrderAlongXAxis()

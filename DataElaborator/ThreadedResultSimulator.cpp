@@ -17,7 +17,7 @@ ThreadedResultSimulator::ThreadedResultSimulator(DataSet * _experimentalData, in
     simulationsN = _simulationsN;
     experimentalData = _experimentalData;
     
-    simulators = *new vector<ExperimentSimulator*>();
+    //simulators = *new vector<ExperimentSimulator*>();
     SetupArrayResults();
     SetupRandomNumberGenerator();
     lastId = -1;

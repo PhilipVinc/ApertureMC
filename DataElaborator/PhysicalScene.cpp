@@ -13,7 +13,7 @@ using namespace std;
 /* ------------------------   Init Functions ---------------------- */
 PhysicalScene::PhysicalScene()
 {
-    fissures = *new vector<Fissure*>();
+    //fissures = *new vector<Fissure*>();
     lastId = 0;
 }
 

@@ -13,7 +13,7 @@ using namespace std;
 /* ------------------------   Init Functions ---------------------- */
 PhysicalScene2::PhysicalScene2()
 {
-    components = *new vector<Function*>();
+    //components = *new vector<Function*>();
     lastId = 0;
 }
 
