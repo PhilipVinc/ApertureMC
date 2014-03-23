@@ -12,13 +12,14 @@
 #include <libgen.h>
 #include <unistd.h>
 #include <unistd.h>
+#include <vector>
 
 #include "DataSet.h"
 #include "CalculatorMaxMin.h"
 #include "CalculatorMax.h"
 #include "TransformerSimple.h"
 
-#include "ThreadedResultSimulator.h"
+#include "ThreadedResultSimulatorGeneric.h"
 
 void usage(const char * pname);
 
@@ -95,15 +96,54 @@ void ElaborateFile(string inputName, bool addXls = false)
     cout << maxPath << "\" w p lc rgb \"blue\", \"";
     cout << minPath << "\" w p lc rgb \"blue\" " << endl;
     
-    
-    
-    ThreadedResultSimulator * sim = new ThreadedResultSimulator(data, 100000, 3);
-    sim->Simulate();
-    ofstream pincoFIle("FIGO");
-    sim->Print(pincoFIle);
-    pincoFIle.close();
     delete extremerer;
     
+    int MAX_FEND = 10;
+    
+    vector<ThreadedResultSimulatorGeneric*> sims;
+    
+    for (int i = 0; i < MAX_FEND; i++)
+    {
+        sims.push_back( new ThreadedResultSimulatorGeneric(data, i+1, 50000, 3));
+        sims[i]->Simulate();
+        ofstream simFile("Simulation-f"+to_string(i+1));
+        sims[i]->Print(simFile);
+        simFile.close();
+    }
+    
+    double minErr = 10000.0;
+    int minErrIndex= 0;
+    for (int i = 0; i < MAX_FEND; i++)
+    {
+        if (minErr > sims[i]->minError)
+        {
+            minErr = sims[i]->minError;
+            minErrIndex = i;
+        }
+    }
+    
+    double minTopErr = 10000.0;
+    int minTopErrIndex= 0;
+    for (int i = 0; i < MAX_FEND; i++)
+    {
+        if (minTopErr > sims[i]->minTopError)
+        {
+            minTopErr = sims[i]->minTopError;
+            minTopErrIndex = i;
+        }
+    }
+    
+    cout << "----------------------------------------" << endl;
+    cout << "The global best guess is for " << minErrIndex+1<< " fenditures" << endl;
+    cout << "The global best guess on top is for " << minTopErrIndex+1<< " fenditures" << endl;
+    sims[minErrIndex]->PrintEvaluation(cout);
+    sims[minTopErrIndex]->PrintEvaluation(cout);
+    
+    for (int i = 0; i < MAX_FEND; i++)
+    {
+        delete sims[i];
+    }
+    sims.clear();
 }
 
 

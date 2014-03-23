@@ -127,7 +127,7 @@ void ExperimentSimulator::Check()
 
 void ExperimentSimulator::PrintSimulatedDataToFile()
 {
-    std::ofstream datFile("sim-" + std::to_string(uniqueID)+".dat");
+    std::ofstream datFile("sim-f"+std::to_string(fissureN)+"-"+ std::to_string(uniqueID)+".dat");
     datFile << "#Simulated data with id:"<< uniqueID<< std::endl;
     datFile << "# "; scene->PrintFormula(datFile); datFile << "*" << scaleValue << std::endl;
     simulatedData->PrintData(datFile);

@@ -107,7 +107,6 @@ void PhysicalScene2::PrintFormula(std::ostream& myout)
         if (i!=(components.size()-1)) myout << " + "; // If this is not the last element in the row, print +
     }
     myout << ") ";
-
 }
 
 

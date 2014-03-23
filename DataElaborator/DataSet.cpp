@@ -233,6 +233,7 @@ double DataSet::SplineDerivate1(double x)
 
 double DataSet::SplineDerivate1Zero(int index, int recursion)
 {
+    if (index==0) index++;
 	double a = xp[index-1];
 	double b = xp[index+1];
 	//cout << "Investigating x-= " << xp[index-1] << "\t x+= " << xp[index+1] << endl;

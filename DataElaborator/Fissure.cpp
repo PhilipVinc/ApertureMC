@@ -27,6 +27,7 @@ Fissure::~Fissure()
 double Fissure::operator()(double x)
 {
     double value = 4*relativeIntensity*relativeIntensity*sin((x-position)*halfAperture)*sin((x-position)*halfAperture)/(x-position)/(x-position);
+    //double value = 4*relativeIntensity*sin((x-position)*halfAperture)/(x-position);
     return value;
 }
 
