@@ -88,7 +88,7 @@ void ThreadedResultSimulatorGeneric2::Simulate()
         long double percent = double(cycle)/double(cyclesN);
         if ( percent > lastPercent )
         {
-            DrawProgressBar(100, percent);
+         //   DrawProgressBar(100, percent);
             lastPercent = percent + 0.01;
         }
     }

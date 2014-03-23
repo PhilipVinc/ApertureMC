@@ -21,6 +21,12 @@ ExperimentSimulatorBase::~ExperimentSimulatorBase()
     delete [] values;
     delete scene;
     delete simulatedData;
+    
+    for (int i = 0; i != deltaCalculators.size(); i++)
+    {
+        delete deltaCalculators[i];
+    }
+    deltaCalculators.clear();
 }
 
 void ExperimentSimulatorBase::BaseSetup(long double _range)
@@ -66,6 +72,11 @@ void ExperimentSimulatorBase::BaseSetup(long double _minX, long double _maxX)
     }
 }
 
+int ExperimentSimulatorBase::GetErrorsNumber() { return deltaCalculators.size(); }
+long double ExperimentSimulatorBase::GetError(int id)
+{
+    return deltaCalculators[id]->GetDelta();
+}
 
 void ExperimentSimulatorBase::Work()
 {

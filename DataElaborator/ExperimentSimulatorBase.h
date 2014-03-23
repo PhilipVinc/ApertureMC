@@ -10,8 +10,10 @@
 #define __DataElaborator__ExperimentSimulatorBase__
 
 #include <iostream>
+#include <vector>
 #include "DataSet.h"
 #include "PhysicalScene2.h"
+#include "DeltaCalculator.h"
 
 class ExperimentSimulatorBase
 {
@@ -21,6 +23,9 @@ public:
     ~ExperimentSimulatorBase();
     void BaseSetup(long double range);
     void BaseSetup(long double _minX, long double _maxX);
+    
+    int GetErrorsNumber();
+    long double GetError(int id);
     
     void Work();
     
@@ -35,6 +40,8 @@ protected:
     PhysicalScene2 * scene;
     DataSet * experimentalData;
     DataSet * simulatedData;
+    
+    std::vector<DeltaCalculator*> deltaCalculators;
     
     long double * values;
     long double range;

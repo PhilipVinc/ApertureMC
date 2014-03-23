@@ -13,6 +13,8 @@
 #include "DataSet.h"
 #include "PhysicalScene2.h"
 #include "ExperimentSimulatorBase.h"
+#include "StepDeltaCalculator.h"
+#include "SplineDeltaCalculator.h"
 
 class ExperimentSimulator : public ExperimentSimulatorBase
 {

@@ -65,48 +65,13 @@ void ExperimentSimulator::Check()
     
     error = 0.0;
     
-    long double diff = 0.0;
-    int simIndex = 0;
-   
-    //for (int i = xMinIndex; i != xMaxIndex; i++)
-    for (int i = (xMinIndex*3+xMaxIndex)/4; i != (3*xMaxIndex+xMinIndex)/4; i++)
-    {
-        simIndex = i - xMinIndex;
-        long double a1= simulatedData->y(simIndex);
-        long double a2 = experimentalData->y(i);
-        diff = fabs(a1-a2);
-        error += diff*diff;
-    }
-    error /= xMaxIndex-xMinIndex;
-    error *= 100;
+    deltaCalculators.push_back(new StepDeltaCalculator(experimentalData, simulatedData, (xMinIndex*3+xMaxIndex)/4, (3*xMaxIndex+xMinIndex)/4));
+    deltaCalculators.push_back(new StepDeltaCalculator(experimentalData, simulatedData, (xMinIndex+xMaxIndex)/2 - 4, (xMinIndex+xMaxIndex)/2 + 4));
+    deltaCalculators.push_back(new SplineDeltaCalculator(experimentalData, simulatedData, xMinIndex, xMaxIndex));
     
-    int center = (xMinIndex+xMaxIndex)/2;
-    errorSmall = 0.0;
-    for (int i = center - 5; i != center + 5; i++)
-    {
-        simIndex = i - xMinIndex;
-        long double a1= simulatedData->y(simIndex);
-        long double a2 = experimentalData->y(i);
-        diff = fabs(a1-a2);
-        errorSmall += diff*diff;
-    }
-    errorSmall /= 10 ;
-    errorSmall *= 100;
-    
-    /*
-    long long double pos = -range;
-    int itt = 0;
-    newError = 0.0;
-    do {
-        long double a1= simulatedData->SplineValue(pos);
-        long double a2 = experimentalData->SplineValue(pos);
-        diff = fabs(a1-a2);
-        newError += diff*diff;
-        itt++;
-    } while (pos <= range);
-    newError /= long double(itt);
-    */
-    newError = CalculatorSimple::SplineDiff(simulatedData, experimentalData, -range, +range, 0.01);
+    error = GetError(0);
+    errorSmall = GetError(1);
+    newError = GetError(2);
 
     //std::cout << "worker ID: "<< uniqueID << " - has calculated error= "<< error<<std::endl;
     delete cMax;

@@ -17,7 +17,7 @@ class DeltaCalculator
 {
 public:
     DeltaCalculator(DataSet * expData, DataSet * simData, int xMinIndex, int xMaxIndex);
-    ~DeltaCalculator();
+    //~DeltaCalculator();
     
     virtual long double GetDelta()=0;
 protected:

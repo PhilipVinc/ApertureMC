@@ -16,7 +16,4 @@ DeltaCalculator::DeltaCalculator(DataSet * expData, DataSet * simData, int _xMin
     xMaxIndex = _xMaxIndex;
 }
 
-DeltaCalculator::~DeltaCalculator()
-{
-}
 
