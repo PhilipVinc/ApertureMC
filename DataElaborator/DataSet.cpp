@@ -21,24 +21,20 @@ const
 DataSet::DataSet()
 {
 	debug = false;
-	meanXDirty = false;
-	meanYDirty = false;
+	meanXDirty = true;
+	meanYDirty = true;
+    splineDirty = true;
     n=0;
     
-    //xp = *new vector<double>();
-    //yp = *new vector<double>();
-    //zs = *new vector<double>();
 }
 
 DataSet::DataSet(string inputPath, bool enableDebug)
 {
 	debug = enableDebug;
-	meanXDirty = false;
-	meanYDirty = false;
+	meanXDirty = true;
+	meanYDirty = true;
+    splineDirty = true;
     n=0;
-    
-    //xp =new vector<double>();
-    //yp = new vector<double>();
     
 	int lines=0;
     {
@@ -126,6 +122,7 @@ void DataSet::EraseData()
 
 int DataSet::AddMeasure(double position, double intensity)
 {
+    splineDirty = true;
 	n++;
     xp.push_back(position);
     yp.push_back(intensity);
@@ -137,8 +134,6 @@ int DataSet::AddMeasure(double position, double intensity)
 
 void DataSet::RemoveMeasure(int id)
 {
-	//if (DEBUG)	debugStream << "Destroyed Measure with ID= " << id << " : had position= " << pool[id].position << " speed= " << pool[id].intensity << endl;
-    
 	xp.erase(xp.begin()+id);
     yp.erase(yp.begin()+id);
 }
@@ -187,11 +182,13 @@ void DataSet::ComputeSplineCoefficients()
 	zs[0]=0.0;
     
 	delete[] h; delete[] b; delete[] u; delete[] v;
+    splineDirty = false;
 }
 
 //--------------- Value Functions -------------------------
 double DataSet::SplineValue(double x)
 {
+    if(splineDirty) ComputeSplineCoefficients();
 	// Select the interval
 	int i = n-2;
 	while ( i>0 )
@@ -213,6 +210,7 @@ double DataSet::SplineValue(double x)
 
 double DataSet::SplineDerivate1(double x)
 {
+    if(splineDirty) ComputeSplineCoefficients();
 	// Select the interval
 	int i = n-2;
 	while ( i>0 )
@@ -233,6 +231,7 @@ double DataSet::SplineDerivate1(double x)
 
 double DataSet::SplineDerivate1Zero(int index, int recursion)
 {
+    if(splineDirty) ComputeSplineCoefficients();
     if (index==0) index++;
 	double a = xp[index-1];
 	double b = xp[index+1];
@@ -254,7 +253,7 @@ double DataSet::SplineDerivate1Zero(int index, int recursion)
 
 double DataSet::MeanX()
 {
-	if (!meanXDirty)
+	if (meanXDirty)
 	{
 		meanX = 0;
 		for (int i = 0; i < n; ++i)
@@ -268,7 +267,7 @@ double DataSet::MeanX()
 
 double DataSet::MeanY()
 {
-	if (!meanYDirty)
+	if (meanYDirty)
 	{
 		meanY = 0;
 		for (int i = 0; i < n; ++i)

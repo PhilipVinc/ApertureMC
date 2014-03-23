@@ -32,6 +32,7 @@ public:
     
     double error;
     double errorSmall;
+    double newError;
     int uniqueID;
     
 protected:

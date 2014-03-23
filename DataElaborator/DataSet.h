@@ -61,6 +61,8 @@ private:
 	double meanX;
 	double meanY;
     
+    bool splineDirty;
+    
 	// Debug Variables
 	bool debug;
 	std::ofstream debugStream;

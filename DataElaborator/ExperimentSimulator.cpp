@@ -10,6 +10,7 @@
 #include <cmath>
 #include "CalculatorMax.h"
 #include "TransformerSimple.h"
+#include "CalculatorSimple.h"
 
 /* ------------------------   Init Functions ---------------------- */
 ExperimentSimulator::ExperimentSimulator(DataSet * expData)
@@ -119,6 +120,8 @@ void ExperimentSimulator::Check()
     }
     errorSmall /= 10 ;
     errorSmall *= 100;
+    
+    newError = CalculatorSimple::SplineDiff(simulatedData, experimentalData, -range, +range, 0.01);
 
     //std::cout << "worker ID: "<< uniqueID << " - has calculated error= "<< error<<std::endl;
     delete cMax;

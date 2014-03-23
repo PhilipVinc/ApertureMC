@@ -98,7 +98,7 @@ void ElaborateFile(string inputName, bool addXls = false)
     
     delete extremerer;
     
-    int MAX_FEND = 10;
+    int MAX_FEND = 20;
     
     vector<ThreadedResultSimulatorGeneric*> sims;
     
@@ -122,22 +122,22 @@ void ElaborateFile(string inputName, bool addXls = false)
         }
     }
     
-    double minTopErr = 10000.0;
-    int minTopErrIndex= 0;
+    double minNewErr = 10000.0;
+    int minNewErrIndex= 0;
     for (int i = 0; i < MAX_FEND; i++)
     {
-        if (minTopErr > sims[i]->minTopError)
+        if (minNewErr > sims[i]->minNewError)
         {
-            minTopErr = sims[i]->minTopError;
-            minTopErrIndex = i;
+            minNewErr = sims[i]->minNewError;
+            minNewErrIndex = i;
         }
     }
     
     cout << "----------------------------------------" << endl;
     cout << "The global best guess is for " << minErrIndex+1<< " fenditures" << endl;
-    cout << "The global best guess on top is for " << minTopErrIndex+1<< " fenditures" << endl;
+    cout << "The global best guess WITH NEW is for " << minNewErrIndex+1<< " fenditures" << endl;
     sims[minErrIndex]->PrintEvaluation(cout);
-    sims[minTopErrIndex]->PrintEvaluation(cout);
+    sims[minNewErrIndex]->PrintNewEvaluation(cout);
     
     for (int i = 0; i < MAX_FEND; i++)
     {

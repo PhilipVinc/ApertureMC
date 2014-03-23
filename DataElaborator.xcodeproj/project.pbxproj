@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4132C15218DED9A300E60ACF /* CalculatorSimple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4132C15018DED9A300E60ACF /* CalculatorSimple.cpp */; };
 		4168294D18DDD5AE00EE461F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4168294C18DDD5AE00EE461F /* main.cpp */; };
 		4168294F18DDD5AE00EE461F /* DataElaborator.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4168294E18DDD5AE00EE461F /* DataElaborator.1 */; };
 		4168295B18DDD62000EE461F /* CalculatorMaxMin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4168295618DDD62000EE461F /* CalculatorMaxMin.cpp */; };
@@ -39,6 +40,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4132C15018DED9A300E60ACF /* CalculatorSimple.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CalculatorSimple.cpp; sourceTree = "<group>"; };
+		4132C15118DED9A300E60ACF /* CalculatorSimple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculatorSimple.h; sourceTree = "<group>"; };
 		4168294918DDD5AE00EE461F /* DataElaborator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DataElaborator; sourceTree = BUILT_PRODUCTS_DIR; };
 		4168294C18DDD5AE00EE461F /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		4168294E18DDD5AE00EE461F /* DataElaborator.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = DataElaborator.1; sourceTree = "<group>"; };
@@ -136,8 +139,8 @@
 				4168297418DDD63500EE461F /* PhysicalScene2.cpp */,
 				4168296218DDD62E00EE461F /* ExperimentSimulator.h */,
 				4168296318DDD62E00EE461F /* ExperimentSimulator.cpp */,
-				4168298218DDFCB600EE461F /* ThreadedResultSimulatorGeneric.cpp */,
 				4168298318DDFCB600EE461F /* ThreadedResultSimulatorGeneric.h */,
+				4168298218DDFCB600EE461F /* ThreadedResultSimulatorGeneric.cpp */,
 			);
 			name = MonteCarlo;
 			sourceTree = "<group>";
@@ -160,6 +163,8 @@
 				4168295818DDD62000EE461F /* CalculatorMax.cpp */,
 				4168295918DDD62000EE461F /* Calculator.h */,
 				4168295A18DDD62000EE461F /* Calculator.cpp */,
+				4132C15018DED9A300E60ACF /* CalculatorSimple.cpp */,
+				4132C15118DED9A300E60ACF /* CalculatorSimple.h */,
 			);
 			name = Calculators;
 			sourceTree = "<group>";
@@ -244,6 +249,7 @@
 				4168296B18DDD62E00EE461F /* Elaborator.cpp in Sources */,
 				4168296818DDD62E00EE461F /* Function.cpp in Sources */,
 				4168297718DDD63500EE461F /* TransformerSimple.cpp in Sources */,
+				4132C15218DED9A300E60ACF /* CalculatorSimple.cpp in Sources */,
 				4168295B18DDD62000EE461F /* CalculatorMaxMin.cpp in Sources */,
 				4168295C18DDD62000EE461F /* CalculatorMax.cpp in Sources */,
 				4168297B18DDD63500EE461F /* PhysicalScene.cpp in Sources */,
@@ -359,6 +365,7 @@
 				4168295418DDD5AE00EE461F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

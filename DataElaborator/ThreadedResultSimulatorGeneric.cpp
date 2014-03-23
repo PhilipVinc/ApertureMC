@@ -48,6 +48,7 @@ void ThreadedResultSimulatorGeneric::SetupRandomNumberGenerator()
 void ThreadedResultSimulatorGeneric::Simulate()
 {
     int cyclesN = ceil(double(simulationsN)/double(num_threads));
+    double lastPercent = 0.0;
     for (int cycle = 0; cycle < cyclesN; cycle++)
     {
         threads = new thread[num_threads];
@@ -73,14 +74,21 @@ void ThreadedResultSimulatorGeneric::Simulate()
         {
             results[(simulators[i]->uniqueID)*(simDataN+resultsN)] = simulators[i]->error;
             results[(simulators[i]->uniqueID)*(simDataN+resultsN)+1] = simulators[i]->errorSmall;
+            results[(simulators[i]->uniqueID)*(simDataN+resultsN)+2] = simulators[i]->newError;
             delete simulators[i];
         }
         simulators.clear();
-        double percent = double(cycle)/double(cyclesN)*100;
-        //cout << percent << "\%" << endl;
+        double percent = double(cycle)/double(cyclesN);
+        if ( percent > lastPercent )
+        {
+            DrawProgressBar(100, percent);
+            lastPercent = percent + 0.01;
+        }
     }
+    std::cout << std::endl;
     PrintEvaluation(std::cout);
-    PrintTopEvaluation(std::cout);
+    //PrintTopEvaluation(std::cout);
+    PrintNewEvaluation(std::cout);
 }
 
 ExperimentSimulator * ThreadedResultSimulatorGeneric::CreateSim()
@@ -174,7 +182,7 @@ void ThreadedResultSimulatorGeneric::PrintEvaluation(ostream& myout)
     minError = minErr;
 }
 
-void ThreadedResultSimulatorGeneric::PrintTopEvaluation(ostream& myout)
+/*void ThreadedResultSimulatorGeneric::PrintTopEvaluation(ostream& myout)
 {
     myout << "-----------------------------------" << endl;
     double minErr = results[1];
@@ -191,4 +199,42 @@ void ThreadedResultSimulatorGeneric::PrintTopEvaluation(ostream& myout)
     
     myout << "the minimal difference for "<< fenditureN << " fenditures on the top is: "<<minErr << endl;
     PrintSingleSimulation(minIndex);
+}*/
+
+void ThreadedResultSimulatorGeneric::PrintNewEvaluation(ostream& myout)
+{
+    myout << "-----------------------------------" << endl;
+    double minErr = results[1];
+    int minIndex = 0;
+    for (int i = 0; i < lastId; ++i)
+    {
+        if (minErr > results[i*(simDataN+resultsN)+1] )
+        {
+            minErr = results[i*(simDataN+resultsN)+1];
+            minIndex = i;
+        }
+    }
+    minNewError = minErr;
+    
+    myout << "the minimal difference for "<< fenditureN << " fenditures with the new eval. is: "<<minErr << endl;
+    PrintSingleSimulation(minIndex);
+}
+
+void ThreadedResultSimulatorGeneric::DrawProgressBar(int len, double percent)
+{
+    percent = percent + 0.01;
+    cout << "\x1B[2K"; // Erase the entire current line.
+    cout << "\x1B[0E"; // Move to the beginning of the current line.
+    string progress;
+    for (int i = 0; i < len; ++i) {
+        if (i < static_cast<int>(len * percent)) {
+            progress += "=";
+        } else {
+            progress += " ";
+        }
+    }
+    cout << "[" << progress << "] " << (static_cast<int>(100 * percent)) << "%";
+    cout << " \t\t Simulation - " << fenditureN << " Fenditures";
+
+    flush(cout); // Required.
 }

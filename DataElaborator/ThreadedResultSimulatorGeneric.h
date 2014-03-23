@@ -27,10 +27,12 @@ public:
     void Simulate();
     void Print(std::ostream& myout);
     void PrintEvaluation(std::ostream& myout);
-    void PrintTopEvaluation(std::ostream& myout);
+    //void PrintTopEvaluation(std::ostream& myout);
+    void PrintNewEvaluation(std::ostream& myout);
     
     double minError;
-    double minTopError;
+    //double minTopError;
+    double minNewError;
     
 protected:
     ExperimentSimulator * CreateSim();
@@ -62,6 +64,7 @@ protected:
     double * results;
     int lastId;
     
+    void DrawProgressBar(int len, double percent);
 };
 
 
