@@ -27,7 +27,7 @@ PhysicalScene2::~PhysicalScene2()
 }
 
 /* ------------------------   Scene Management  ---------------------- */
-int PhysicalScene2::AddFissure(double position, double intensity, double halfAperture)
+int PhysicalScene2::AddFissure(long double position, long double intensity, long double halfAperture)
 {
     Fissure * newFissure = new Fissure(position, intensity, halfAperture);
     components.push_back(newFissure);
@@ -62,7 +62,7 @@ int PhysicalScene2::FissureNumber()
     return components.size();
 }
 
-void PhysicalScene2::SetFissurePosition(int id, double position)
+void PhysicalScene2::SetFissurePosition(int id, long double position)
 {
     if (id < components.size())
     {
@@ -74,7 +74,7 @@ void PhysicalScene2::SetFissurePosition(int id, double position)
     }
 }
 
-void PhysicalScene2::SetFissureIntensity(int id, double intensity)
+void PhysicalScene2::SetFissureIntensity(int id, long double intensity)
 {
     if (id < components.size())
     {
@@ -87,9 +87,9 @@ void PhysicalScene2::SetFissureIntensity(int id, double intensity)
 }
 
 /* ------------------------   Calculation Functions  ---------------------- */
-double PhysicalScene2::operator()(double x)
+long double PhysicalScene2::operator()(long double x)
 {
-    double result = 0.0;
+    long double result = 0.0;
     for (vector<Function*>::size_type i=0; i != components.size(); i++)
     {
         result += (*components[i])(x);

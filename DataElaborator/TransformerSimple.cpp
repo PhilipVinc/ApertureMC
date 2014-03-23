@@ -8,34 +8,38 @@
 
 #include "TransformerSimple.h"
 
-void TransformerSimple::ShiftX(DataSet * data, double value)
+void TransformerSimple::ShiftX(DataSet * data, long double value)
 {
     for (int i = 0; i < data->n; ++i)
 	{
 		data->xp[i] += value;
 	}
+    data->SetDirty();
 }
 
-void TransformerSimple::ShiftY(DataSet * data, double value)
+void TransformerSimple::ShiftY(DataSet * data, long double value)
 {
     for (int i = 0; i < data->n; ++i)
 	{
 		data->yp[i] += value;
 	}
+    data->SetDirty();
 }
 
-void TransformerSimple::ScaleX(DataSet * data, double value)
+void TransformerSimple::ScaleX(DataSet * data, long double value)
 {
     for (int i = 0; i < data->n; ++i)
 	{
 		data->xp[i] *= value;
 	}
+    data->SetDirty();
 }
 
-void TransformerSimple::ScaleY(DataSet * data, double value)
+void TransformerSimple::ScaleY(DataSet * data, long double value)
 {
     for (int i = 0; i < data->n; ++i)
 	{
 		data->yp[i] *= value;
 	}
+    data->SetDirty();
 }

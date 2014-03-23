@@ -18,8 +18,8 @@ public:
 	CalculatorMax(DataSet * input);
 	~CalculatorMax();
     
-    double GetMaxXPosition();
-    double GetMaxYPosition();
+    long double GetMaxXPosition();
+    long double GetMaxYPosition();
     int GetMaxIndex();
 
     
@@ -28,8 +28,8 @@ private:
 
     bool isDataComputed = false;
     int maxIndex;
-    double maxXPosition;
-    double maxYPosition;
+    long double maxXPosition;
+    long double maxYPosition;
     
 };
 

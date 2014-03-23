@@ -32,17 +32,17 @@ ThreadedResultSimulator::~ThreadedResultSimulator()
 
 void ThreadedResultSimulator::SetupArrayResults()
 {
-    results = new double [(simulationsN+num_threads)*(simDataN+resultsN)]; // longer so we just do some more simulations and there is no overflow risk.
+    results = new long double [(simulationsN+num_threads)*(simDataN+resultsN)]; // longer so we just do some more simulations and there is no overflow risk.
 }
 
 void ThreadedResultSimulator::SetupRandomNumberGenerator()
 {
 	rng.seed(5);
     
-    f1PosRangeDistribution = new uniform_real_distribution<double> (-f1PosRange, f1PosRange);
-    f2DistanceDistribution = new uniform_real_distribution<double> (-f2DistRange, f2DistRange);
-    f1apertureDistribution = new uniform_real_distribution<double> (aperture-4, aperture+4 );
-    f2apertureDistribution = new uniform_real_distribution<double> (0.25, 0.75 );
+    f1PosRangeDistribution = new uniform_real_distribution<long double> (-f1PosRange, f1PosRange);
+    f2DistanceDistribution = new uniform_real_distribution<long double> (-f2DistRange, f2DistRange);
+    f1apertureDistribution = new uniform_real_distribution<long double> (aperture-4, aperture+4 );
+    f2apertureDistribution = new uniform_real_distribution<long double> (0.25, 0.75 );
 }
 
 
@@ -90,11 +90,11 @@ void ThreadedResultSimulator::Simulate()
 
 ExperimentSimulator * ThreadedResultSimulator::CreateSim()
 {
-    double variables[fenditureN*3];
-    double _f1Pos = (*f1PosRangeDistribution)(rng);
-    double _f2Dis = (*f2DistanceDistribution)(rng);
-    double _f1aper = (*f1apertureDistribution)(rng);
-    double _f2aper = (*f2apertureDistribution)(rng);
+    long double variables[fenditureN*3];
+    long double _f1Pos = (*f1PosRangeDistribution)(rng);
+    long double _f2Dis = (*f2DistanceDistribution)(rng);
+    long double _f1aper = (*f1apertureDistribution)(rng);
+    long double _f2aper = (*f2apertureDistribution)(rng);
     
     variables[0] = _f1Pos;
     variables[1] = 0.5;
@@ -124,10 +124,10 @@ ExperimentSimulator * ThreadedResultSimulator::CreateSim()
 
 void ThreadedResultSimulator::PrintSingleSimulation(int id, ostream& myout)
 {
-    double _f1Pos = results[id*(simDataN+resultsN)+(resultsN)];
-    double _f2Dis = results[id*(simDataN+resultsN)+(resultsN+1)];
-    double _f1aper = results[id*(simDataN+resultsN)+(resultsN+2)];
-    double _f2aper = results[id*(simDataN+resultsN)+(resultsN+3)];
+    long double _f1Pos = results[id*(simDataN+resultsN)+(resultsN)];
+    long double _f2Dis = results[id*(simDataN+resultsN)+(resultsN+1)];
+    long double _f1aper = results[id*(simDataN+resultsN)+(resultsN+2)];
+    long double _f2aper = results[id*(simDataN+resultsN)+(resultsN+3)];
     
     myout << "Single Simulation with parameters for id "<< id<<endl;
     myout << "_f1Pos= " << _f1Pos << endl;
@@ -135,7 +135,7 @@ void ThreadedResultSimulator::PrintSingleSimulation(int id, ostream& myout)
     myout << "_f1aper= " << _f1aper << endl;
     myout << "_f2aper= " << _f2aper << endl;
     
-    double variables[fenditureN*3];
+    long double variables[fenditureN*3];
     variables[0] = _f1Pos;
     variables[1] = 0.5;
     variables[2] = _f1aper;
@@ -167,7 +167,7 @@ void ThreadedResultSimulator::Print(ostream& myout)
 
 void ThreadedResultSimulator::PrintEvaluation(ostream& myout)
 {
-    double minErr = results[0];
+    long double minErr = results[0];
     int minIndex = 0;
     for (int i = 0; i < lastId; ++i)
     {

@@ -22,13 +22,13 @@ int CalculatorMax::GetMaxIndex()
     return maxIndex;
 }
 
-double CalculatorMax::GetMaxXPosition()
+long double CalculatorMax::GetMaxXPosition()
 {
     if ( !isDataComputed) Elaborate();
     return maxXPosition;
 }
 
-double CalculatorMax::GetMaxYPosition()
+long double CalculatorMax::GetMaxYPosition()
 {
     if ( !isDataComputed) Elaborate();
     return maxYPosition;
@@ -38,7 +38,7 @@ void CalculatorMax::Elaborate()
 {
     maxIndex = 0;
 	{
-		double max = data->yp[0];
+		long double max = data->yp[0];
 		// Trovo il massimo centrale
 		for (int i = 0; i < data->n; ++i)
 		{

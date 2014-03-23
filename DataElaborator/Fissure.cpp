@@ -10,7 +10,7 @@
 #include <cmath>
 
 /* ----------   Init Functions -------- */
-Fissure::Fissure(double _position, double _intensity, double _halfAperture)
+Fissure::Fissure(long double _position, long double _intensity, long double _halfAperture)
 {
     position = _position;
     relativeIntensity = _intensity;
@@ -24,9 +24,9 @@ Fissure::~Fissure()
 
 /* ----------   Operative Functions -------- */
 
-double Fissure::operator()(double x)
+long double Fissure::operator()(long double x)
 {
-    double value = 4*relativeIntensity*relativeIntensity*sin((x-position)*halfAperture)*sin((x-position)*halfAperture)/(x-position)/(x-position);
+    long double value = 4*relativeIntensity*relativeIntensity*sin((x-position)*halfAperture)*sin((x-position)*halfAperture)/(x-position)/(x-position);
     //double value = 4*relativeIntensity*sin((x-position)*halfAperture)/(x-position);
     return value;
 }

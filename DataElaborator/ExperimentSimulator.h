@@ -19,7 +19,7 @@ public:
     /* ------------------------   Init Functions ---------------------- */
     ExperimentSimulator(DataSet * expData);
     ~ExperimentSimulator();
-    void Setup(int fissureN, double * setupValues, double range = 1.0);
+    void Setup(int fissureN, long double * setupValues, long double range = 1.0);
     
     
     void Work();
@@ -30,9 +30,9 @@ public:
     
     void PrintSimulatedDataToFile();
     
-    double error;
-    double errorSmall;
-    double newError;
+    long double error;
+    long double errorSmall;
+    long double newError;
     int uniqueID;
     
 protected:
@@ -41,12 +41,12 @@ protected:
     DataSet * simulatedData;
     
     int fissureN;
-    double * values;
-    double range;
+    long double * values;
+    long double range;
     int xMinIndex;
     int xMaxIndex;
     
-    double scaleValue;
+    long double scaleValue;
     
 };
 

@@ -26,11 +26,11 @@ ExperimentSimulator::~ExperimentSimulator()
 }
 
 /* Setup() is called right after object creation. Should be merged. Usage is not clear */
-void ExperimentSimulator::Setup(int _fissureN, double * _setupValues, double _range)
+void ExperimentSimulator::Setup(int _fissureN, long double * _setupValues, long double _range)
 {
     // Find the
     fissureN = _fissureN;
-    values = new double[fissureN*3];
+    values = new long double[fissureN*3];
     for (int i = 0; i != fissureN*3; i++)
     {
         values[i]= _setupValues[i];
@@ -77,8 +77,8 @@ void ExperimentSimulator::SimulateExperiment()
 {
     for (int i = xMinIndex; i != xMaxIndex; i++)
     {
-        double position = experimentalData->xp[i];
-        double value = (*scene)(position);
+        long double position = experimentalData->xp[i];
+        long double value = (*scene)(position);
         simulatedData->AddMeasure(position, value);
     }
 }
@@ -93,15 +93,15 @@ void ExperimentSimulator::Check()
     
     error = 0.0;
     
-    double diff = 0.0;
+    long double diff = 0.0;
     int simIndex = 0;
    
     //for (int i = xMinIndex; i != xMaxIndex; i++)
     for (int i = (xMinIndex*3+xMaxIndex)/4; i != (3*xMaxIndex+xMinIndex)/4; i++)
     {
         simIndex = i - xMinIndex;
-        double a1= simulatedData->yp[simIndex];
-        double a2 = experimentalData->yp[i];
+        long double a1= simulatedData->yp[simIndex];
+        long double a2 = experimentalData->yp[i];
         diff = fabs(a1-a2);
         error += diff*diff;
     }
@@ -113,14 +113,27 @@ void ExperimentSimulator::Check()
     for (int i = center - 5; i != center + 5; i++)
     {
         simIndex = i - xMinIndex;
-        double a1= simulatedData->yp[simIndex];
-        double a2 = experimentalData->yp[i];
+        long double a1= simulatedData->yp[simIndex];
+        long double a2 = experimentalData->yp[i];
         diff = fabs(a1-a2);
         errorSmall += diff*diff;
     }
     errorSmall /= 10 ;
     errorSmall *= 100;
     
+    /*
+    long long double pos = -range;
+    int itt = 0;
+    newError = 0.0;
+    do {
+        long double a1= simulatedData->SplineValue(pos);
+        long double a2 = experimentalData->SplineValue(pos);
+        diff = fabs(a1-a2);
+        newError += diff*diff;
+        itt++;
+    } while (pos <= range);
+    newError /= long double(itt);
+    */
     newError = CalculatorSimple::SplineDiff(simulatedData, experimentalData, -range, +range, 0.01);
 
     //std::cout << "worker ID: "<< uniqueID << " - has calculated error= "<< error<<std::endl;
@@ -135,6 +148,12 @@ void ExperimentSimulator::PrintSimulatedDataToFile()
     datFile << "# "; scene->PrintFormula(datFile); datFile << "*" << scaleValue << std::endl;
     simulatedData->PrintData(datFile);
     datFile.close();
+    
+    std::ofstream splineFile("ssp-f"+std::to_string(fissureN)+"-"+ std::to_string(uniqueID)+".dat");
+    splineFile << "#Simulated data with id:"<< uniqueID<< std::endl;
+    splineFile << "# "; scene->PrintFormula(splineFile); splineFile << "*" << scaleValue << std::endl;
+    simulatedData->PrintSplineWithDerivate1(splineFile);
+    splineFile.close();
 }
 
 

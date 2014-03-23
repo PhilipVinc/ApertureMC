@@ -15,6 +15,6 @@
 class CalculatorSimple
 {
 public:
-    static double SplineDiff(DataSet * data1, DataSet * data2, double xMin, double xMax, double step);
+    static double SplineDiff(DataSet * data1, DataSet * data2, long double xMin, long double xMax, long double step);
 };
 #endif /* defined(__DataElaborator__CalculatorSimple__) */

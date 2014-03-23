@@ -19,11 +19,15 @@
 #include "CalculatorMax.h"
 #include "TransformerSimple.h"
 
-#include "ThreadedResultSimulatorGeneric.h"
+#include "ThreadedResultSimulatorGeneric2.h"
 
 void usage(const char * pname);
 
 using namespace std;
+
+int MAX_FEND = 16;
+int SIM_PER_FEND = 1000;
+int NUM_THREADS = 1;
 
 void ElaborateFile(string inputName, bool addXls = false)
 {
@@ -98,20 +102,18 @@ void ElaborateFile(string inputName, bool addXls = false)
     
     delete extremerer;
     
-    int MAX_FEND = 20;
-    
-    vector<ThreadedResultSimulatorGeneric*> sims;
+    vector<ThreadedResultSimulatorGeneric2*> sims;
     
     for (int i = 0; i < MAX_FEND; i++)
     {
-        sims.push_back( new ThreadedResultSimulatorGeneric(data, i+1, 50000, 3));
+        sims.push_back( new ThreadedResultSimulatorGeneric2(data, i+1, SIM_PER_FEND, NUM_THREADS));
         sims[i]->Simulate();
         ofstream simFile("Simulation-f"+to_string(i+1));
         sims[i]->Print(simFile);
         simFile.close();
     }
     
-    double minErr = 10000.0;
+    long double minErr = 10000.0;
     int minErrIndex= 0;
     for (int i = 0; i < MAX_FEND; i++)
     {
@@ -122,7 +124,7 @@ void ElaborateFile(string inputName, bool addXls = false)
         }
     }
     
-    double minNewErr = 10000.0;
+    long double minNewErr = 10000.0;
     int minNewErrIndex= 0;
     for (int i = 0; i < MAX_FEND; i++)
     {
@@ -153,7 +155,7 @@ int main(int argc, char * argv[])
     string inputPath;
     bool addXls = false;
 	// Handle command line options
-    while((opt = getopt(argc, argv, "ixr:m:e:dh?")) != -1)
+    while((opt = getopt(argc, argv, "i:f:n:j:dh?")) != -1)
     {
         switch (opt)
         {
@@ -163,6 +165,16 @@ int main(int argc, char * argv[])
             case 'x':
                 addXls=true;
                 break;
+            case 'f':
+                MAX_FEND = stoi(optarg);
+                break;
+            case 'n':
+                SIM_PER_FEND = stoi(optarg);
+                break;
+            case 'j':
+                NUM_THREADS = stoi(optarg);
+                break;
+            
             case 'h':
             case '?':
             default:
@@ -185,5 +197,4 @@ void usage(const char * pname)
     std::cerr << ", lo elabora, e ti sputa fuori altri file con lo stesso nome + altre terminazioni." << std::endl;
     std::cerr << "es: se vuoi elaborare cicciobello.xls, esegui il programma con l'opzione -x e poi dagli il nome"<<std::endl;
     std::cerr << "cicciobello come nome file da elaborare " << std::endl;
-    
 }

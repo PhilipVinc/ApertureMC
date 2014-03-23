@@ -15,7 +15,7 @@ class Function {
 public:
     virtual ~Function();
     
-    virtual double operator()(double value)=0;
+    virtual long double operator()(long double value)=0;
     virtual void PrintFormula(std::ostream& myout)=0;
 protected:
     

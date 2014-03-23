@@ -10,11 +10,11 @@
 
 #include <cmath>
 
-double CalculatorSimple::SplineDiff(DataSet * data1, DataSet * data2, double xMin, double xMax, double step)
+double CalculatorSimple::SplineDiff(DataSet * data1, DataSet * data2, long double xMin, long double xMax, long double step)
 {
-    double x = xMin;
-    double diff;
-    double totalDiff = 0.0;
+    long double x = xMin;
+    long double diff;
+    long double totalDiff = 0.0;
     int stepN = 0;
     do
     {
@@ -24,7 +24,14 @@ double CalculatorSimple::SplineDiff(DataSet * data1, DataSet * data2, double xMi
         stepN ++;
     } while (x <= xMax);
     
-    totalDiff /= stepN;
+    totalDiff /= double(stepN);
+    
+    if (totalDiff > 300)
+    {
+        if (totalDiff < 10) {
+            SplineDiff(data1, data2, xMin, xMax, step);
+        }
+    }
     
     return totalDiff;
 }

@@ -15,16 +15,16 @@
 class Fissure : public Function
 {
 public:
-    Fissure(double position, double relativeIntensity, double halfAperture);
+    Fissure(long double position, long double relativeIntensity, long double halfAperture);
     ~Fissure();
     
-    double operator()(double x);
+    long double operator()(long double x);
     
     void PrintFormula(std::ostream& myout);
     
-    double position;
-    double relativeIntensity;
-    double halfAperture;
+    long double position;
+    long double relativeIntensity;
+    long double halfAperture;
     
 protected:
 

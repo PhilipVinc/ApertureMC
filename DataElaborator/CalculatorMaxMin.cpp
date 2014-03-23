@@ -32,16 +32,16 @@ void CalculatorMaxMin::Elaborate()
 {
 	FindMaxMin();
     
-	xMin = new double[minN];
-	yMin = new double[minN];
+	xMin = new long double[minN];
+	yMin = new long double[minN];
 	for (int i = 0; i < minN; ++i)
 	{
 		xMin[i] = data->SplineDerivate1Zero(minIndex[i]);
 		yMin[i] = data->SplineValue(xMin[i]);
 	}
     
-	xMax = new double[maxN];
-	yMax = new double[maxN];
+	xMax = new long double[maxN];
+	yMax = new long double[maxN];
 	for (int i = 0; i < maxN; ++i)
 	{
 		xMax[i] = data->SplineDerivate1Zero(maxIndex[i]);

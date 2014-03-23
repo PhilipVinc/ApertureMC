@@ -37,10 +37,10 @@ private:
 	int minN;
 	int maxN;
     
-	double * xMin;
-	double * yMin;
-	double * xMax;
-	double * yMax;
+	long double * xMin;
+	long double * yMin;
+	long double * xMax;
+	long double * yMax;
 };
 
 #endif /* defined(__DataElaborator__ElaboratorMaxMin__) */

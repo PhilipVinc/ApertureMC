@@ -16,8 +16,8 @@
 #include <vector>
 struct Measure
 {
-	double position;
-	double intensity;
+	long double position;
+	long double intensity;
 };
 
 class DataSet
@@ -30,27 +30,28 @@ public:
 	void EnableDebug();
 	void DisableDebug();
     
-	int AddMeasure(double position, double intensity);
+	int AddMeasure(long double position, long double intensity);
 	void RemoveMeasure(int id);
     void OrderAlongXAxis();
     void EraseData();
+    void SetDirty();
     
 	void ComputeSplineCoefficients();
     
-	double SplineValue(double x);
-	double SplineDerivate1(double x);
+	long double SplineValue(long double x);
+	long double SplineDerivate1(long double x);
 	void PrintSpline(std::ostream& myout);
 	void PrintSplineWithDerivate1(std::ostream& myout);
-	double SplineDerivate1Zero(int index, int recursion = 0);
+	long double SplineDerivate1Zero(int index, int recursion = 0);
     
-	double MeanX();
-	double MeanY();
+	long double MeanX();
+	long double MeanY();
     
 	void PrintData(std::ostream& myout);
 
-    std::vector<double>  xp;
-    std::vector<double>  yp;
-    std::vector<double> zs; // spline
+    std::vector<long double>  xp;
+    std::vector<long double>  yp;
+    std::vector<long double> zs; // spline
 
  	int n;
     
@@ -58,8 +59,8 @@ private:
  	bool meanXDirty;
 	bool meanYDirty;
     
-	double meanX;
-	double meanY;
+	long double meanX;
+	long double meanY;
     
     bool splineDirty;
     

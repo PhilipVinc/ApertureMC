@@ -20,16 +20,16 @@ public:
     ~PhysicalScene2();
     
     /* ------------------------   Scene Management  ---------------------- */
-    int AddFissure(double position, double intensity, double halfAperture);
+    int AddFissure(long double position, long double intensity, long double halfAperture);
     Function* GetFunction(int id);
     void RemoveFunction(int id);
     int FissureNumber();
     
-    void SetFissurePosition(int id, double position);
-    void SetFissureIntensity(int id, double intensity);
+    void SetFissurePosition(int id, long double position);
+    void SetFissureIntensity(int id, long double intensity);
     
     /* ------------------------   Calculation Functions  ---------------------- */
-    double operator()(double value);
+    long double operator()(long double value);
     
     /* ------------------------   Print Functions  ---------------------- */
     void PrintFormula(std::ostream& myout);

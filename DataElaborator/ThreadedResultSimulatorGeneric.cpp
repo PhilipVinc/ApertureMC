@@ -73,8 +73,8 @@ void ThreadedResultSimulatorGeneric::Simulate()
         for (int i = 0; i != num_threads; i++)
         {
             results[(simulators[i]->uniqueID)*(simDataN+resultsN)] = simulators[i]->error;
-            results[(simulators[i]->uniqueID)*(simDataN+resultsN)+1] = simulators[i]->errorSmall;
-            results[(simulators[i]->uniqueID)*(simDataN+resultsN)+2] = simulators[i]->newError;
+            //results[(simulators[i]->uniqueID)*(simDataN+resultsN)+1] = simulators[i]->errorSmall;
+            results[(simulators[i]->uniqueID)*(simDataN+resultsN)+1] = simulators[i]->newError;
             delete simulators[i];
         }
         simulators.clear();
@@ -93,7 +93,7 @@ void ThreadedResultSimulatorGeneric::Simulate()
 
 ExperimentSimulator * ThreadedResultSimulatorGeneric::CreateSim()
 {
-    double variables[simDataN];
+    long double variables[simDataN];
     for (int i = 0; i < fenditureN; i++)
     {
         variables[i*dataPerFend] = (*posRangeDistribution)(rng);
@@ -120,7 +120,7 @@ ExperimentSimulator * ThreadedResultSimulatorGeneric::CreateSim()
 
 void ThreadedResultSimulatorGeneric::PrintSingleSimulation(int id, ostream& myout)
 {
-    double variables[fenditureN*3];
+    long double variables[fenditureN*3];
     for (int i = 0; i < simDataN; i++)
     {
         variables[i] = results[id*(simDataN+resultsN) +(resultsN+i)];

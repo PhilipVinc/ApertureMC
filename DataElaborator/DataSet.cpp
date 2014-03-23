@@ -19,7 +19,7 @@ using namespace std;
 
 const
 DataSet::DataSet()
-{
+{    
 	debug = false;
 	meanXDirty = true;
 	meanYDirty = true;
@@ -49,7 +49,7 @@ DataSet::DataSet(string inputPath, bool enableDebug)
         }
         lines--;
     }
-    double x, y;
+    long double x, y;
     ifstream inputFile(inputPath);
     {
         for (int i = 0; i < lines; ++i)
@@ -90,7 +90,7 @@ void DataSet::OrderAlongXAxis()
             {
                 if (xp[i] < xp[i-1])
                 {
-                    double temp = xp[i];
+                    long double temp = xp[i];
                     xp[i] = xp[i-1];
                     xp[i-1] = temp;
                     temp = yp[i];
@@ -120,7 +120,7 @@ void DataSet::EraseData()
     return newMeasure;
 }*/
 
-int DataSet::AddMeasure(double position, double intensity)
+int DataSet::AddMeasure(long double position, long double intensity)
 {
     splineDirty = true;
 	n++;
@@ -138,6 +138,13 @@ void DataSet::RemoveMeasure(int id)
     yp.erase(yp.begin()+id);
 }
 
+void DataSet::SetDirty()
+{
+    meanXDirty = true;
+    meanYDirty = true;
+    splineDirty = true;
+}
+
 //--------------- Debug Functions -------------------------
 void DataSet::EnableDebug()
 {
@@ -153,15 +160,16 @@ void DataSet::DisableDebug()
 //--------------- Compute Functions -------------------------
 void DataSet::ComputeSplineCoefficients()
 {
-	double * h = new double[n];
-	double * b = new double[n];
-	double * u = new double[n];
-	double * v = new double[n];
+	long double * h = new long double[n];
+	long double * b = new long double[n];
+	long double * u = new long double[n];
+	long double * v = new long double[n];
     
 	for (int i = 0; i < n-1; i++)
 	{
 		h[i] = xp[i+1]-xp[i];
 		b[i] = (yp[i+1] - yp[i])/h[i];
+        //cout  << i << " \t h=" << h[i] << " \t b="<< b[i] << " \t " << endl;
 	}
     
 	u[1] = 2.0 * ( h[0] + h[1] );
@@ -171,6 +179,7 @@ void DataSet::ComputeSplineCoefficients()
 	{
 		u[i] = 2.0 * ( h[i] + h[i-1] ) - h[i-1]*h[i-1]/u[i-1];
 		v[i] = 6.0 * ( b[i] - b[i-1] ) - h[i-1]*v[i-1]/u[i-1];
+        //cout  << i <<"\t u=" << u[i] << " \t v="<< v[i] << " \t "<<endl;
 	}
     
 	zs[n-1]=0.0;
@@ -186,7 +195,7 @@ void DataSet::ComputeSplineCoefficients()
 }
 
 //--------------- Value Functions -------------------------
-double DataSet::SplineValue(double x)
+long double DataSet::SplineValue(long double x)
 {
     if(splineDirty) ComputeSplineCoefficients();
 	// Select the interval
@@ -200,15 +209,15 @@ double DataSet::SplineValue(double x)
 		}
 		i--;
 	}
-	double h = xp[i+1] - xp[i];
-	double temp = zs[i]/2.0 + (x-xp[i]) * (zs[i+1] - zs[i]) / (6.0*h);
+	long double h = xp[i+1] - xp[i];
+	long double temp = zs[i]/2.0 + (x-xp[i]) * (zs[i+1] - zs[i]) / (6.0*h);
 	temp = -(h/6.0) * (zs[i+1] + 2.0*zs[i]) + (yp[i+1] - yp[i]) / h + (x - xp[i])*temp;
-	double result = (yp[i] + (x - xp[i]) * temp);
+	long double result = (yp[i] + (x - xp[i]) * temp);
     
 	return result;
 }
 
-double DataSet::SplineDerivate1(double x)
+long double DataSet::SplineDerivate1(long double x)
 {
     if(splineDirty) ComputeSplineCoefficients();
 	// Select the interval
@@ -222,25 +231,25 @@ double DataSet::SplineDerivate1(double x)
 		}
 		i--;
 	}
-	double h = xp[i+1] - xp[i];
-	double temp = zs[i]+ (x-xp[i]) * (zs[i+1] - zs[i]) / (2.0*h);
-	double result = -(h/6.0) * (zs[i+1] + 2.0*zs[i]) + (yp[i+1] - yp[i]) / h + (x - xp[i])*temp;
+	long double h = xp[i+1] - xp[i];
+	long double temp = zs[i]+ (x-xp[i]) * (zs[i+1] - zs[i]) / (2.0*h);
+	long double result = -(h/6.0) * (zs[i+1] + 2.0*zs[i]) + (yp[i+1] - yp[i]) / h + (x - xp[i])*temp;
     
 	return result;
 }
 
-double DataSet::SplineDerivate1Zero(int index, int recursion)
+long double DataSet::SplineDerivate1Zero(int index, int recursion)
 {
     if(splineDirty) ComputeSplineCoefficients();
     if (index==0) index++;
-	double a = xp[index-1];
-	double b = xp[index+1];
+	long double a = xp[index-1];
+	long double b = xp[index+1];
 	//cout << "Investigating x-= " << xp[index-1] << "\t x+= " << xp[index+1] << endl;
     
 	if( SplineDerivate1(a)*SplineDerivate1(b) < 0.0 )
 	{
-		double c ;
-		double err = 100;
+		long double c ;
+		long double err = 100;
 		while( err > 0.0001)
 		{
 			c = (b+a)/2;
@@ -251,7 +260,7 @@ double DataSet::SplineDerivate1Zero(int index, int recursion)
 	return (b+a)/2;
 }
 
-double DataSet::MeanX()
+long double DataSet::MeanX()
 {
 	if (meanXDirty)
 	{
@@ -265,7 +274,7 @@ double DataSet::MeanX()
 	return meanX;
 }
 
-double DataSet::MeanY()
+long double DataSet::MeanY()
 {
 	if (meanYDirty)
 	{
@@ -282,11 +291,11 @@ double DataSet::MeanY()
 //--------------- Print Functions -------------------------
 void DataSet::PrintSpline(ostream& myout)
 {
-	double h = abs((xp[21]-xp[20])/12.0);
+	long double h = abs((xp[21]-xp[20])/12.0);
     
 	myout << "#Spline data values for h= "<< h << endl;
     
-	for ( double x=xp[0]; x < xp[n-1]; )
+	for ( long double x=xp[0]; x < xp[n-1]; )
 	{
 		//if (DEBUG)	debugStream << "SplineOut at x=" << x << endl;
 		myout << x << "\t";
@@ -298,15 +307,15 @@ void DataSet::PrintSpline(ostream& myout)
 
 void DataSet::PrintSplineWithDerivate1(ostream& myout)
 {
-	double h = abs((xp[21]-xp[20])/12.0);
+	long double h = abs((xp[21]-xp[20])/12.0);
     
 	myout << "#Spline data values for h= "<< h << endl;
     
-	for ( double x=xp[0]; x < xp[n-1]; )
+	for ( long double x=xp[0]; x < xp[n-1]; )
 	{
 		//if (DEBUG)	debugStream << "SplineOut at x=" << x << endl;
 		myout << x << "\t";
-		myout << SplineValue(x) << "\t" << SplineDerivate1(x) << endl;
+		myout << SplineValue(x) << " \t " << SplineDerivate1(x) << " \t "<<endl;
 		x += h;
 	}
 	myout << endl;

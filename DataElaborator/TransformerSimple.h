@@ -15,10 +15,10 @@
 class TransformerSimple
 {
 public:
-    static void ShiftX(DataSet * data, double value);
-    static void ShiftY(DataSet * data, double value);
-    static void ScaleX(DataSet * data, double value);
-    static void ScaleY(DataSet * data, double value);
+    static void ShiftX(DataSet * data, long double value);
+    static void ShiftY(DataSet * data, long double value);
+    static void ScaleX(DataSet * data, long double value);
+    static void ScaleY(DataSet * data, long double value);
 };
 
 #endif /* defined(__DataElaborator__TransformerSimple__) */
