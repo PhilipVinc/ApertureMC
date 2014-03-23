@@ -41,11 +41,7 @@ void ElaborateFile(string inputName, bool addXls = false)
         fondoPath = fondoPath + ".xls";
     }
     
-    string splinePath = inputName + "-spline.dat";
     string nuoviDatiPath = inputName + ".dat";
-    string maxPath = inputName + "-max.dat";
-    string minPath = inputName + "-min.dat";
-    string plotPath = "plot-" + inputName + ".gnu";
     
     DataSet * data = new DataSet(inputPath);
     data->ComputeSplineCoefficients();
@@ -62,47 +58,11 @@ void ElaborateFile(string inputName, bool addXls = false)
     data->ComputeSplineCoefficients();
     delete cMax;
     
-    // Trovo gli estremi
-    CalculatorMaxMin * extremerer = new CalculatorMaxMin(data);
-    extremerer->Elaborate();
-    
     //Stampa i dati magicati
     ofstream datFile(nuoviDatiPath);
     data->PrintData(datFile);
     datFile.close();
-    
-    // Stampa la spline
-    ofstream splineFile(splinePath);
-    data->PrintSplineWithDerivate1(splineFile);
-    splineFile.close();
-    
-    // Stampo i massimi
-    ofstream maxFile(maxPath);
-    extremerer->PrintData(maxFile);
-    maxFile.close();
-    
-    // Stampo i Minimi
-    ofstream minFile(minPath);
-    extremerer->PrintData(minFile);
-    minFile.close();
-    
-    // Stampo i Comandi gnuplot
-    ofstream plotFile(plotPath);
-    plotFile << "#Gnuplot command:" << endl;
-    plotFile << "plot \""<<splinePath<<"\" u 1:2 w l lc rgb \"red\", \""<<splinePath<<"\" u 1:3 w l lc rgb \"blue\", \"";
-    plotFile << nuoviDatiPath<<"\" w p lc rgb \"black\", \"";
-    plotFile << maxPath << "\" w p lc rgb \"blue\", \"";
-    plotFile << minPath << "\" w p lc rgb \"blue\" " << endl;
-    plotFile.close();
-    
-    // Stampo a schermo
-    cout << "#Gnuplot command:" << endl;
-    cout << "plot \""<<splinePath<<"\" u 1:2 w l lc rgb \"red\", \""<<splinePath<<"\" u 1:3 w l lc rgb \"blue\", \"";
-    cout << nuoviDatiPath<<"\" w p lc rgb \"black\", \"";
-    cout << maxPath << "\" w p lc rgb \"blue\", \"";
-    cout << minPath << "\" w p lc rgb \"blue\" " << endl;
-    
-    delete extremerer;
+
     
     vector<ThreadedResultSimulatorGeneric2*> sims;
     
