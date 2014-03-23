@@ -110,16 +110,6 @@ void DataSet::EraseData()
     n=0;
 }
 
-/*Measure& DataSet::GetMeasure(int id)
-{
-	//if (DEBUG)	debugStream << "Accessed Measure with ID= " << id << " : has position= " << pool[id].position << " speed= " << pool[id].intensity << endl;
-    Measure newMeasure;
-    newMeasure.position = xp[id];
-    newMeasure.intensity = yp[id];
-    
-    return newMeasure;
-}*/
-
 int DataSet::AddMeasure(long double position, long double intensity)
 {
     splineDirty = true;
@@ -136,6 +126,27 @@ void DataSet::RemoveMeasure(int id)
 {
 	xp.erase(xp.begin()+id);
     yp.erase(yp.begin()+id);
+    SetDirty();
+}
+
+long double DataSet::x(int i) { return xp[i]; }
+long double DataSet::y(int i) { return yp[i]; }
+long double DataSet::s2(int i) { return zs[i]; }
+
+long double DataSet::setX(int i, double _x)
+{
+    SetDirty();
+    xp[i] = _x; return xp[i];
+}
+long double DataSet::setY(int i, double _y)
+{
+    SetDirty();
+    yp[i] = _y; return yp[i];
+}
+long double DataSet::setS2(int i, double _s2)
+{
+    SetDirty();
+    zs[i] = _s2; return zs[i];
 }
 
 void DataSet::SetDirty()

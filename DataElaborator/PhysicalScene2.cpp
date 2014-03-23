@@ -27,18 +27,12 @@ PhysicalScene2::~PhysicalScene2()
 }
 
 /* ------------------------   Scene Management  ---------------------- */
-int PhysicalScene2::AddFissure(long double position, long double intensity, long double halfAperture)
+
+int PhysicalScene2::AddFunction(Function * _function)
 {
-    Fissure * newFissure = new Fissure(position, intensity, halfAperture);
-    components.push_back(newFissure);
+    components.push_back(_function);
     return components.size();
 }
-
-/*
-Fissure* PhysicalScene2::GetFissure(int id)
-{
-    return components[id];
-}*/
 
 Function* PhysicalScene2::GetFunction(int id)
 {
@@ -57,8 +51,17 @@ void PhysicalScene2::RemoveFunction(int id)
     }
 }
 
-int PhysicalScene2::FissureNumber()
+int PhysicalScene2::FunctionNumber()
 {
+    return components.size();
+}
+
+/* ------------------------>   Fissures  <---------------------- */
+
+int PhysicalScene2::AddFissure(long double position, long double intensity, long double halfAperture)
+{
+    Fissure * newFissure = new Fissure(position, intensity, halfAperture);
+    components.push_back(newFissure);
     return components.size();
 }
 

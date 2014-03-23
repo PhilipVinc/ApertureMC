@@ -12,18 +12,17 @@
 #include <iostream>
 #include "DataSet.h"
 #include "PhysicalScene2.h"
+#include "ExperimentSimulatorBase.h"
 
-class ExperimentSimulator
+class ExperimentSimulator : public ExperimentSimulatorBase
 {
 public:
     /* ------------------------   Init Functions ---------------------- */
     ExperimentSimulator(DataSet * expData);
     ~ExperimentSimulator();
+    
     void Setup(int fissureN, long double * setupValues, long double range = 1.0);
-    
-    
-    void Work();
-    
+        
     void CreateExperiment();
     void SimulateExperiment();
     void Check();
@@ -36,18 +35,9 @@ public:
     int uniqueID;
     
 protected:
-    PhysicalScene2 * scene;
-    DataSet * experimentalData;
-    DataSet * simulatedData;
-    
     int fissureN;
-    long double * values;
-    long double range;
-    int xMinIndex;
-    int xMaxIndex;
     
     long double scaleValue;
-    
 };
 
 

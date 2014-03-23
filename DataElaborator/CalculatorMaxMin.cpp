@@ -65,7 +65,7 @@ void CalculatorMaxMin::FindMaxMin()
 		bool acceptMinimum = true;
 		for (int j = 1; j <= spanLength; j++)
 		{
-			if ( !(data->yp[i] < data->yp[i+j]) || !(data->yp[i] < data->yp[i-j]) )
+			if ( !(data->y(i) < data->y(i+j)) || !(data->y(i) < data->y(i-j)) )
 			{
 				acceptMinimum = false;
 				break;
@@ -83,7 +83,7 @@ void CalculatorMaxMin::FindMaxMin()
 			bool acceptMaximum = true;
 			for (int j = 1; j <= spanLength; j++)
 			{
-				if ( !(data->yp[i] > data->yp[i+j]) || !(data->yp[i] > data->yp[i-j]) )
+				if ( !(data->y(i) > data->y(i+j)) || !(data->y(i) > data->y(i-j)) )
 				{
 					acceptMaximum = false;
 					break;

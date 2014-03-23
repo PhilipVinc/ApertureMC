@@ -22,6 +22,7 @@ struct Measure
 
 class DataSet
 {
+    friend class TransformerSimple;
 public:
 	DataSet();
 	DataSet(std::string inputPath, bool enableDebug = true);
@@ -36,6 +37,14 @@ public:
     void EraseData();
     void SetDirty();
     
+    long double x(int i);
+    long double y(int i);
+    long double s2(int i);
+    
+    long double setX(int i, double x);
+    long double setY(int i, double y);
+    long double setS2(int i, double s2);
+    
 	void ComputeSplineCoefficients();
     
 	long double SplineValue(long double x);
@@ -49,10 +58,6 @@ public:
     
 	void PrintData(std::ostream& myout);
 
-    std::vector<long double>  xp;
-    std::vector<long double>  yp;
-    std::vector<long double> zs; // spline
-
  	int n;
     
 private:
@@ -63,6 +68,10 @@ private:
 	long double meanY;
     
     bool splineDirty;
+    
+    std::vector<long double>  xp;
+    std::vector<long double>  yp;
+    std::vector<long double> zs; // spline
     
 	// Debug Variables
 	bool debug;

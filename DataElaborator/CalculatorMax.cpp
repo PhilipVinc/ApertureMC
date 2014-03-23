@@ -38,14 +38,14 @@ void CalculatorMax::Elaborate()
 {
     maxIndex = 0;
 	{
-		long double max = data->yp[0];
+		long double max = data->y(0);
 		// Trovo il massimo centrale
 		for (int i = 0; i < data->n; ++i)
 		{
-			if( max < data->yp[i] )
+			if( max < data->y(i) )
 			{
 				maxIndex = i;
-				max = data->yp[i];
+				max = data->y(i);
 			}
 		}
 	}
@@ -53,7 +53,7 @@ void CalculatorMax::Elaborate()
 	maxXPosition = data->SplineDerivate1Zero(maxIndex);
     maxYPosition = data->SplineValue(maxXPosition);
     
-	if (debug) debugStream << "Il dato piu alto è a x= " << data->xp[maxIndex] << "\t y= " << data->yp[maxIndex] << std::endl;
+	if (debug) debugStream << "Il dato piu alto è a x= " << data->x(maxIndex) << "\t y= " << data->y(maxIndex) << std::endl;
     
 	//Calcolo lo zero del polinomio derivata
 	if (debug) debugStream << "#Il centro dei dati è:";

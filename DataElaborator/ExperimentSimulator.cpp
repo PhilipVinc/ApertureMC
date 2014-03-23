@@ -13,16 +13,12 @@
 #include "CalculatorSimple.h"
 
 /* ------------------------   Init Functions ---------------------- */
-ExperimentSimulator::ExperimentSimulator(DataSet * expData)
+ExperimentSimulator::ExperimentSimulator(DataSet * expData) : ExperimentSimulatorBase(expData)
 {
-    experimentalData = expData;
 }
 
 ExperimentSimulator::~ExperimentSimulator()
 {
-    delete [] values;
-    delete scene;
-    delete simulatedData;
 }
 
 /* Setup() is called right after object creation. Should be merged. Usage is not clear */
@@ -36,31 +32,7 @@ void ExperimentSimulator::Setup(int _fissureN, long double * _setupValues, long 
         values[i]= _setupValues[i];
     }
     
-    // Find the range in the experimental data that we care about
-    range = _range;
-    for (int i = 0; i < experimentalData->n; i++)
-    {
-        if (experimentalData->xp[i] > (0-range) )
-        {
-            xMinIndex = i;
-            break;
-        }
-    }
-    for (int i = 0; i < experimentalData->n; i++)
-    {
-        if (experimentalData->xp[i] > range )
-        {
-            xMaxIndex = i-1;
-            break;
-        }
-    }
-}
-
-void ExperimentSimulator::Work()
-{
-    CreateExperiment();
-    SimulateExperiment();
-    Check();
+    BaseSetup(_range);
 }
 
 void ExperimentSimulator::CreateExperiment()
@@ -77,7 +49,7 @@ void ExperimentSimulator::SimulateExperiment()
 {
     for (int i = xMinIndex; i != xMaxIndex; i++)
     {
-        long double position = experimentalData->xp[i];
+        long double position = experimentalData->x(i);
         long double value = (*scene)(position);
         simulatedData->AddMeasure(position, value);
     }
@@ -100,8 +72,8 @@ void ExperimentSimulator::Check()
     for (int i = (xMinIndex*3+xMaxIndex)/4; i != (3*xMaxIndex+xMinIndex)/4; i++)
     {
         simIndex = i - xMinIndex;
-        long double a1= simulatedData->yp[simIndex];
-        long double a2 = experimentalData->yp[i];
+        long double a1= simulatedData->y(simIndex);
+        long double a2 = experimentalData->y(i);
         diff = fabs(a1-a2);
         error += diff*diff;
     }
@@ -113,8 +85,8 @@ void ExperimentSimulator::Check()
     for (int i = center - 5; i != center + 5; i++)
     {
         simIndex = i - xMinIndex;
-        long double a1= simulatedData->yp[simIndex];
-        long double a2 = experimentalData->yp[i];
+        long double a1= simulatedData->y(simIndex);
+        long double a2 = experimentalData->y(i);
         diff = fabs(a1-a2);
         errorSmall += diff*diff;
     }
@@ -155,8 +127,5 @@ void ExperimentSimulator::PrintSimulatedDataToFile()
     simulatedData->PrintSplineWithDerivate1(splineFile);
     splineFile.close();
 }
-
-
-
 
 

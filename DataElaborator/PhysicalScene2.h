@@ -11,6 +11,7 @@
 
 #include <iostream>
 #include <vector>
+#include "Function.h"
 #include "Fissure.h"
 
 class PhysicalScene2 : public Function
@@ -20,11 +21,12 @@ public:
     ~PhysicalScene2();
     
     /* ------------------------   Scene Management  ---------------------- */
-    int AddFissure(long double position, long double intensity, long double halfAperture);
+    int AddFunction(Function * function);
     Function* GetFunction(int id);
     void RemoveFunction(int id);
-    int FissureNumber();
+    int FunctionNumber();
     
+    int AddFissure(long double position, long double intensity, long double halfAperture);
     void SetFissurePosition(int id, long double position);
     void SetFissureIntensity(int id, long double intensity);
     
@@ -35,7 +37,6 @@ public:
     void PrintFormula(std::ostream& myout);
     
 protected:
-    
     std::vector<Function*> components;
     int lastId;
 };
