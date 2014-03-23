@@ -73,7 +73,6 @@ void ExperimentSimulator::Check()
     errorSmall = GetError(1);
     newError = GetError(2);
 
-    //std::cout << "worker ID: "<< uniqueID << " - has calculated error= "<< error<<std::endl;
     delete cMax;
     //PrintSimulatedDataToFile();
 }

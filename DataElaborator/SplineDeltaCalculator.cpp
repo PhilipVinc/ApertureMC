@@ -14,7 +14,7 @@ SplineDeltaCalculator::SplineDeltaCalculator(DataSet * expData, DataSet * simDat
     
 }
 
-long double SplineDeltaCalculator::GetDelta()
+long double SplineDeltaCalculator::ElaborateDelta()
 {
     return CalculatorSimple::SplineDiff(simulatedData, experimentalData, simulatedData->x(0), simulatedData->x(simulatedData->n -1), 0.01);
 }

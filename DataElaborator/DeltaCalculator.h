@@ -17,15 +17,29 @@ class DeltaCalculator
 {
 public:
     DeltaCalculator(DataSet * expData, DataSet * simData, int xMinIndex, int xMaxIndex);
+    DeltaCalculator(DataSet * expData, DataSet * simData, long double xMin, long double xMax);
     //~DeltaCalculator();
     
-    virtual long double GetDelta()=0;
+    void SetupIndices();
+    
+    long double GetDelta();
 protected:
+    virtual long double ElaborateDelta() = 0;
+    
     DataSet * experimentalData;
     DataSet * simulatedData;
     
     int xMinIndex;
     int xMaxIndex;
+    
+    int xMinExpIndex, xMaxExpIndex, xMinSimIndex, xMaxSimIndex;
+    
+    bool rangeSet = false;
+    long double xMin = NAN;
+    long double xMax = NAN;
+    
+    bool resultDirty = false;
+    long double result;
 };
 
 #endif /* defined(__DataElaborator__DeltaCalculator__) */

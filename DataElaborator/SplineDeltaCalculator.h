@@ -18,8 +18,8 @@ public:
     SplineDeltaCalculator(DataSet * expData, DataSet * simData, int xMinIndex, int yMinIndex);
     ~SplineDeltaCalculator();
     
-    long double GetDelta();
 protected:
+    long double ElaborateDelta();
 };
 
 

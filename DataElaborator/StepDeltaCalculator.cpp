@@ -13,14 +13,19 @@ StepDeltaCalculator::StepDeltaCalculator(DataSet * expData, DataSet * simData, i
     
 }
 
-long double StepDeltaCalculator::GetDelta()
+StepDeltaCalculator::StepDeltaCalculator(DataSet * expData, DataSet * simData, long double xMin, long double xMax) : DeltaCalculator(expData, simData, xMin, xMax)
 {
+    
+}
+
+long double StepDeltaCalculator::ElaborateDelta()
+{    
     int simIndex  = 0;
     double diff = 0.0;
     double error = 0.0;
-    for (int i = xMinIndex; i != xMaxIndex; i++)
+    for (int i = xMinExpIndex; i != xMaxExpIndex; i++)
     {
-        simIndex = i - xMinIndex;
+        simIndex = i - xMinExpIndex + xMinSimIndex;
         long double a1= simulatedData->y(simIndex);
         long double a2 = experimentalData->y(i);
         diff = fabs(a1-a2);

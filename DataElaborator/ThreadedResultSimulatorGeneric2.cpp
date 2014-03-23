@@ -77,9 +77,8 @@ void ThreadedResultSimulatorGeneric2::Simulate()
         
         for (int i = 0; i != num_threads; i++)
         {
-            cycleResults[(i)*(simDataN+resultsN)] = simulators[i]->error;
-            cycleResults[(i)*(simDataN+resultsN)+1] = simulators[i]->newError;
-            //cout << "Iter: " << cycle*num_threads+i << " with error " << cycleResults[(i)*(simDataN+resultsN)] << " \t and new error " << cycleResults[(i)*(simDataN+resultsN)+1]<<endl;
+            cycleResults[(i)*(simDataN+resultsN)] = simulators[i]->GetError(0);
+            cycleResults[(i)*(simDataN+resultsN)+1] = simulators[i]->GetError(2);
             delete simulators[i];
         }
         simulators.clear();
@@ -88,7 +87,7 @@ void ThreadedResultSimulatorGeneric2::Simulate()
         long double percent = double(cycle)/double(cyclesN);
         if ( percent > lastPercent )
         {
-         //   DrawProgressBar(100, percent);
+            DrawProgressBar(100, percent);
             lastPercent = percent + 0.01;
         }
     }

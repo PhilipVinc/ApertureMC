@@ -28,7 +28,7 @@ using namespace std;
 
 int MAX_FEND = 6;
 int MIN_FEND = 1;
-int SIM_PER_FEND = 20;
+int SIM_PER_FEND = 20000;
 int NUM_THREADS = 1;
 
 void ElaborateFile(string inputName, bool addXls = false)
