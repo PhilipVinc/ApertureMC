@@ -31,7 +31,8 @@ long double DeltaCalculator::GetDelta()
     if (resultDirty)
     {
         SetupIndices();
-        ElaborateDelta();
+        result = ElaborateDelta();
+        resultDirty = false;
     }
     return result;
 }

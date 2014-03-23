@@ -16,6 +16,7 @@
 #include <random>
 
 #include "ExperimentSimulator.h"
+#include "GlobalSettings.h"
 
 class ThreadedResultSimulatorGeneric2
 {
@@ -28,9 +29,12 @@ public:
     void Print(std::ostream& myout);
     void PrintEvaluation(std::ostream& myout);
     void PrintNewEvaluation(std::ostream& myout);
+    void PrintTopEvaluation(std::ostream& myout);
     
     long double minError;
     long double minNewError;
+    long double minTopError;
+    std::vector<long double> bestErrors;//long double * bestErrors;
     
 protected:
     ExperimentSimulator * CreateSim(int threadN);
@@ -52,8 +56,8 @@ protected:
     std::uniform_real_distribution<long double>* apertureDistribution;
     
     int dataPerFend = 3;
-    int simDataN = 4;
-    int resultsN = 2;
+    int simDataN;
+    int resultsN = 3;
     
     /* ------------------------  Simulation setup data ---------------------- */
     long double f1PosRange = 0.5;
@@ -61,9 +65,11 @@ protected:
     int fenditureN=2;
     
     void SetupArrayResults();
-    long double * cycleResults;
-    long double * bestResults;
+    std::vector <long double> cycleResults;//long double * cycleResults;
+    std::vector <long double> bestResults;//long double * bestResults;
     int lastId;
+    
+    GlobalSettings * settings;
     
     void DrawProgressBar(int len, long double percent);
 };

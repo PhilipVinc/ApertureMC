@@ -216,14 +216,13 @@
 			children = (
 				4109836118DF798F005E8E10 /* ErrorCalc */,
 				4168298118DDE26F00EE461F /* Old */,
+				41B241E718DFA56800914F7D /* Base */,
 				4168295E18DDD62E00EE461F /* Function.h */,
 				4168295F18DDD62E00EE461F /* Function.cpp */,
 				4168296018DDD62E00EE461F /* Fissure.h */,
 				4168296118DDD62E00EE461F /* Fissure.cpp */,
 				4168297318DDD63500EE461F /* PhysicalScene2.h */,
 				4168297418DDD63500EE461F /* PhysicalScene2.cpp */,
-				4109835F18DF7608005E8E10 /* ExperimentSimulatorBase.h */,
-				4109835E18DF7608005E8E10 /* ExperimentSimulatorBase.cpp */,
 				4168296218DDD62E00EE461F /* ExperimentSimulator.h */,
 				4168296318DDD62E00EE461F /* ExperimentSimulator.cpp */,
 				4132C15418DEE5B700E60ACF /* ThreadedResultSimulatorGeneric2.h */,
@@ -276,6 +275,15 @@
 				4168297618DDD63500EE461F /* PhysicalScene.cpp */,
 			);
 			name = Old;
+			sourceTree = "<group>";
+		};
+		41B241E718DFA56800914F7D /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				4109835F18DF7608005E8E10 /* ExperimentSimulatorBase.h */,
+				4109835E18DF7608005E8E10 /* ExperimentSimulatorBase.cpp */,
+			);
+			name = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

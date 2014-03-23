@@ -38,7 +38,7 @@ protected:
     long double xMin = NAN;
     long double xMax = NAN;
     
-    bool resultDirty = false;
+    bool resultDirty = true;
     long double result;
 };
 

@@ -26,10 +26,10 @@ void usage(const char * pname);
 
 using namespace std;
 
-int MAX_FEND = 6;
+int MAX_FEND = 8;
 int MIN_FEND = 1;
-int SIM_PER_FEND = 20000;
-int NUM_THREADS = 1;
+int SIM_PER_FEND = 10000;
+int NUM_THREADS = 3;
 
 void ElaborateFile(string inputName, bool addXls = false)
 {
@@ -97,11 +97,24 @@ void ElaborateFile(string inputName, bool addXls = false)
         }
     }
     
+    long double minTopErr = 10000.0;
+    int minTopErrIndex= 0;
+    for (int i = 0; i < (MAX_FEND-MIN_FEND+1); i++)
+    {
+        if (minTopErr > sims[i]->minTopError)
+        {
+            minTopErr = sims[i]->minTopError;
+            minTopErrIndex = i;
+        }
+    }
+    
     cout << "----------------------------------------" << endl;
     cout << "The global best guess is for " << minErrIndex+1<< " fenditures" << endl;
     cout << "The global best guess WITH NEW is for " << minNewErrIndex+1<< " fenditures" << endl;
+    cout << "The global best guess WITH TOP is for " << minTopErrIndex+1<< " fenditures" << endl;
     sims[minErrIndex]->PrintEvaluation(cout);
     sims[minNewErrIndex]->PrintNewEvaluation(cout);
+    sims[minTopErrIndex]->PrintTopEvaluation(cout);
     
     for (int i = 0; i < (MAX_FEND-MIN_FEND+1); i++)
     {
@@ -116,14 +129,15 @@ int main(int argc, char * argv[])
 	int opt;
     string inputPath;
     bool addXls = false;
-    GlobalSettings::get_instance().maxMinSearchSpan = 4;
+    GlobalSettings::get_instance().maxMinSearchSpan = 3;
+    GlobalSettings::get_instance().showProgress = false;
+
 	// Handle command line options
-    while((opt = getopt(argc, argv, "i:f:n:m:j:dh?")) != -1)
+    while((opt = getopt(argc, argv, "i:f:n:m:j:s:pdxh?")) != -1)
     {
         switch (opt)
         {
             case 'i':
-                //inputFile = optarg;
                 break;
             case 'x':
                 addXls=true;
@@ -140,7 +154,12 @@ int main(int argc, char * argv[])
             case 'j':
                 NUM_THREADS = stoi(optarg);
                 break;
-            
+            case 's':
+                GlobalSettings::get_instance().maxMinSearchSpan = stoi(optarg);
+                break;
+            case 'p':
+                GlobalSettings::get_instance().showProgress = true;
+                break;
             case 'h':
             case '?':
             default:
@@ -149,7 +168,6 @@ int main(int argc, char * argv[])
         }
     }
     addXls=true;
-    //cout << "Inserire nome file [se si usa -x, senza estensione]: "; cin >> inputPath;
     inputPath = "data";
     ElaborateFile(inputPath, addXls);
 	return 0;
