@@ -7,6 +7,7 @@
 //
 
 #include "CalculatorMaxMin.h"
+#include "GlobalSettings.h"
 
 #include <cmath>
 
@@ -55,7 +56,8 @@ void CalculatorMaxMin::FindMaxMin()
 	maxIndex = new int[100];
 	minIndex = new int[100];
     
-	int spanLength = 4;
+	//int spanLength = 4;
+    int spanLength = GlobalSettings::get_instance().maxMinSearchSpan;
 	minN = 0; maxN = 0;
     
 	for (int i = spanLength+1 ; i < data->n; ++i)

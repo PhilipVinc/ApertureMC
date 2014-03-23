@@ -46,7 +46,7 @@ void ThreadedResultSimulatorGeneric2::SetupRandomNumberGenerator()
     
     posRangeDistribution = new uniform_real_distribution<long double> (-f1PosRange, f1PosRange);
     intensityDistribution = new uniform_real_distribution<long double> (0.0, 100.0 );
-    apertureDistribution = new uniform_real_distribution<long double> (aperture-4, aperture+4 );
+    apertureDistribution = new uniform_real_distribution<long double> (0.0, aperture+4 );
 }
 
 
@@ -152,9 +152,9 @@ ExperimentSimulator * ThreadedResultSimulatorGeneric2::CreateSim(int threadN)
     {
         variables[i*dataPerFend] = (*posRangeDistribution)(rng);
         variables[i*dataPerFend + 1 ] = (*intensityDistribution)(rng);
-        variables[i*dataPerFend + 2 ] = (*apertureDistribution)(rng)/(i+1);
+        variables[i*dataPerFend + 2 ] = (*apertureDistribution)(rng);///(i+1);
     }
-    variables[1] = 1.0;
+    variables[1] = 100.0;
     
     lastId++;
     //cout << "Single Simulation with parameters for id "<< lastId <<endl;

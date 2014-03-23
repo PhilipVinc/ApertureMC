@@ -1,11 +1,10 @@
 //
 //  main.cpp
-//  DataElaborator
+//  elaboratoreFenditure
 //
-//  Created by Filippo Vicentini on 19/03/14.
+//  Created by Filippo Vicentini on 23/03/14.
 //  Copyright (c) 2014 Filippo Vicentini. All rights reserved.
 //
-
 
 #include <iostream>
 #include <fstream>
@@ -103,51 +102,6 @@ void ElaborateFile(string inputName, bool addXls = false)
     cout << minPath << "\" w p lc rgb \"blue\" " << endl;
     
     delete extremerer;
-    
-    vector<ThreadedResultSimulatorGeneric2*> sims;
-    
-    for (int i = 0; i < (MAX_FEND-MIN_FEND+1); i++)
-    {
-        sims.push_back( new ThreadedResultSimulatorGeneric2(data, i+MIN_FEND, SIM_PER_FEND, NUM_THREADS));
-        sims[i]->Simulate();
-        ofstream simFile("Simulation-f"+to_string(i+MIN_FEND));
-        sims[i]->Print(simFile);
-        simFile.close();
-    }
-    
-    long double minErr = 10000.0;
-    int minErrIndex= 0;
-    for (int i = 0; i < (MAX_FEND-MIN_FEND+1); i++)
-    {
-        if (minErr > sims[i]->minError)
-        {
-            minErr = sims[i]->minError;
-            minErrIndex = i;
-        }
-    }
-    
-    long double minNewErr = 10000.0;
-    int minNewErrIndex= 0;
-    for (int i = 0; i < (MAX_FEND-MIN_FEND+1); i++)
-    {
-        if (minNewErr > sims[i]->minNewError)
-        {
-            minNewErr = sims[i]->minNewError;
-            minNewErrIndex = i;
-        }
-    }
-    
-    cout << "----------------------------------------" << endl;
-    cout << "The global best guess is for " << minErrIndex+1<< " fenditures" << endl;
-    cout << "The global best guess WITH NEW is for " << minNewErrIndex+1<< " fenditures" << endl;
-    sims[minErrIndex]->PrintEvaluation(cout);
-    sims[minNewErrIndex]->PrintNewEvaluation(cout);
-    
-    for (int i = 0; i < (MAX_FEND-MIN_FEND+1); i++)
-    {
-        delete sims[i];
-    }
-    sims.clear();
 }
 
 
@@ -156,14 +110,14 @@ int main(int argc, char * argv[])
 	int opt;
     string inputPath;
     bool addXls = false;
-    GlobalSettings::get_instance().maxMinSearchSpan = 4;
+    GlobalSettings::get_instance().maxMinSearchSpan = 3;
+
 	// Handle command line options
-    while((opt = getopt(argc, argv, "i:f:n:m:j:dh?")) != -1)
+    while((opt = getopt(argc, argv, "i:f:n:m:j:s:dxh?")) != -1)
     {
         switch (opt)
         {
             case 'i':
-                //inputFile = optarg;
                 break;
             case 'x':
                 addXls=true;
@@ -180,7 +134,9 @@ int main(int argc, char * argv[])
             case 'j':
                 NUM_THREADS = stoi(optarg);
                 break;
-            
+            case 's':
+                GlobalSettings::get_instance().maxMinSearchSpan = stoi(optarg);
+                break;
             case 'h':
             case '?':
             default:
@@ -188,9 +144,7 @@ int main(int argc, char * argv[])
                 return 1;
         }
     }
-    addXls=true;
-    //cout << "Inserire nome file [se si usa -x, senza estensione]: "; cin >> inputPath;
-    inputPath = "data";
+    cout << "Inserire nome file [se si usa -x, senza estensione]: "; cin >> inputPath;
     ElaborateFile(inputPath, addXls);
 	return 0;
 }

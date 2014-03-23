@@ -56,8 +56,8 @@ protected:
     int resultsN = 2;
     
     /* ------------------------  Simulation setup data ---------------------- */
-    long double f1PosRange = 0.2;
-    long double aperture = 7;
+    long double f1PosRange = 0.5;
+    long double aperture = 14;
     int fenditureN=2;
     
     void SetupArrayResults();
