@@ -22,6 +22,10 @@ public:
     
     int maxMinSearchSpan = 4;
     bool showProgress = false;
+    int max_fend;
+    
+    void DrawSimulationProgressBar(int len, long double percent, int iter);
+    void DrawProgressBar(int len, long double percent, int iter, int total);
     
 private:
     // ecco il costruttore privato in modo che l'utente non possa istanziare direttamante

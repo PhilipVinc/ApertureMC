@@ -158,9 +158,7 @@ ExperimentSimulator * ThreadedResultSimulatorGeneric2::CreateSim(int threadN)
     for (int i = 0; i < simDataN; i++)
     {
         cycleResults[threadN*(simDataN+resultsN) +(resultsN+i)] = variables[i];
-        //  cout << i<<"= "<<variables[i] << " \t ";
     }
-    //cout << endl;
     
     ExperimentSimulator * sim = new ExperimentSimulator(experimentalData);
     sim->uniqueID = lastId;

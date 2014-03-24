@@ -28,7 +28,7 @@ using namespace std;
 
 int MAX_FEND = 8;
 int MIN_FEND = 1;
-int SIM_PER_FEND = 10000;
+int SIM_PER_FEND = 10;
 int NUM_THREADS = 3;
 
 void ElaborateFile(string inputName, bool addXls = false)
@@ -167,6 +167,7 @@ int main(int argc, char * argv[])
                 return 1;
         }
     }
+    GlobalSettings::get_instance().max_fend= (MAX_FEND-MIN_FEND);
     addXls=true;
     inputPath = "data";
     ElaborateFile(inputPath, addXls);

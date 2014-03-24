@@ -28,13 +28,13 @@ PhysicalScene2::~PhysicalScene2()
 
 /* ------------------------   Scene Management  ---------------------- */
 
-int PhysicalScene2::AddFunction(Function * _function)
+int PhysicalScene2::AddFunction(PhysicalObject * _object)
 {
-    components.push_back(_function);
+    components.push_back(_object);
     return components.size();
 }
 
-Function* PhysicalScene2::GetFunction(int id)
+PhysicalObject* PhysicalScene2::GetObject(int id)
 {
     return components[id];
 }
@@ -51,7 +51,7 @@ void PhysicalScene2::RemoveFunction(int id)
     }
 }
 
-int PhysicalScene2::FunctionNumber()
+int PhysicalScene2::NumberOfObjects()
 {
     return components.size();
 }
@@ -65,35 +65,11 @@ int PhysicalScene2::AddFissure(long double position, long double intensity, long
     return components.size();
 }
 
-void PhysicalScene2::SetFissurePosition(int id, long double position)
-{
-    if (id < components.size())
-    {
-        static_cast<Fissure*>(components[id])->position = position;
-    }
-    else
-    {
-        std::cerr << "edit failed"<< std::endl;
-    }
-}
-
-void PhysicalScene2::SetFissureIntensity(int id, long double intensity)
-{
-    if (id < components.size())
-    {
-        static_cast<Fissure*>(components[id])->relativeIntensity = intensity;
-    }
-    else
-    {
-        std::cerr << "edit failed"<< std::endl;
-    }
-}
-
 /* ------------------------   Calculation Functions  ---------------------- */
 long double PhysicalScene2::operator()(long double x)
 {
     long double result = 0.0;
-    for (vector<Function*>::size_type i=0; i != components.size(); i++)
+    for (vector<PhysicalObject*>::size_type i=0; i != components.size(); i++)
     {
         result += (*components[i])(x);
     }
@@ -104,7 +80,7 @@ long double PhysicalScene2::operator()(long double x)
 void PhysicalScene2::PrintFormula(std::ostream& myout)
 {
     myout << "( ";
-    for (vector<Function*>::size_type i=0; i != components.size(); i++)
+    for (vector<PhysicalObject*>::size_type i=0; i != components.size(); i++)
     {
         components[i]->PrintFormula(myout);
         if (i!=(components.size()-1)) myout << " + "; // If this is not the last element in the row, print +

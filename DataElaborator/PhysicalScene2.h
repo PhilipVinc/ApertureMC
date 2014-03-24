@@ -11,24 +11,22 @@
 
 #include <iostream>
 #include <vector>
-#include "Function.h"
+#include "PhysicalObject.h"
 #include "Fissure.h"
 
-class PhysicalScene2 : public Function
+class PhysicalScene2 : public PhysicalObject
 {
 public:
     PhysicalScene2();
     ~PhysicalScene2();
     
     /* ------------------------   Scene Management  ---------------------- */
-    int AddFunction(Function * function);
-    Function* GetFunction(int id);
+    int AddFunction(PhysicalObject * object);
+    PhysicalObject* GetObject(int id);
     void RemoveFunction(int id);
-    int FunctionNumber();
+    int NumberOfObjects();
     
     int AddFissure(long double position, long double intensity, long double halfAperture);
-    void SetFissurePosition(int id, long double position);
-    void SetFissureIntensity(int id, long double intensity);
     
     /* ------------------------   Calculation Functions  ---------------------- */
     long double operator()(long double value);
@@ -37,7 +35,7 @@ public:
     void PrintFormula(std::ostream& myout);
     
 protected:
-    std::vector<Function*> components;
+    std::vector<PhysicalObject*> components;
     int lastId;
 };
 

@@ -14,6 +14,7 @@ DeltaCalculator::DeltaCalculator(DataSet * expData, DataSet * simData, int _xMin
     simulatedData = simData;
     xMinIndex = _xMinIndex;
     xMaxIndex = _xMaxIndex;
+    rangeSet = false;
 }
 
 
@@ -44,6 +45,9 @@ void DeltaCalculator::SetupIndices()
         xMinExpIndex = xMinIndex;
         xMaxExpIndex = xMaxIndex;
         
+        xMin = experimentalData->x(xMinExpIndex);
+        xMax = experimentalData->x(xMaxExpIndex);
+        
         for (int i = 0; i != simulatedData->n; i++)
         {
             if (simulatedData->x(i) >= experimentalData->x(xMinExpIndex))
@@ -65,6 +69,40 @@ void DeltaCalculator::SetupIndices()
     }
     else
     {
+        for (int i = 0; i != experimentalData->n; i++)
+        {
+            if (experimentalData->x(i) >= xMin)
+            {
+                xMinExpIndex = i;
+                break;
+            }
+        }
         
+        for (int i = experimentalData->n-1; i != 0; i--)
+        {
+            if (experimentalData->x(i) <= xMax)
+            {
+                xMaxExpIndex = i;
+                break;
+            }
+        }
+        
+        for (int i = 0; i != simulatedData->n; i++)
+        {
+            if (simulatedData->x(i) >= xMin)
+            {
+                xMinSimIndex = i;
+                break;
+            }
+        }
+        
+        for (int i = simulatedData->n-1; i != 0; i--)
+        {
+            if (simulatedData->x(i) <= xMax)
+            {
+                xMaxSimIndex = i;
+                break;
+            }
+        }
     }
 }

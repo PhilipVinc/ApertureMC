@@ -13,7 +13,7 @@
 #include <vector>
 #include "Fissure.h"
 
-class PhysicalScene : public Function
+class PhysicalScene : public PhysicalObject
 {
 public:
     PhysicalScene();

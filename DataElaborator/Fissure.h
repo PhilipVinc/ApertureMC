@@ -10,9 +10,9 @@
 #define __DataElaborator__Fissure__
 
 #include <iostream>
-#include "Function.h"
+#include "PhysicalObject.h"
 
-class Fissure : public Function
+class Fissure : public PhysicalObject
 {
 public:
     Fissure(long double position, long double relativeIntensity, long double halfAperture);

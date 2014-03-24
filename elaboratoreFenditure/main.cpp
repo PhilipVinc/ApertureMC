@@ -77,18 +77,19 @@ void ElaborateFile(string inputName, bool addXls = false)
     
     // Stampo i massimi
     ofstream maxFile(maxPath);
-    extremerer->PrintData(maxFile);
+    extremerer->PrintMaxPoints(maxFile);
     maxFile.close();
     
     // Stampo i Minimi
     ofstream minFile(minPath);
-    extremerer->PrintData(minFile);
+    extremerer->PrintMinPoints(minFile);
     minFile.close();
-    
+    delete extremerer;
+
     // Stampo i Comandi gnuplot
     ofstream plotFile(plotPath);
     plotFile << "#Gnuplot command:" << endl;
-    plotFile << "plot \""<<splinePath<<"\" u 1:2 w l lc rgb \"red\", \""<<splinePath<<"\" u 1:3 w l lc rgb \"blue\", \"";
+    plotFile << "plot \""<<splinePath<<"\" u 1:2 w l lc rgb \"red\", \"";
     plotFile << nuoviDatiPath<<"\" w p lc rgb \"black\", \"";
     plotFile << maxPath << "\" w p lc rgb \"blue\", \"";
     plotFile << minPath << "\" w p lc rgb \"blue\" " << endl;
@@ -101,7 +102,6 @@ void ElaborateFile(string inputName, bool addXls = false)
     cout << maxPath << "\" w p lc rgb \"blue\", \"";
     cout << minPath << "\" w p lc rgb \"blue\" " << endl;
     
-    delete extremerer;
 }
 
 
