@@ -16,12 +16,10 @@ SplineDeltaCalculator::SplineDeltaCalculator(DataSet * expData, DataSet * simDat
 
 SplineDeltaCalculator::SplineDeltaCalculator(DataSet * expData, DataSet * simData, long double _xMin, long double _xMax) : DeltaCalculator(expData, simData, _xMin, _xMax)
 {
-    
 }
-
+    
 SplineDeltaCalculator::~SplineDeltaCalculator()
 {
-    
 }
 
 long double SplineDeltaCalculator::ElaborateDelta()
