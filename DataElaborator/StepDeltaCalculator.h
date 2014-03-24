@@ -16,10 +16,12 @@ class StepDeltaCalculator : public DeltaCalculator
 {
 public:
     StepDeltaCalculator(DataSet * expData, DataSet * simData, int xMinIndex, int yMinIndex);
+    StepDeltaCalculator(DataSet * expData, DataSet * simData, long double xMin, long double xMax);
     ~StepDeltaCalculator();
     
-    long double GetDelta();
 protected:
+    long double ElaborateDelta();
+
 };
 
 #endif /* defined(__DataElaborator__StepDeltaCalculator__) */

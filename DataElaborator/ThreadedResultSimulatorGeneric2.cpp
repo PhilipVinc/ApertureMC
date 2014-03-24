@@ -7,35 +7,41 @@
 //
 
 #include "ThreadedResultSimulatorGeneric2.h"
-
 using namespace std;
 
 /* ------------------------   Init Functions ---------------------- */
-ThreadedResultSimulatorGeneric2::ThreadedResultSimulatorGeneric2(DataSet * _experimentalData, int fenditure, int _simulationsN, int _nThreads)
+ThreadedResultSimulatorGeneric2::ThreadedResultSimulatorGeneric2(DataSet * _experimentalData, int fenditure, int _simulationsN, int _nThreads) : ThreadedResultSimulatorBase(_experimentalData, _simulationsN, _nThreads)
 {
-    num_threads = _nThreads;
-    simulationsN = _simulationsN;
-    experimentalData = _experimentalData;
-    
     fenditureN = fenditure;
     SetupArrayResults();
     SetupRandomNumberGenerator();
-    lastId = -1;
 }
 
 ThreadedResultSimulatorGeneric2::~ThreadedResultSimulatorGeneric2()
 {
-    simulators.clear();
-    delete[] cycleResults;
-    delete[] bestResults;
+    cycleResults.clear(); //delete[] cycleResults;
+    bestResults.clear(); //delete[] bestResults;
+    bestErrors.clear(); //delete[] bestErrors;
 }
 
 void ThreadedResultSimulatorGeneric2::SetupArrayResults()
 {
-    simDataN = dataPerFend*fenditureN;
+    simDataN = dataPerFend*fenditureN +1;
     //results = new long double [(simulationsN+num_threads)*(simDataN+resultsN)]; // longer so we just do some more simulations and there is no overflow risk.
-    cycleResults = new long double [(num_threads)*(simDataN+resultsN)];
-    bestResults = new long double [2*(simDataN+resultsN)];
+    //cycleResults = new long double [(num_threads)*(simDataN+resultsN)];
+    for (int i = 0; i !=(num_threads)*(simDataN+resultsN); i++) {
+        cycleResults.push_back(10.0);
+    }
+
+    //bestResults = new long double [resultsN*(simDataN+resultsN)];
+    for (int i = 0; i !=resultsN*(simDataN+resultsN); i++) {
+        bestResults.push_back(10.0);
+    }
+    //bestErrors = new long double [resultsN];
+    for (int i = 0; i != resultsN; i++) {
+        bestErrors.push_back(10000000);
+    }
+    for (int i = 0; i < resultsN; i++) { bestErrors[i] = 10000000; }
     minNewError = 1000000;
     minError = 1000000;
 }
@@ -49,105 +55,91 @@ void ThreadedResultSimulatorGeneric2::SetupRandomNumberGenerator()
     apertureDistribution = new uniform_real_distribution<long double> (0.0, aperture+4 );
 }
 
-
 void ThreadedResultSimulatorGeneric2::Simulate()
 {
     int cyclesN = ceil(double(simulationsN)/double(num_threads));
     long double lastPercent = 0.0;
+    threads = new thread[num_threads];
+
     for (int cycle = 0; cycle < cyclesN; cycle++)
     {
-        threads = new thread[num_threads];
-        
         for (int i = 0; i != num_threads; i++)
         {
-            //Setup The Simulator
             simulators.push_back(CreateSim(i));
         }
         
         for (int i = 0; i != num_threads; i++)
         {
-            threads[i] = std::thread(&ExperimentSimulator::Work, simulators[i]);
+            threads[i] = std::thread(&ExperimentSimulatorBase::Work, simulators[i]);
         }
         
         for (int i = 0; i != num_threads; i++)
         {
             threads[i].join();
+            //delete *threads[i];
         }
-        delete[] threads;
+        //delete[] threads;
         
         for (int i = 0; i != num_threads; i++)
         {
-            cycleResults[(i)*(simDataN+resultsN)] = simulators[i]->error;
-            cycleResults[(i)*(simDataN+resultsN)+1] = simulators[i]->newError;
-            //cout << "Iter: " << cycle*num_threads+i << " with error " << cycleResults[(i)*(simDataN+resultsN)] << " \t and new error " << cycleResults[(i)*(simDataN+resultsN)+1]<<endl;
+            cycleResults[(i)*(simDataN+resultsN)] = simulators[i]->GetError(0);
+            cycleResults[(i)*(simDataN+resultsN)+1] = simulators[i]->GetError(1);
+            cycleResults[(i)*(simDataN+resultsN)+2] = simulators[i]->GetError(2);
             delete simulators[i];
         }
         simulators.clear();
         CheckBestSim();
         
         long double percent = double(cycle)/double(cyclesN);
-        if ( percent > lastPercent )
+        if (settings->showProgress)
         {
-            DrawProgressBar(100, percent);
-            lastPercent = percent + 0.01;
+            if ( percent > lastPercent )
+            {
+                //DrawProgressBar(100, percent);
+                settings->DrawSimulationProgressBar(40, percent, fenditureN);
+                lastPercent = percent + 0.01;
+            }
         }
     }
     std::cout << std::endl;
     PrintEvaluation(std::cout);
-    //PrintTopEvaluation(std::cout);
+    PrintTopEvaluation(std::cout);
     PrintNewEvaluation(std::cout);
 }
 
 void ThreadedResultSimulatorGeneric2::CheckBestSim()
 {
-    long double minErrOld = cycleResults[0];
-    int minIndexOld = 0;
-    for (int i = 0; i < num_threads; i++)
+    for (int i = 0; i < resultsN ; i++)
     {
-        if (minErrOld > cycleResults[(i)*(simDataN+resultsN)] )
+        double minErr = cycleResults[i];
+        int minIndex = 0;
+        for (int j=0; j < num_threads; j++)
         {
-            minIndexOld = i;
-            minErrOld = cycleResults[(i)*(simDataN+resultsN)];
+            if (minErr > cycleResults[j*(simDataN+resultsN)+i])
+            {
+                minIndex = j;
+                minErr = cycleResults[j*(simDataN+resultsN)+i];
+            }
+        }
+        if (minErr < bestErrors[i])
+        {
+            bestErrors[i] = minErr;
+            for (int j = 0; j < simDataN+resultsN; j++)
+            {
+                bestResults[(simDataN+resultsN)*i +j] = cycleResults[(minIndex)*(simDataN+resultsN)+j];
+            }
         }
     }
-    if (minErrOld < minError)
-    {
-        minError = minErrOld;
-        //cout << "OLD best: ";
-        for (int i = 0; i < simDataN+resultsN; i++)
-        {
-            bestResults[i] = cycleResults[(minIndexOld)*(simDataN+resultsN)+i];
-            //cout << i<< "= "<< bestResults[i] <<" \t ";
-        }
-        //cout << endl;
-    }
-    
-    long double minErrNew = cycleResults[0];
-    int minIndexNew = 0;
-    for (int i = 0; i < num_threads; i++)
-    {
-        if (minErrNew > cycleResults[(i)*(simDataN+resultsN)+1] )
-        {
-            minIndexNew = i;
-            minErrNew = cycleResults[(i)*(simDataN+resultsN)+1];
-        }
-    }
-    if (minErrNew < minNewError)
-    {
-        minNewError = minErrNew;
-        //cout << "NEW best: ";
-        for (int i = 0; i < simDataN+resultsN; i++)
-        {
-            bestResults[ (simDataN+resultsN) +i] = cycleResults[(minIndexNew)*(simDataN+resultsN)+i];
-            //cout << i<< "= "<< bestResults[i] <<" \t ";
-        }
-        //cout << endl;
-    }
+    minError = bestErrors[0];
+    minTopError = bestErrors[1];
+    minNewError = bestErrors[2];
 }
 
 ExperimentSimulator * ThreadedResultSimulatorGeneric2::CreateSim(int threadN)
 {
+    lastId++;
     long double variables[simDataN];
+    variables[simDataN-1] = lastId;
     for (int i = 0; i < fenditureN; i++)
     {
         variables[i*dataPerFend] = (*posRangeDistribution)(rng);
@@ -156,14 +148,10 @@ ExperimentSimulator * ThreadedResultSimulatorGeneric2::CreateSim(int threadN)
     }
     variables[1] = 100.0;
     
-    lastId++;
-    //cout << "Single Simulation with parameters for id "<< lastId <<endl;
     for (int i = 0; i < simDataN; i++)
     {
         cycleResults[threadN*(simDataN+resultsN) +(resultsN+i)] = variables[i];
-        //  cout << i<<"= "<<variables[i] << " \t ";
     }
-    //cout << endl;
     
     ExperimentSimulator * sim = new ExperimentSimulator(experimentalData);
     sim->uniqueID = lastId;
@@ -174,13 +162,13 @@ ExperimentSimulator * ThreadedResultSimulatorGeneric2::CreateSim(int threadN)
 
 void ThreadedResultSimulatorGeneric2::PrintSingleSimulation(int bestId, ostream& myout)
 {
-    long double variables[fenditureN*3];
+    long double variables[simDataN];
     for (int i = 0; i < simDataN; i++)
     {
         variables[i] = bestResults[bestId*(simDataN+resultsN) +(resultsN+i)];
     }
     
-    myout << "Single Simulation with parameters for bestId "<< bestId <<endl;
+    myout << "Single Simulation with parameters for bestId "<< bestId << " with ID" << variables[simDataN-1] << endl;
     cout << "#Fend \t posizione \t intensità \t apertura" << endl;
     for (int i = 0; i < fenditureN; i++)
     {
@@ -195,7 +183,7 @@ void ThreadedResultSimulatorGeneric2::PrintSingleSimulation(int bestId, ostream&
     cout << endl;
     
     ExperimentSimulator * sim = new ExperimentSimulator(experimentalData);
-    sim->uniqueID = bestId;
+    sim->uniqueID = variables[simDataN-1];
     sim->Setup(fenditureN, variables, 1);
     sim->Work();
     sim->PrintSimulatedDataToFile();
@@ -223,27 +211,15 @@ void ThreadedResultSimulatorGeneric2::PrintEvaluation(ostream& myout)
     PrintSingleSimulation(0);
 }
 
-void ThreadedResultSimulatorGeneric2::PrintNewEvaluation(ostream& myout)
+void ThreadedResultSimulatorGeneric2::PrintTopEvaluation(ostream& myout)
 {
-    myout << "the minimal difference for "<< fenditureN << " fenditures with the new eval. is: "<<minNewError << endl;
+    myout << "the minimal difference for "<< fenditureN << " fenditures with the top eval. is: "<<minTopError << endl;
     PrintSingleSimulation(1);
 }
 
-void ThreadedResultSimulatorGeneric2::DrawProgressBar(int len, long double percent)
+void ThreadedResultSimulatorGeneric2::PrintNewEvaluation(ostream& myout)
 {
-    percent = percent + 0.01;
-    cout << "\x1B[2K"; // Erase the entire current line.
-    cout << "\x1B[0E"; // Move to the beginning of the current line.
-    string progress;
-    for (int i = 0; i < len; ++i) {
-        if (i < static_cast<int>(len * percent)) {
-            progress += "=";
-        } else {
-            progress += " ";
-        }
-    }
-    cout << "[" << progress << "] " << (static_cast<int>(100 * percent)) << "%";
-    cout << " \t\t Simulation - " << fenditureN << " Fenditures";
-    
-    flush(cout); // Required.
+    myout << "the minimal difference for "<< fenditureN << " fenditures with the new eval. is: "<<minNewError << endl;
+    PrintSingleSimulation(2);
 }
+

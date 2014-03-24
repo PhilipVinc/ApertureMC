@@ -15,9 +15,11 @@
 #include <vector>
 #include <random>
 
+#include "ThreadedResultSimulatorBase.h"
 #include "ExperimentSimulator.h"
+#include "GlobalSettings.h"
 
-class ThreadedResultSimulatorGeneric2
+class ThreadedResultSimulatorGeneric2 : public ThreadedResultSimulatorBase
 {
 public:
     /* ------------------------   Init Functions ---------------------- */
@@ -28,9 +30,12 @@ public:
     void Print(std::ostream& myout);
     void PrintEvaluation(std::ostream& myout);
     void PrintNewEvaluation(std::ostream& myout);
+    void PrintTopEvaluation(std::ostream& myout);
     
     long double minError;
     long double minNewError;
+    long double minTopError;
+    std::vector<long double> bestErrors;//long double * bestErrors;
     
 protected:
     ExperimentSimulator * CreateSim(int threadN);
@@ -38,22 +43,15 @@ protected:
     void PrintSingleSimulation(int bestId, std::ostream& myout = std::cout);
     
     void CheckBestSim();
-    
-    int num_threads;
-    int simulationsN;
-    std::thread * threads;
-    
-    DataSet * experimentalData;
-    std::vector<ExperimentSimulator*> simulators;
-    
+        
     std::mt19937 rng;
 	std::uniform_real_distribution<long double>* posRangeDistribution;
     std::uniform_real_distribution<long double>* intensityDistribution;
     std::uniform_real_distribution<long double>* apertureDistribution;
     
     int dataPerFend = 3;
-    int simDataN = 4;
-    int resultsN = 2;
+    int simDataN;
+    int resultsN = 3;
     
     /* ------------------------  Simulation setup data ---------------------- */
     long double f1PosRange = 0.5;
@@ -61,11 +59,8 @@ protected:
     int fenditureN=2;
     
     void SetupArrayResults();
-    long double * cycleResults;
-    long double * bestResults;
-    int lastId;
-    
-    void DrawProgressBar(int len, long double percent);
+    std::vector <long double> cycleResults;//long double * cycleResults;
+    std::vector <long double> bestResults;//long double * bestResults;
 };
 
 

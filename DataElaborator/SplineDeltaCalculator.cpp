@@ -14,7 +14,17 @@ SplineDeltaCalculator::SplineDeltaCalculator(DataSet * expData, DataSet * simDat
     
 }
 
-long double SplineDeltaCalculator::GetDelta()
+SplineDeltaCalculator::SplineDeltaCalculator(DataSet * expData, DataSet * simData, long double _xMin, long double _xMax) : DeltaCalculator(expData, simData, _xMin, _xMax)
 {
-    return CalculatorSimple::SplineDiff(simulatedData, experimentalData, simulatedData->x(0), simulatedData->x(simulatedData->n -1), 0.01);
+    
+}
+
+SplineDeltaCalculator::~SplineDeltaCalculator()
+{
+    
+}
+
+long double SplineDeltaCalculator::ElaborateDelta()
+{
+    return CalculatorSimple::SplineDiff(simulatedData, experimentalData, xMin, xMax, 0.01);
 }

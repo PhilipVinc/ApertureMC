@@ -16,10 +16,11 @@ class SplineDeltaCalculator : public DeltaCalculator
 {
 public:
     SplineDeltaCalculator(DataSet * expData, DataSet * simData, int xMinIndex, int yMinIndex);
+    SplineDeltaCalculator(DataSet * expData, DataSet * simData, long double xMin, long double xMax);
     ~SplineDeltaCalculator();
     
-    long double GetDelta();
 protected:
+    long double ElaborateDelta();
 };
 
 

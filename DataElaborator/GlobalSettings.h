@@ -11,7 +11,6 @@
 
 #include <iostream>
 
-#endif /* defined(__DataElaborator__GlobalSettings__) */
 
 
 class GlobalSettings {
@@ -22,8 +21,16 @@ public:
 	bool method() { return true; };
     
     int maxMinSearchSpan = 4;
+    bool showProgress = false;
+    int max_fend;
+    int min_fend;
+    
+    void DrawSimulationProgressBar(int len, long double percent, int iter);
+    void DrawProgressBar(int len, long double percent, int iter, int total);
     
 private:
     // ecco il costruttore privato in modo che l'utente non possa istanziare direttamante
 	GlobalSettings() { };
 };
+
+#endif /* defined(__DataElaborator__GlobalSettings__) */
