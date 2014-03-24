@@ -53,27 +53,26 @@ void ExperimentSimulator::SimulateExperiment()
         long double value = (*scene)(position);
         simulatedData->AddMeasure(position, value);
     }
-}
-
-void ExperimentSimulator::Check()
-{
+    
     // Rescale data
     simulatedData->ComputeSplineCoefficients();
     CalculatorMax * cMax = new CalculatorMax(simulatedData);
     scaleValue = 1/cMax->GetMaxYPosition();
     TransformerSimple::ScaleY(simulatedData,scaleValue);
-    
-    error = 0.0;
-    
+    delete cMax;
+}
+
+void ExperimentSimulator::Check()
+{
     deltaCalculators.push_back(new StepDeltaCalculator(experimentalData, simulatedData, (xMinIndex*3+xMaxIndex)/4, (3*xMaxIndex+xMinIndex)/4));
     deltaCalculators.push_back(new StepDeltaCalculator(experimentalData, simulatedData, (xMinIndex+xMaxIndex)/2 - 4, (xMinIndex+xMaxIndex)/2 + 4));
-    deltaCalculators.push_back(new SplineDeltaCalculator(experimentalData, simulatedData, xMinIndex, xMaxIndex));
+    //deltaCalculators.push_back(new SplineDeltaCalculator(experimentalData, simulatedData, -0.03, 0.03, 0.001));
+    deltaCalculators.push_back(new SplineDeltaCalculator(experimentalData, simulatedData, xMinIndex, xMaxIndex, 0.01));
     
-    error = GetError(0);
-    errorSmall = GetError(1);
-    newError = GetError(2);
-
-    delete cMax;
+    GetError(0);
+    GetError(1);
+    GetError(2);
+    
     //PrintSimulatedDataToFile();
 }
 

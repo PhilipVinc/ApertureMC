@@ -209,8 +209,11 @@ void DataSet::ComputeSplineCoefficients()
 long double DataSet::SplineValue(long double x)
 {
     if(splineDirty) ComputeSplineCoefficients();
+    
 	// Select the interval
 	int i = n-2;
+    i = abs((x-xp[0])/(xp[1]-xp[0]))+1; // This only works for constant X-spaced data!
+    
 	while ( i>0 )
 	{
 		//if ((( x > xp[i] ) && ( x < xp[i+1] )) || (( x < xp[i] ) && ( x > xp[i+1] )))

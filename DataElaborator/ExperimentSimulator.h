@@ -24,16 +24,13 @@ public:
     ~ExperimentSimulator();
     
     void Setup(int fissureN, long double * setupValues, long double range = 1.0);
-        
+    
     void CreateExperiment();
     void SimulateExperiment();
     void Check();
     
     void PrintSimulatedDataToFile();
     
-    long double error;
-    long double errorSmall;
-    long double newError;
     int uniqueID;
     
 protected:
