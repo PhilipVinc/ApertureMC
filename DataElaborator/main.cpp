@@ -177,9 +177,11 @@ int main(int argc, char * argv[])
 
 void usage(const char * pname)
 {
-    std::cerr << "Usage: " << pname << " [-x] se il file è xls" << std::endl;
-    std::cerr << " Il programma funziona ed è figo! In particolare, prende in input il nome del file" << std::endl;
-    std::cerr << ", lo elabora, e ti sputa fuori altri file con lo stesso nome + altre terminazioni." << std::endl;
-    std::cerr << "es: se vuoi elaborare cicciobello.xls, esegui il programma con l'opzione -x e poi dagli il nome"<<std::endl;
-    std::cerr << "cicciobello come nome file da elaborare " << std::endl;
+    std::cerr << "Usage: " << pname << std::endl;
+    std::cerr << "[-x] se il nome del file contiene \".xls\"" << std::endl;
+    std::cerr << "[-p] se si vuole la barra di avanzamento/progresso" << std::endl;
+    std::cerr << "[-n int] per il numero di Iterazioni per gruppo di fenditure. Default: " << SIM_PER_FEND << std::endl;
+    std::cerr << "[-j int] numero di job paralleli (suggerito: threads -1). Default: "<< NUM_THREADS <<std::endl;
+    std::cerr << "[-m int] numero di fenditure minime da simulare. Default: "<< MIN_FEND << std::endl;
+    std::cerr << "[-f int] numero di fenditure massime da simulare. Default: "<< MAX_FEND << std::endl;
 }

@@ -11,10 +11,7 @@
 
 #include <iostream>
 
-
-
 class GlobalSettings {
-
 public:
 	static GlobalSettings& get_instance();
 
@@ -29,7 +26,7 @@ public:
     void DrawProgressBar(int len, long double percent, int iter, int total);
     
 private:
-    // ecco il costruttore privato in modo che l'utente non possa istanziare direttamante
+    // costruttore privato in modo non si possa istanziare direttamante
 	GlobalSettings() { };
 };
 
