@@ -12,7 +12,7 @@
 		4109836718DF7D96005E8E10 /* StepDeltaCalculator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4109836518DF7D96005E8E10 /* StepDeltaCalculator.cpp */; };
 		4109836A18DF7F2E005E8E10 /* SplineDeltaCalculator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4109836818DF7F2E005E8E10 /* SplineDeltaCalculator.cpp */; };
 		4132C15218DED9A300E60ACF /* CalculatorSimple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4132C15018DED9A300E60ACF /* CalculatorSimple.cpp */; };
-		4132C15518DEE5B700E60ACF /* ThreadedResultSimulatorGeneric2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4132C15318DEE5B700E60ACF /* ThreadedResultSimulatorGeneric2.cpp */; };
+		4132C15518DEE5B700E60ACF /* ResultSimulatorFissures.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4132C15318DEE5B700E60ACF /* ResultSimulatorFissures.cpp */; };
 		4132C15D18DF385600E60ACF /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4132C15C18DF385600E60ACF /* main.cpp */; };
 		4132C15F18DF385600E60ACF /* elaboratoreFenditure.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4132C15E18DF385600E60ACF /* elaboratoreFenditure.1 */; };
 		4132C16318DF3AA100E60ACF /* DataSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4168296718DDD62E00EE461F /* DataSet.cpp */; };
@@ -37,11 +37,10 @@
 		4168296C18DDD62E00EE461F /* DataSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4168296718DDD62E00EE461F /* DataSet.cpp */; };
 		4168297718DDD63500EE461F /* TransformerSimple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4168296E18DDD63500EE461F /* TransformerSimple.cpp */; };
 		4168297818DDD63500EE461F /* Transformer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4168297018DDD63500EE461F /* Transformer.cpp */; };
-		4168297918DDD63500EE461F /* ThreadedResultSimulator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4168297218DDD63500EE461F /* ThreadedResultSimulator.cpp */; };
-		4168297A18DDD63500EE461F /* PhysicalScene2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4168297418DDD63500EE461F /* PhysicalScene2.cpp */; };
-		4168297B18DDD63500EE461F /* PhysicalScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4168297618DDD63500EE461F /* PhysicalScene.cpp */; };
+		4168297A18DDD63500EE461F /* PhysicalSceneFissures.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4168297418DDD63500EE461F /* PhysicalSceneFissures.cpp */; };
 		4168298418DDFCB700EE461F /* ThreadedResultSimulatorGeneric.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4168298218DDFCB600EE461F /* ThreadedResultSimulatorGeneric.cpp */; };
-		41740BB918E0AC4B00066413 /* ThreadedResultSimulatorBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41740BB718E0AC4B00066413 /* ThreadedResultSimulatorBase.cpp */; };
+		41740BB918E0AC4B00066413 /* ThreadedResultSimulator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41740BB718E0AC4B00066413 /* ThreadedResultSimulator.cpp */; };
+		41740BBC18E0C11E00066413 /* WorkerThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41740BBA18E0C11E00066413 /* WorkerThread.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -78,8 +77,8 @@
 		4109836918DF7F2E005E8E10 /* SplineDeltaCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplineDeltaCalculator.h; sourceTree = "<group>"; };
 		4132C15018DED9A300E60ACF /* CalculatorSimple.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CalculatorSimple.cpp; sourceTree = "<group>"; };
 		4132C15118DED9A300E60ACF /* CalculatorSimple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculatorSimple.h; sourceTree = "<group>"; };
-		4132C15318DEE5B700E60ACF /* ThreadedResultSimulatorGeneric2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ThreadedResultSimulatorGeneric2.cpp; sourceTree = "<group>"; };
-		4132C15418DEE5B700E60ACF /* ThreadedResultSimulatorGeneric2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadedResultSimulatorGeneric2.h; sourceTree = "<group>"; };
+		4132C15318DEE5B700E60ACF /* ResultSimulatorFissures.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ResultSimulatorFissures.cpp; sourceTree = "<group>"; };
+		4132C15418DEE5B700E60ACF /* ResultSimulatorFissures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultSimulatorFissures.h; sourceTree = "<group>"; };
 		4132C15A18DF385600E60ACF /* elaboratoreFenditure */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = elaboratoreFenditure; path = ElaboratoreFenditure; sourceTree = BUILT_PRODUCTS_DIR; };
 		4132C15C18DF385600E60ACF /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		4132C15E18DF385600E60ACF /* elaboratoreFenditure.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = elaboratoreFenditure.1; sourceTree = "<group>"; };
@@ -108,16 +107,14 @@
 		4168296E18DDD63500EE461F /* TransformerSimple.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TransformerSimple.cpp; sourceTree = "<group>"; };
 		4168296F18DDD63500EE461F /* Transformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transformer.h; sourceTree = "<group>"; };
 		4168297018DDD63500EE461F /* Transformer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Transformer.cpp; sourceTree = "<group>"; };
-		4168297118DDD63500EE461F /* ThreadedResultSimulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadedResultSimulator.h; sourceTree = "<group>"; };
-		4168297218DDD63500EE461F /* ThreadedResultSimulator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ThreadedResultSimulator.cpp; sourceTree = "<group>"; };
-		4168297318DDD63500EE461F /* PhysicalScene2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysicalScene2.h; sourceTree = "<group>"; };
-		4168297418DDD63500EE461F /* PhysicalScene2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PhysicalScene2.cpp; sourceTree = "<group>"; };
-		4168297518DDD63500EE461F /* PhysicalScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysicalScene.h; sourceTree = "<group>"; };
-		4168297618DDD63500EE461F /* PhysicalScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PhysicalScene.cpp; sourceTree = "<group>"; };
+		4168297318DDD63500EE461F /* PhysicalSceneFissures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysicalSceneFissures.h; sourceTree = "<group>"; };
+		4168297418DDD63500EE461F /* PhysicalSceneFissures.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PhysicalSceneFissures.cpp; sourceTree = "<group>"; };
 		4168298218DDFCB600EE461F /* ThreadedResultSimulatorGeneric.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ThreadedResultSimulatorGeneric.cpp; sourceTree = "<group>"; };
 		4168298318DDFCB600EE461F /* ThreadedResultSimulatorGeneric.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadedResultSimulatorGeneric.h; sourceTree = "<group>"; };
-		41740BB718E0AC4B00066413 /* ThreadedResultSimulatorBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ThreadedResultSimulatorBase.cpp; sourceTree = "<group>"; };
-		41740BB818E0AC4B00066413 /* ThreadedResultSimulatorBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadedResultSimulatorBase.h; sourceTree = "<group>"; };
+		41740BB718E0AC4B00066413 /* ThreadedResultSimulator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ThreadedResultSimulator.cpp; sourceTree = "<group>"; };
+		41740BB818E0AC4B00066413 /* ThreadedResultSimulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadedResultSimulator.h; sourceTree = "<group>"; };
+		41740BBA18E0C11E00066413 /* WorkerThread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WorkerThread.cpp; sourceTree = "<group>"; };
+		41740BBB18E0C11E00066413 /* WorkerThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkerThread.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,16 +214,17 @@
 		4168297D18DDD69200EE461F /* MonteCarlo */ = {
 			isa = PBXGroup;
 			children = (
+				4168298118DDE26F00EE461F /* OLD/DELETE */,
+				41750FD218E0E0E9005F4EBC /* MultiThreading */,
 				4109836118DF798F005E8E10 /* ErrorCalc */,
-				4168298118DDE26F00EE461F /* Old */,
 				41B241E718DFA56800914F7D /* Base */,
-				41740BB318E0659200066413 /* Objects */,
-				4168297318DDD63500EE461F /* PhysicalScene2.h */,
-				4168297418DDD63500EE461F /* PhysicalScene2.cpp */,
+				41740BB318E0659200066413 /* PhysicalObjects */,
+				4168297318DDD63500EE461F /* PhysicalSceneFissures.h */,
+				4168297418DDD63500EE461F /* PhysicalSceneFissures.cpp */,
 				4168296218DDD62E00EE461F /* ExperimentSimulator.h */,
 				4168296318DDD62E00EE461F /* ExperimentSimulator.cpp */,
-				4132C15418DEE5B700E60ACF /* ThreadedResultSimulatorGeneric2.h */,
-				4132C15318DEE5B700E60ACF /* ThreadedResultSimulatorGeneric2.cpp */,
+				4132C15418DEE5B700E60ACF /* ResultSimulatorFissures.h */,
+				4132C15318DEE5B700E60ACF /* ResultSimulatorFissures.cpp */,
 			);
 			name = MonteCarlo;
 			sourceTree = "<group>";
@@ -264,20 +262,16 @@
 			name = Data;
 			sourceTree = "<group>";
 		};
-		4168298118DDE26F00EE461F /* Old */ = {
+		4168298118DDE26F00EE461F /* OLD/DELETE */ = {
 			isa = PBXGroup;
 			children = (
 				4168298318DDFCB600EE461F /* ThreadedResultSimulatorGeneric.h */,
 				4168298218DDFCB600EE461F /* ThreadedResultSimulatorGeneric.cpp */,
-				4168297118DDD63500EE461F /* ThreadedResultSimulator.h */,
-				4168297218DDD63500EE461F /* ThreadedResultSimulator.cpp */,
-				4168297518DDD63500EE461F /* PhysicalScene.h */,
-				4168297618DDD63500EE461F /* PhysicalScene.cpp */,
 			);
-			name = Old;
+			name = OLD/DELETE;
 			sourceTree = "<group>";
 		};
-		41740BB318E0659200066413 /* Objects */ = {
+		41740BB318E0659200066413 /* PhysicalObjects */ = {
 			isa = PBXGroup;
 			children = (
 				4168295E18DDD62E00EE461F /* PhysicalObject.h */,
@@ -285,7 +279,16 @@
 				4168296018DDD62E00EE461F /* Fissure.h */,
 				4168296118DDD62E00EE461F /* Fissure.cpp */,
 			);
-			name = Objects;
+			name = PhysicalObjects;
+			sourceTree = "<group>";
+		};
+		41750FD218E0E0E9005F4EBC /* MultiThreading */ = {
+			isa = PBXGroup;
+			children = (
+				41740BBA18E0C11E00066413 /* WorkerThread.cpp */,
+				41740BBB18E0C11E00066413 /* WorkerThread.h */,
+			);
+			name = MultiThreading;
 			sourceTree = "<group>";
 		};
 		41B241E718DFA56800914F7D /* Base */ = {
@@ -293,8 +296,8 @@
 			children = (
 				4109835F18DF7608005E8E10 /* ExperimentSimulatorBase.h */,
 				4109835E18DF7608005E8E10 /* ExperimentSimulatorBase.cpp */,
-				41740BB818E0AC4B00066413 /* ThreadedResultSimulatorBase.h */,
-				41740BB718E0AC4B00066413 /* ThreadedResultSimulatorBase.cpp */,
+				41740BB818E0AC4B00066413 /* ThreadedResultSimulator.h */,
+				41740BB718E0AC4B00066413 /* ThreadedResultSimulator.cpp */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -385,8 +388,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4168297918DDD63500EE461F /* ThreadedResultSimulator.cpp in Sources */,
-				4168297A18DDD63500EE461F /* PhysicalScene2.cpp in Sources */,
+				4168297A18DDD63500EE461F /* PhysicalSceneFissures.cpp in Sources */,
 				4109836718DF7D96005E8E10 /* StepDeltaCalculator.cpp in Sources */,
 				4168297818DDD63500EE461F /* Transformer.cpp in Sources */,
 				4132C16D18DF3ADC00E60ACF /* GlobalSettings.cpp in Sources */,
@@ -396,16 +398,16 @@
 				4168296C18DDD62E00EE461F /* DataSet.cpp in Sources */,
 				4168296B18DDD62E00EE461F /* Elaborator.cpp in Sources */,
 				4109836418DF7C68005E8E10 /* DeltaCalculator.cpp in Sources */,
+				41740BBC18E0C11E00066413 /* WorkerThread.cpp in Sources */,
 				4168296818DDD62E00EE461F /* PhysicalObject.cpp in Sources */,
 				4168297718DDD63500EE461F /* TransformerSimple.cpp in Sources */,
 				4132C15218DED9A300E60ACF /* CalculatorSimple.cpp in Sources */,
 				4109836018DF7608005E8E10 /* ExperimentSimulatorBase.cpp in Sources */,
 				4168295B18DDD62000EE461F /* CalculatorMaxMin.cpp in Sources */,
-				41740BB918E0AC4B00066413 /* ThreadedResultSimulatorBase.cpp in Sources */,
+				41740BB918E0AC4B00066413 /* ThreadedResultSimulator.cpp in Sources */,
 				4168295C18DDD62000EE461F /* CalculatorMax.cpp in Sources */,
-				4168297B18DDD63500EE461F /* PhysicalScene.cpp in Sources */,
 				4168298418DDFCB700EE461F /* ThreadedResultSimulatorGeneric.cpp in Sources */,
-				4132C15518DEE5B700E60ACF /* ThreadedResultSimulatorGeneric2.cpp in Sources */,
+				4132C15518DEE5B700E60ACF /* ResultSimulatorFissures.cpp in Sources */,
 				4168296918DDD62E00EE461F /* Fissure.cpp in Sources */,
 				4168296A18DDD62E00EE461F /* ExperimentSimulator.cpp in Sources */,
 			);

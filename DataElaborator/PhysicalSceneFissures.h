@@ -6,19 +6,19 @@
 //  Copyright (c) 2014 Filippo Vicentini. All rights reserved.
 //
 
-#ifndef __DataElaborator__PhysicalScene2__
-#define __DataElaborator__PhysicalScene2__
+#ifndef __DataElaborator__PhysicalSceneFissures__
+#define __DataElaborator__PhysicalSceneFissures__
 
 #include <iostream>
 #include <vector>
 #include "PhysicalObject.h"
 #include "Fissure.h"
 
-class PhysicalScene2 : public PhysicalObject
+class PhysicalSceneFissures : public PhysicalObject
 {
 public:
-    PhysicalScene2();
-    ~PhysicalScene2();
+    PhysicalSceneFissures();
+    ~PhysicalSceneFissures();
     
     /* ------------------------   Scene Management  ---------------------- */
     int AddFunction(PhysicalObject * object);
@@ -39,4 +39,4 @@ protected:
     int lastId;
 };
 
-#endif /* defined(__DataElaborator__PhysicalScene2__) */
+#endif /* defined(__DataElaborator__PhysicalSceneFissures__) */

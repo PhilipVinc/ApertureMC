@@ -2,7 +2,7 @@
 //  ThreadedResultSimulator.h
 //  DataElaborator
 //
-//  Created by Filippo Vicentini on 20/03/14.
+//  Created by Filippo Vicentini on 24/03/14.
 //  Copyright (c) 2014 Filippo Vicentini. All rights reserved.
 //
 
@@ -10,56 +10,32 @@
 #define __DataElaborator__ThreadedResultSimulator__
 
 #include <iostream>
-#include <fstream>
-#include <thread>
 #include <vector>
-#include <random>
-
+#include <thread>
+#include "DataSet.h"
 #include "ExperimentSimulator.h"
+#include "GlobalSettings.h"
 
 class ThreadedResultSimulator
 {
 public:
-    /* ------------------------   Init Functions ---------------------- */
-    ThreadedResultSimulator(DataSet * _experimentalData, int iterations, int nThreads = 1);
-    ~ThreadedResultSimulator();
+    ThreadedResultSimulator(DataSet * _experimentalData, int _simulationsN, int _nThreads);
+    virtual ~ThreadedResultSimulator();
     
     void Simulate();
-    void Print(std::ostream& myout);
-    void PrintEvaluation(std::ostream& myout);
-    
-    void Start();
-
 protected:
-    ExperimentSimulator * CreateSim();
-    void SetupRandomNumberGenerator();
-    void PrintSingleSimulation(int id, std::ostream& myout = std::cout);
+    GlobalSettings * settings;
     
     int num_threads;
     int simulationsN;
     std::thread * threads;
     
     DataSet * experimentalData;
-    std::vector<ExperimentSimulator*> simulators;
+    std::vector<ExperimentSimulatorBase*> simulators;
     
-    std::mt19937 rng;
-	std::uniform_real_distribution<long double>* f1PosRangeDistribution;
-    std::uniform_real_distribution<long double>* f2DistanceDistribution;
-    std::uniform_real_distribution<long double>* f1apertureDistribution;
-    std::uniform_real_distribution<long double>* f2apertureDistribution;
-    
-    int simDataN = 4;
-    int resultsN = 2;
-    
-    /* ------------------------  Simulation setup data ---------------------- */
-    long double f1PosRange = 0.02;
-    long double f2DistRange = 0.5;
-    long double aperture = 7;
-    int fenditureN=2;
-    
-    void SetupArrayResults();
-    long double * results;
     int lastId;
+
+    //virtual ExperimentSimulator * CreateSim(int id)=0;
 
 };
 

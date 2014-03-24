@@ -14,6 +14,7 @@
 ExperimentSimulatorBase::ExperimentSimulatorBase(DataSet * expData)
 {
     experimentalData = expData;
+    ready = false;
 }
 
 ExperimentSimulatorBase::~ExperimentSimulatorBase()
@@ -74,6 +75,7 @@ void ExperimentSimulatorBase::BaseSetup(long double _minX, long double _maxX)
 
 int ExperimentSimulatorBase::GetErrorsNumber()
 { return deltaCalculators.size(); }
+
 long double ExperimentSimulatorBase::GetError(int id)
 {
     return deltaCalculators[id]->GetDelta();

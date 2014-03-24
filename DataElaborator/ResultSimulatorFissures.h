@@ -1,13 +1,13 @@
 //
-//  ThreadedResultSimulatorGeneric2.h
+//  ResultSimulatorFissures.h
 //  DataElaborator
 //
 //  Created by Filippo Vicentini on 23/03/14.
 //  Copyright (c) 2014 Filippo Vicentini. All rights reserved.
 //
 
-#ifndef __DataElaborator__ThreadedResultSimulatorGeneric2__
-#define __DataElaborator__ThreadedResultSimulatorGeneric2__
+#ifndef __DataElaborator__ResultSimulatorFissures__
+#define __DataElaborator__ResultSimulatorFissures__
 
 #include <iostream>
 #include <fstream>
@@ -15,16 +15,16 @@
 #include <vector>
 #include <random>
 
-#include "ThreadedResultSimulatorBase.h"
+#include "ThreadedResultSimulator.h"
 #include "ExperimentSimulator.h"
 #include "GlobalSettings.h"
 
-class ThreadedResultSimulatorGeneric2 : public ThreadedResultSimulatorBase
+class ResultSimulatorFissures : public ThreadedResultSimulator
 {
 public:
     /* ------------------------   Init Functions ---------------------- */
-    ThreadedResultSimulatorGeneric2(DataSet * _experimentalData,int fenditure, int iterations, int nThreads = 1);
-    ~ThreadedResultSimulatorGeneric2();
+    ResultSimulatorFissures(DataSet * _experimentalData,int fenditure, int iterations, int nThreads = 1);
+    ~ResultSimulatorFissures();
     
     void Simulate();
     void Print(std::ostream& myout);
@@ -64,4 +64,4 @@ protected:
 };
 
 
-#endif /* defined(__DataElaborator__ThreadedResultSimulatorGeneric2__) */
+#endif /* defined(__DataElaborator__ResultSimulatorFissures__) */

@@ -18,7 +18,7 @@
 #include "CalculatorMax.h"
 #include "TransformerSimple.h"
 
-#include "ThreadedResultSimulatorGeneric2.h"
+#include "ResultSimulatorFissures.h"
 #include "GlobalSettings.h"
 
 void usage(const char * pname);
@@ -27,7 +27,7 @@ using namespace std;
 
 int MAX_FEND = 4;
 int MIN_FEND = 1;
-int SIM_PER_FEND = 4000;
+int SIM_PER_FEND = 20000;
 int NUM_THREADS = 3;
 
 void ElaborateFile(string inputName, bool addXls = false)
@@ -63,11 +63,11 @@ void ElaborateFile(string inputName, bool addXls = false)
     datFile.close();
 
     
-    vector<ThreadedResultSimulatorGeneric2*> sims;
+    vector<ResultSimulatorFissures*> sims;
     
     for (int i = 0; i < (MAX_FEND-MIN_FEND+1); i++)
     {
-        sims.push_back( new ThreadedResultSimulatorGeneric2(data, i+MIN_FEND, SIM_PER_FEND, NUM_THREADS));
+        sims.push_back( new ResultSimulatorFissures(data, i+MIN_FEND, SIM_PER_FEND, NUM_THREADS));
         sims[i]->Simulate();
         ofstream simFile("Simulation-f"+to_string(i+MIN_FEND));
         sims[i]->Print(simFile);

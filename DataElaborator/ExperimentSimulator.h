@@ -11,7 +11,7 @@
 
 #include <iostream>
 #include "DataSet.h"
-#include "PhysicalScene2.h"
+#include "PhysicalSceneFissures.h"
 #include "ExperimentSimulatorBase.h"
 #include "StepDeltaCalculator.h"
 #include "SplineDeltaCalculator.h"

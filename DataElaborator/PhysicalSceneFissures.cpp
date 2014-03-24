@@ -6,18 +6,18 @@
 //  Copyright (c) 2014 Filippo Vicentini. All rights reserved.
 //
 
-#include "PhysicalScene2.h"
+#include "PhysicalSceneFissures.h"
 
 using namespace std;
 
 /* ------------------------   Init Functions ---------------------- */
-PhysicalScene2::PhysicalScene2()
+PhysicalSceneFissures::PhysicalSceneFissures()
 {
     //components = *new vector<Function*>();
     lastId = 0;
 }
 
-PhysicalScene2::~PhysicalScene2()
+PhysicalSceneFissures::~PhysicalSceneFissures()
 {
     for (int i = 0; i != components.size(); i++)
     {
@@ -28,18 +28,18 @@ PhysicalScene2::~PhysicalScene2()
 
 /* ------------------------   Scene Management  ---------------------- */
 
-int PhysicalScene2::AddFunction(PhysicalObject * _object)
+int PhysicalSceneFissures::AddFunction(PhysicalObject * _object)
 {
     components.push_back(_object);
     return components.size();
 }
 
-PhysicalObject* PhysicalScene2::GetObject(int id)
+PhysicalObject* PhysicalSceneFissures::GetObject(int id)
 {
     return components[id];
 }
 
-void PhysicalScene2::RemoveFunction(int id)
+void PhysicalSceneFissures::RemoveFunction(int id)
 {
     if (id < components.size())
     {
@@ -51,14 +51,14 @@ void PhysicalScene2::RemoveFunction(int id)
     }
 }
 
-int PhysicalScene2::NumberOfObjects()
+int PhysicalSceneFissures::NumberOfObjects()
 {
     return components.size();
 }
 
 /* ------------------------>   Fissures  <---------------------- */
 
-int PhysicalScene2::AddFissure(long double position, long double intensity, long double halfAperture)
+int PhysicalSceneFissures::AddFissure(long double position, long double intensity, long double halfAperture)
 {
     Fissure * newFissure = new Fissure(position, intensity, halfAperture);
     components.push_back(newFissure);
@@ -66,7 +66,7 @@ int PhysicalScene2::AddFissure(long double position, long double intensity, long
 }
 
 /* ------------------------   Calculation Functions  ---------------------- */
-long double PhysicalScene2::operator()(long double x)
+long double PhysicalSceneFissures::operator()(long double x)
 {
     long double result = 0.0;
     for (vector<PhysicalObject*>::size_type i=0; i != components.size(); i++)
@@ -77,7 +77,7 @@ long double PhysicalScene2::operator()(long double x)
 }
 
 /* ------------------------   Print Functions  ---------------------- */
-void PhysicalScene2::PrintFormula(std::ostream& myout)
+void PhysicalSceneFissures::PrintFormula(std::ostream& myout)
 {
     myout << "( ";
     for (vector<PhysicalObject*>::size_type i=0; i != components.size(); i++)

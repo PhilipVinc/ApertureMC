@@ -38,7 +38,7 @@ void ExperimentSimulator::Setup(int _fissureN, long double * _setupValues, long 
 void ExperimentSimulator::CreateExperiment()
 {
     simulatedData = new DataSet();
-    scene =  new PhysicalScene2();
+    scene =  new PhysicalSceneFissures();
     for (int i = 0; i != fissureN; i++)
     {
         scene->AddFissure(values[i*3], values[i*3+1], values[i*3+2]);

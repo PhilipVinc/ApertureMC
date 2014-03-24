@@ -12,7 +12,7 @@
 #include <iostream>
 #include <vector>
 #include "DataSet.h"
-#include "PhysicalScene2.h"
+#include "PhysicalSceneFissures.h"
 #include "DeltaCalculator.h"
 
 class ExperimentSimulatorBase
@@ -36,8 +36,9 @@ public:
     void PrintSimulatedDataToFile(std::string filename);
     
     int uniqueID;
+    bool ready;
 protected:
-    PhysicalScene2 * scene;
+    PhysicalSceneFissures * scene;
     DataSet * experimentalData;
     DataSet * simulatedData;
     
