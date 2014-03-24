@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Filippo Vicentini. All rights reserved.
 //
 
-
 #include <iostream>
 #include <fstream>
 #include <libgen.h>
@@ -26,9 +25,9 @@ void usage(const char * pname);
 
 using namespace std;
 
-int MAX_FEND = 8;
+int MAX_FEND = 4;
 int MIN_FEND = 1;
-int SIM_PER_FEND = 10000;
+int SIM_PER_FEND = 4000;
 int NUM_THREADS = 3;
 
 void ElaborateFile(string inputName, bool addXls = false)

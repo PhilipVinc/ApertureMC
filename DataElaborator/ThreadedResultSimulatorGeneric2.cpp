@@ -59,26 +59,26 @@ void ThreadedResultSimulatorGeneric2::Simulate()
 {
     int cyclesN = ceil(double(simulationsN)/double(num_threads));
     long double lastPercent = 0.0;
+    threads = new thread[num_threads];
+
     for (int cycle = 0; cycle < cyclesN; cycle++)
     {
-        threads = new thread[num_threads];
-        
         for (int i = 0; i != num_threads; i++)
         {
-            //Setup The Simulator
             simulators.push_back(CreateSim(i));
         }
         
         for (int i = 0; i != num_threads; i++)
         {
-            threads[i] = std::thread(&ExperimentSimulator::Work, simulators[i]);
+            threads[i] = std::thread(&ExperimentSimulatorBase::Work, simulators[i]);
         }
         
         for (int i = 0; i != num_threads; i++)
         {
             threads[i].join();
+            //delete *threads[i];
         }
-        delete[] threads;
+        //delete[] threads;
         
         for (int i = 0; i != num_threads; i++)
         {
