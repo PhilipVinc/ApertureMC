@@ -41,6 +41,7 @@
 		4168297A18DDD63500EE461F /* PhysicalScene2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4168297418DDD63500EE461F /* PhysicalScene2.cpp */; };
 		4168297B18DDD63500EE461F /* PhysicalScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4168297618DDD63500EE461F /* PhysicalScene.cpp */; };
 		4168298418DDFCB700EE461F /* ThreadedResultSimulatorGeneric.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4168298218DDFCB600EE461F /* ThreadedResultSimulatorGeneric.cpp */; };
+		41740BB918E0AC4B00066413 /* ThreadedResultSimulatorBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41740BB718E0AC4B00066413 /* ThreadedResultSimulatorBase.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -115,6 +116,8 @@
 		4168297618DDD63500EE461F /* PhysicalScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PhysicalScene.cpp; sourceTree = "<group>"; };
 		4168298218DDFCB600EE461F /* ThreadedResultSimulatorGeneric.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ThreadedResultSimulatorGeneric.cpp; sourceTree = "<group>"; };
 		4168298318DDFCB600EE461F /* ThreadedResultSimulatorGeneric.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadedResultSimulatorGeneric.h; sourceTree = "<group>"; };
+		41740BB718E0AC4B00066413 /* ThreadedResultSimulatorBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ThreadedResultSimulatorBase.cpp; sourceTree = "<group>"; };
+		41740BB818E0AC4B00066413 /* ThreadedResultSimulatorBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadedResultSimulatorBase.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -290,6 +293,8 @@
 			children = (
 				4109835F18DF7608005E8E10 /* ExperimentSimulatorBase.h */,
 				4109835E18DF7608005E8E10 /* ExperimentSimulatorBase.cpp */,
+				41740BB818E0AC4B00066413 /* ThreadedResultSimulatorBase.h */,
+				41740BB718E0AC4B00066413 /* ThreadedResultSimulatorBase.cpp */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -396,6 +401,7 @@
 				4132C15218DED9A300E60ACF /* CalculatorSimple.cpp in Sources */,
 				4109836018DF7608005E8E10 /* ExperimentSimulatorBase.cpp in Sources */,
 				4168295B18DDD62000EE461F /* CalculatorMaxMin.cpp in Sources */,
+				41740BB918E0AC4B00066413 /* ThreadedResultSimulatorBase.cpp in Sources */,
 				4168295C18DDD62000EE461F /* CalculatorMax.cpp in Sources */,
 				4168297B18DDD63500EE461F /* PhysicalScene.cpp in Sources */,
 				4168298418DDFCB700EE461F /* ThreadedResultSimulatorGeneric.cpp in Sources */,

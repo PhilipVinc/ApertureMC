@@ -18,7 +18,7 @@ class DeltaCalculator
 public:
     DeltaCalculator(DataSet * expData, DataSet * simData, int xMinIndex, int xMaxIndex);
     DeltaCalculator(DataSet * expData, DataSet * simData, long double xMin, long double xMax);
-    //~DeltaCalculator();
+    virtual ~DeltaCalculator();
     
     void SetupIndices();
     

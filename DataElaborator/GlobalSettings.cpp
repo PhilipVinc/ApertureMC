@@ -37,5 +37,5 @@ void GlobalSettings::DrawProgressBar(int len, long double percent, int iter, int
 
 void GlobalSettings::DrawSimulationProgressBar(int len, long double percent, int iter)
 {
-    DrawProgressBar(len, percent, iter, max_fend);
+    DrawProgressBar(len, percent, iter-min_fend+1, max_fend-min_fend+1);
 }

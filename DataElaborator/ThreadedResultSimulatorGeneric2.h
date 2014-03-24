@@ -15,10 +15,11 @@
 #include <vector>
 #include <random>
 
+#include "ThreadedResultSimulatorBase.h"
 #include "ExperimentSimulator.h"
 #include "GlobalSettings.h"
 
-class ThreadedResultSimulatorGeneric2
+class ThreadedResultSimulatorGeneric2 : public ThreadedResultSimulatorBase
 {
 public:
     /* ------------------------   Init Functions ---------------------- */
@@ -42,14 +43,7 @@ protected:
     void PrintSingleSimulation(int bestId, std::ostream& myout = std::cout);
     
     void CheckBestSim();
-    
-    int num_threads;
-    int simulationsN;
-    std::thread * threads;
-    
-    DataSet * experimentalData;
-    std::vector<ExperimentSimulator*> simulators;
-    
+        
     std::mt19937 rng;
 	std::uniform_real_distribution<long double>* posRangeDistribution;
     std::uniform_real_distribution<long double>* intensityDistribution;
@@ -67,11 +61,6 @@ protected:
     void SetupArrayResults();
     std::vector <long double> cycleResults;//long double * cycleResults;
     std::vector <long double> bestResults;//long double * bestResults;
-    int lastId;
-    
-    GlobalSettings * settings;
-    
-    void DrawProgressBar(int len, long double percent);
 };
 
 

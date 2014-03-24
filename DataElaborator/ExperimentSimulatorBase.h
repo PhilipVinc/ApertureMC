@@ -20,7 +20,7 @@ class ExperimentSimulatorBase
 public:
     /* ------------------------   Init Functions ---------------------- */
     ExperimentSimulatorBase(DataSet * expData);
-    ~ExperimentSimulatorBase();
+    virtual ~ExperimentSimulatorBase();
     void BaseSetup(long double range);
     void BaseSetup(long double _minX, long double _maxX);
     

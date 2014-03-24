@@ -10,22 +10,15 @@
 using namespace std;
 
 /* ------------------------   Init Functions ---------------------- */
-ThreadedResultSimulatorGeneric2::ThreadedResultSimulatorGeneric2(DataSet * _experimentalData, int fenditure, int _simulationsN, int _nThreads)
+ThreadedResultSimulatorGeneric2::ThreadedResultSimulatorGeneric2(DataSet * _experimentalData, int fenditure, int _simulationsN, int _nThreads) : ThreadedResultSimulatorBase(_experimentalData, _simulationsN, _nThreads)
 {
-    num_threads = _nThreads;
-    simulationsN = _simulationsN;
-    experimentalData = _experimentalData;
-    
     fenditureN = fenditure;
     SetupArrayResults();
     SetupRandomNumberGenerator();
-    settings = &GlobalSettings::get_instance();
-    lastId = -1;
 }
 
 ThreadedResultSimulatorGeneric2::~ThreadedResultSimulatorGeneric2()
 {
-    simulators.clear();
     cycleResults.clear(); //delete[] cycleResults;
     bestResults.clear(); //delete[] bestResults;
     bestErrors.clear(); //delete[] bestErrors;
@@ -61,7 +54,6 @@ void ThreadedResultSimulatorGeneric2::SetupRandomNumberGenerator()
     intensityDistribution = new uniform_real_distribution<long double> (0.0, 100.0 );
     apertureDistribution = new uniform_real_distribution<long double> (0.0, aperture+4 );
 }
-
 
 void ThreadedResultSimulatorGeneric2::Simulate()
 {
@@ -103,7 +95,8 @@ void ThreadedResultSimulatorGeneric2::Simulate()
         {
             if ( percent > lastPercent )
             {
-                DrawProgressBar(100, percent);
+                //DrawProgressBar(100, percent);
+                settings->DrawSimulationProgressBar(40, percent, fenditureN);
                 lastPercent = percent + 0.01;
             }
         }
@@ -218,34 +211,15 @@ void ThreadedResultSimulatorGeneric2::PrintEvaluation(ostream& myout)
     PrintSingleSimulation(0);
 }
 
-void ThreadedResultSimulatorGeneric2::PrintNewEvaluation(ostream& myout)
-{
-    myout << "the minimal difference for "<< fenditureN << " fenditures with the new eval. is: "<<minNewError << endl;
-    PrintSingleSimulation(2);
-}
-
 void ThreadedResultSimulatorGeneric2::PrintTopEvaluation(ostream& myout)
 {
     myout << "the minimal difference for "<< fenditureN << " fenditures with the top eval. is: "<<minTopError << endl;
     PrintSingleSimulation(1);
 }
 
-
-void ThreadedResultSimulatorGeneric2::DrawProgressBar(int len, long double percent)
+void ThreadedResultSimulatorGeneric2::PrintNewEvaluation(ostream& myout)
 {
-    percent = percent + 0.01;
-    cout << "\x1B[2K"; // Erase the entire current line.
-    cout << "\x1B[0E"; // Move to the beginning of the current line.
-    string progress;
-    for (int i = 0; i < len; ++i) {
-        if (i < static_cast<int>(len * percent)) {
-            progress += "=";
-        } else {
-            progress += " ";
-        }
-    }
-    cout << "[" << progress << "] " << (static_cast<int>(100 * percent)) << "%";
-    cout << " \t\t Simulation - " << fenditureN << " Fenditures";
-    
-    flush(cout); // Required.
+    myout << "the minimal difference for "<< fenditureN << " fenditures with the new eval. is: "<<minNewError << endl;
+    PrintSingleSimulation(2);
 }
+

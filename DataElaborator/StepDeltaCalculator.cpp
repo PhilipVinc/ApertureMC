@@ -18,6 +18,11 @@ StepDeltaCalculator::StepDeltaCalculator(DataSet * expData, DataSet * simData, l
     
 }
 
+StepDeltaCalculator::~StepDeltaCalculator()
+{
+    
+}
+
 long double StepDeltaCalculator::ElaborateDelta()
 {    
     int simIndex  = 0;

@@ -28,7 +28,7 @@ using namespace std;
 
 int MAX_FEND = 8;
 int MIN_FEND = 1;
-int SIM_PER_FEND = 10;
+int SIM_PER_FEND = 10000;
 int NUM_THREADS = 3;
 
 void ElaborateFile(string inputName, bool addXls = false)
@@ -130,7 +130,7 @@ int main(int argc, char * argv[])
     string inputPath;
     bool addXls = false;
     GlobalSettings::get_instance().maxMinSearchSpan = 3;
-    GlobalSettings::get_instance().showProgress = false;
+    GlobalSettings::get_instance().showProgress = true;
 
 	// Handle command line options
     while((opt = getopt(argc, argv, "i:f:n:m:j:s:pdxh?")) != -1)
@@ -167,7 +167,8 @@ int main(int argc, char * argv[])
                 return 1;
         }
     }
-    GlobalSettings::get_instance().max_fend= (MAX_FEND-MIN_FEND);
+    GlobalSettings::get_instance().max_fend= MAX_FEND;
+    GlobalSettings::get_instance().min_fend= MIN_FEND;
     addXls=true;
     inputPath = "data";
     ElaborateFile(inputPath, addXls);

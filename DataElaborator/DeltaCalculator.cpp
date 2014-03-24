@@ -27,6 +27,11 @@ DeltaCalculator::DeltaCalculator(DataSet * expData, DataSet * simData, long doub
     xMax = _xMax;
 }
 
+DeltaCalculator::~DeltaCalculator()
+{
+    
+}
+
 long double DeltaCalculator::GetDelta()
 {
     if (resultDirty)
