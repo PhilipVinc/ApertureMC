@@ -111,10 +111,10 @@ void ElaborateFile(string inputName, bool addXls = false)
     cout << "The global best guess is for " << minErrIndex+1<< " fenditures" << endl;
     cout << "The global best guess WITH NEW is for " << minNewErrIndex+1<< " fenditures" << endl;
     cout << "The global best guess WITH TOP is for " << minTopErrIndex+1<< " fenditures" << endl;
-    sims[minErrIndex]->PrintEvaluation(cout);
-    sims[minNewErrIndex]->PrintNewEvaluation(cout);
-    sims[minTopErrIndex]->PrintTopEvaluation(cout);
-    
+    sims[minErrIndex]->PrintLikelihoodEvaluation(cout, 0);
+    sims[minTopErrIndex]->PrintLikelihoodEvaluation(cout, 1);
+    sims[minNewErrIndex]->PrintLikelihoodEvaluation(cout, 2);
+
     for (int i = 0; i < (MAX_FEND-MIN_FEND+1); i++)
     {
         delete sims[i];

@@ -27,9 +27,8 @@ public:
     ~ResultSimulatorFissures();
     
     void Print(std::ostream& myout);
-    void PrintEvaluation(std::ostream& myout);
-    void PrintNewEvaluation(std::ostream& myout);
-    void PrintTopEvaluation(std::ostream& myout);
+    void PrintLikelihoodEvaluation(std::ostream& myout, int likelihoodId);
+    void PrintAllLikelihoodEvaluations(std::ostream& myout);
     
     std::vector<long double> bestLikelihoods;//long double * bestErrors;
     
@@ -39,8 +38,8 @@ protected:
     void PrintSingleSimulation(int bestId, std::ostream& myout = std::cout);
     
     void CheckBestSim();
-    void PostSimulation();
-    void PreSimulation() {};
+    void OnPostSimulation();
+    void OnPreSimulation() {};
     
     std::mt19937 rng;
 	std::uniform_real_distribution<long double>* posRangeDistribution;

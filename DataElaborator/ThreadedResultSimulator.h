@@ -27,8 +27,8 @@ public:
 protected:
     virtual ExperimentSimulator* CreateSim(int id)=0;
     virtual void CheckBestSim()= 0;
-    virtual void PreSimulation()=0;
-    virtual void PostSimulation()=0;
+    virtual void OnPreSimulation()=0;
+    virtual void OnPostSimulation()=0;
     
     DataSet * experimentalData;
     std::vector<ExperimentSimulator*> simulators;

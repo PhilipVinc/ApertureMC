@@ -30,7 +30,7 @@ ThreadedResultSimulator::~ThreadedResultSimulator()
 
 void ThreadedResultSimulator::Simulate()
 {
-    PreSimulation();
+    OnPreSimulation();
     int cyclesN = ceil(double(simulationsN)/double(num_threads));
     long double lastPercent = 0.0;
     
@@ -79,5 +79,5 @@ void ThreadedResultSimulator::Simulate()
     {
         workers[i]->Terminate();
     }
-    PostSimulation();
+    OnPostSimulation();
 }

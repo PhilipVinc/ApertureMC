@@ -78,12 +78,10 @@ void ResultSimulatorFissures::CheckBestSim()
     }
 }
 
-void ResultSimulatorFissures::PostSimulation()
+void ResultSimulatorFissures::OnPostSimulation()
 {
     std::cout << std::endl;
-    PrintEvaluation(std::cout);
-    PrintTopEvaluation(std::cout);
-    PrintNewEvaluation(std::cout);
+    PrintAllLikelihoodEvaluations(std::cout);
 }
 
 ExperimentSimulator * ResultSimulatorFissures::CreateSim(int threadN)
@@ -155,21 +153,22 @@ void ResultSimulatorFissures::Print(ostream& myout)
 	myout << endl;
 }
 
-void ResultSimulatorFissures::PrintEvaluation(ostream& myout)
+void ResultSimulatorFissures::PrintLikelihoodEvaluation(ostream& myout, int likelihoodId)
 {
-    myout << "-----------------------------------" << endl;
-    myout << "the maximum likelihood for "<< fenditureN << " fenditures is: "<< bestLikelihoods[0] << endl;
-    PrintSingleSimulation(0);
+    string likelihoodName;
+    if (likelihoodId == 0) likelihoodName = "Data-Point-Evaluated Likelihood";
+    else if (likelihoodId == 1) likelihoodName = "Small-Interval-around-origin Likelihood";
+    else if (likelihoodId == 2) likelihoodName = "Spline-Evaluated Likelihood";
+    else likelihoodName = "Unknown Likelihood";
+    
+    myout << "the maximum likelihood for "<< fenditureN << " fenditures with " << likelihoodName <<" is: "<<bestLikelihoods[likelihoodId] << endl;
+    PrintSingleSimulation(likelihoodId);
 }
 
-void ResultSimulatorFissures::PrintTopEvaluation(ostream& myout)
+void ResultSimulatorFissures::PrintAllLikelihoodEvaluations(ostream &myout)
 {
-    myout << "the maximum likelihood for "<< fenditureN << " fenditures with the top eval. is: "<<bestLikelihoods[1] << endl;
-    PrintSingleSimulation(1);
-}
-
-void ResultSimulatorFissures::PrintNewEvaluation(ostream& myout)
-{
-    myout << "the maximum likelihood for "<< fenditureN << " fenditures with the new eval. is: "<<bestLikelihoods[2] << endl;
-    PrintSingleSimulation(2);
+    for (int i = 0; i < likelihoodsN; i++)
+    {
+        PrintLikelihoodEvaluation(myout, i);
+    }
 }

@@ -24,20 +24,20 @@ public:
     void BaseSetup(long double range);
     void BaseSetup(long double _minX, long double _maxX);
     
-    int GetNumberOfLikelihoods();
-    long double GetLikelihood(int id);
-    
     void Work();
     
-    virtual void CreateExperiment()=0;
-    virtual void SimulateExperiment()=0;
-    virtual void Check()=0;
-    
     void PrintSimulatedDataToFile(std::string filename);
+    
+    int GetNumberOfLikelihoods();
+    long double GetLikelihood(int id);
     
     int uniqueID;
     bool ready;
 protected:
+    virtual void CreateExperiment()=0;
+    virtual void SimulateExperiment()=0;
+    virtual void Check()=0;
+    
     PhysicalScene * scene;
     DataSet * experimentalData;
     DataSet * simulatedData;
