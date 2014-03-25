@@ -15,6 +15,7 @@
 #include "DataSet.h"
 #include "ExperimentSimulator.h"
 #include "GlobalSettings.h"
+#include "WorkerThread.h"
 
 class ThreadedResultSimulator
 {
@@ -24,19 +25,25 @@ public:
     
     void Simulate();
 protected:
-    GlobalSettings * settings;
+    virtual ExperimentSimulator* CreateSim(int id)=0;
+    virtual void CheckBestSim()= 0;
+    virtual void PreSimulation()=0;
+    virtual void PostSimulation()=0;
+    
+    DataSet * experimentalData;
+    std::vector<ExperimentSimulator*> simulators;
+    std::vector <long double> cycleResults;//long double * cycleResults;
     
     int num_threads;
     int simulationsN;
     std::thread * threads;
     
-    DataSet * experimentalData;
-    std::vector<ExperimentSimulatorBase*> simulators;
+    int simDataN;
+    int likelihoodsN = 3;
     
     int lastId;
 
-    //virtual ExperimentSimulator * CreateSim(int id)=0;
-
+    GlobalSettings * settings;
 };
 
 #endif /* defined(__DataElaborator__ThreadedResultSimulator__) */

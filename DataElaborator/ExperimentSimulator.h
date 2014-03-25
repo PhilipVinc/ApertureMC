@@ -1,8 +1,8 @@
 //
-//  ExperimentSimulator.h
+//  ExperimentSimulatorBase.h
 //  DataElaborator
 //
-//  Created by Filippo Vicentini on 20/03/14.
+//  Created by Filippo Vicentini on 23/03/14.
 //  Copyright (c) 2014 Filippo Vicentini. All rights reserved.
 //
 
@@ -10,34 +10,43 @@
 #define __DataElaborator__ExperimentSimulator__
 
 #include <iostream>
+#include <vector>
 #include "DataSet.h"
 #include "PhysicalSceneFissures.h"
-#include "ExperimentSimulatorBase.h"
-#include "StepDeltaCalculator.h"
-#include "SplineDeltaCalculator.h"
+#include "SplineLikelihoodCalculator.h"
 
-class ExperimentSimulator : public ExperimentSimulatorBase
+class ExperimentSimulator
 {
 public:
     /* ------------------------   Init Functions ---------------------- */
     ExperimentSimulator(DataSet * expData);
-    ~ExperimentSimulator();
+    virtual ~ExperimentSimulator();
+    void BaseSetup(long double range);
+    void BaseSetup(long double _minX, long double _maxX);
     
-    void Setup(int fissureN, long double * setupValues, long double range = 1.0);
+    int GetErrorsNumber();
+    long double GetError(int id);
     
-    void CreateExperiment();
-    void SimulateExperiment();
-    void Check();
+    void Work();
     
-    void PrintSimulatedDataToFile();
+    virtual void CreateExperiment()=0;
+    virtual void SimulateExperiment()=0;
+    virtual void Check()=0;
+    
+    void PrintSimulatedDataToFile(std::string filename);
     
     int uniqueID;
-    
+    bool ready;
 protected:
-    int fissureN;
+    PhysicalSceneFissures * scene;
+    DataSet * experimentalData;
+    DataSet * simulatedData;
     
-    long double scaleValue;
+    std::vector<LikelihoodCalculator*> likelihoodCalculators;
+    
+    long double * values;
+    long double range;
+    int xMinIndex;
+    int xMaxIndex;
 };
-
-
 #endif /* defined(__DataElaborator__ExperimentSimulator__) */

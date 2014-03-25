@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Filippo Vicentini. All rights reserved.
 //
 
-#include "DeltaCalculator.h"
+#include "LikelihoodCalculator.h"
 
-DeltaCalculator::DeltaCalculator(DataSet * expData, DataSet * simData, int _xMinIndex, int _xMaxIndex)
+LikelihoodCalculator::LikelihoodCalculator(DataSet * expData, DataSet * simData, int _xMinIndex, int _xMaxIndex)
 {
     experimentalData = expData;
     simulatedData = simData;
@@ -18,7 +18,7 @@ DeltaCalculator::DeltaCalculator(DataSet * expData, DataSet * simData, int _xMin
 }
 
 
-DeltaCalculator::DeltaCalculator(DataSet * expData, DataSet * simData, long double _xMin, long double _xMax)
+LikelihoodCalculator::LikelihoodCalculator(DataSet * expData, DataSet * simData, long double _xMin, long double _xMax)
 {
     experimentalData = expData;
     simulatedData = simData;
@@ -27,12 +27,12 @@ DeltaCalculator::DeltaCalculator(DataSet * expData, DataSet * simData, long doub
     xMax = _xMax;
 }
 
-DeltaCalculator::~DeltaCalculator()
+LikelihoodCalculator::~LikelihoodCalculator()
 {
     
 }
 
-long double DeltaCalculator::GetDelta()
+long double LikelihoodCalculator::GetDelta()
 {
     if (resultDirty)
     {
@@ -43,7 +43,7 @@ long double DeltaCalculator::GetDelta()
     return result;
 }
 
-void DeltaCalculator::SetupIndices()
+void LikelihoodCalculator::SetupIndices()
 {
     if (!rangeSet)
     {

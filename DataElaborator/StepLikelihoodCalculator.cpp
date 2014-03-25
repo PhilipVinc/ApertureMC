@@ -6,24 +6,24 @@
 //  Copyright (c) 2014 Filippo Vicentini. All rights reserved.
 //
 
-#include "StepDeltaCalculator.h"
+#include "StepLikelihoodCalculator.h"
 
-StepDeltaCalculator::StepDeltaCalculator(DataSet * expData, DataSet * simData, int xMinIndex, int xMaxIndex) : DeltaCalculator(expData, simData, xMinIndex, xMaxIndex)
+StepLikelihoodCalculator::StepLikelihoodCalculator(DataSet * expData, DataSet * simData, int xMinIndex, int xMaxIndex) : LikelihoodCalculator(expData, simData, xMinIndex, xMaxIndex)
 {
     
 }
 
-StepDeltaCalculator::StepDeltaCalculator(DataSet * expData, DataSet * simData, long double xMin, long double xMax) : DeltaCalculator(expData, simData, xMin, xMax)
+StepLikelihoodCalculator::StepLikelihoodCalculator(DataSet * expData, DataSet * simData, long double xMin, long double xMax) : LikelihoodCalculator(expData, simData, xMin, xMax)
 {
     
 }
 
-StepDeltaCalculator::~StepDeltaCalculator()
+StepLikelihoodCalculator::~StepLikelihoodCalculator()
 {
     
 }
 
-long double StepDeltaCalculator::ElaborateDelta()
+long double StepLikelihoodCalculator::ElaborateDelta()
 {    
     int simIndex  = 0;
     double diff = 0.0;

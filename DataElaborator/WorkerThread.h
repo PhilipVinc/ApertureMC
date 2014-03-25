@@ -10,7 +10,7 @@
 #define __DataElaborator__WorkerThread__
 
 #include <iostream>
-#include "ExperimentSimulatorBase.h"
+#include "ExperimentSimulator.h"
 
 class WorkerThread
 {
@@ -20,7 +20,7 @@ public:
     void Terminate();
     void WorkerLoop();
 
-    void AssignSimulator(ExperimentSimulatorBase * sim);
+    void AssignSimulator(ExperimentSimulator * sim);
     void ClearSimulator();
 
     bool IsFinished();
@@ -28,7 +28,7 @@ public:
     int id;
     
 protected:
-    ExperimentSimulatorBase * simulator;
+    ExperimentSimulator * simulator;
     bool gotSimulator = false;
     bool terminate = false;
 };

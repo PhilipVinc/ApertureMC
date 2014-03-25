@@ -1,24 +1,24 @@
 //
-//  DeltaCalculator.h
+//  LikelihoodCalculator.h
 //  DataElaborator
 //
 //  Created by Filippo Vicentini on 23/03/14.
 //  Copyright (c) 2014 Filippo Vicentini. All rights reserved.
 //
 
-#ifndef __DataElaborator__DeltaCalculator__
-#define __DataElaborator__DeltaCalculator__
+#ifndef __DataElaborator__LikelihoodCalculator__
+#define __DataElaborator__LikelihoodCalculator__
 
 #include <iostream>
 #include <cmath>
 #include "DataSet.h"
 
-class DeltaCalculator
+class LikelihoodCalculator
 {
 public:
-    DeltaCalculator(DataSet * expData, DataSet * simData, int xMinIndex, int xMaxIndex);
-    DeltaCalculator(DataSet * expData, DataSet * simData, long double xMin, long double xMax);
-    virtual ~DeltaCalculator();
+    LikelihoodCalculator(DataSet * expData, DataSet * simData, int xMinIndex, int xMaxIndex);
+    LikelihoodCalculator(DataSet * expData, DataSet * simData, long double xMin, long double xMax);
+    virtual ~LikelihoodCalculator();
     
     void SetupIndices();
     
@@ -42,4 +42,4 @@ protected:
     long double result;
 };
 
-#endif /* defined(__DataElaborator__DeltaCalculator__) */
+#endif /* defined(__DataElaborator__LikelihoodCalculator__) */

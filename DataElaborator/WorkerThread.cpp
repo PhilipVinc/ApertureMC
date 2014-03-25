@@ -18,7 +18,7 @@ WorkerThread::~WorkerThread()
     Terminate();
 }
 
-void WorkerThread::AssignSimulator(ExperimentSimulatorBase * sim)
+void WorkerThread::AssignSimulator(ExperimentSimulator * sim)
 {
     simulator = sim;
     gotSimulator = true;

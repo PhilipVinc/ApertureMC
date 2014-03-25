@@ -78,9 +78,9 @@ void ElaborateFile(string inputName, bool addXls = false)
     int minErrIndex= 0;
     for (int i = 0; i < (MAX_FEND-MIN_FEND+1); i++)
     {
-        if (minErr > sims[i]->minError)
+        if (minErr > sims[i]->bestLikelihoods[0])
         {
-            minErr = sims[i]->minError;
+            minErr = sims[i]->bestLikelihoods[0];
             minErrIndex = i;
         }
     }
@@ -89,9 +89,9 @@ void ElaborateFile(string inputName, bool addXls = false)
     int minNewErrIndex= 0;
     for (int i = 0; i < (MAX_FEND-MIN_FEND+1); i++)
     {
-        if (minNewErr > sims[i]->minNewError)
+        if (minNewErr > sims[i]->bestLikelihoods[2])
         {
-            minNewErr = sims[i]->minNewError;
+            minNewErr = sims[i]->bestLikelihoods[2];
             minNewErrIndex = i;
         }
     }
@@ -100,9 +100,9 @@ void ElaborateFile(string inputName, bool addXls = false)
     int minTopErrIndex= 0;
     for (int i = 0; i < (MAX_FEND-MIN_FEND+1); i++)
     {
-        if (minTopErr > sims[i]->minTopError)
+        if (minTopErr > sims[i]->bestLikelihoods[1])
         {
-            minTopErr = sims[i]->minTopError;
+            minTopErr = sims[i]->bestLikelihoods[1];
             minTopErrIndex = i;
         }
     }

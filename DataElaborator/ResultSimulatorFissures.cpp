@@ -20,31 +20,28 @@ ResultSimulatorFissures::ResultSimulatorFissures(DataSet * _experimentalData, in
 
 ResultSimulatorFissures::~ResultSimulatorFissures()
 {
-    cycleResults.clear(); //delete[] cycleResults;
     bestResults.clear(); //delete[] bestResults;
-    bestErrors.clear(); //delete[] bestErrors;
+    bestLikelihoods.clear(); //delete[] bestErrors;
 }
 
 void ResultSimulatorFissures::SetupArrayResults()
 {
     simDataN = dataPerFend*fenditureN +1;
-    //results = new long double [(simulationsN+num_threads)*(simDataN+resultsN)]; // longer so we just do some more simulations and there is no overflow risk.
-    //cycleResults = new long double [(num_threads)*(simDataN+resultsN)];
-    for (int i = 0; i !=(num_threads)*(simDataN+resultsN); i++) {
+    //results = new long double [(simulationsN+num_threads)*(simDataN+likelihoodsN)]; // longer so we just do some more simulations and there is no overflow risk.
+    //cycleResults = new long double [(num_threads)*(simDataN+likelihoodsN)];
+    for (int i = 0; i !=(num_threads)*(simDataN+likelihoodsN); i++) {
         cycleResults.push_back(10.0);
     }
 
-    //bestResults = new long double [resultsN*(simDataN+resultsN)];
-    for (int i = 0; i !=resultsN*(simDataN+resultsN); i++) {
+    //bestResults = new long double [likelihoodsN*(simDataN+likelihoodsN)];
+    for (int i = 0; i !=likelihoodsN*(simDataN+likelihoodsN); i++) {
         bestResults.push_back(10.0);
     }
-    //bestErrors = new long double [resultsN];
-    for (int i = 0; i != resultsN; i++) {
-        bestErrors.push_back(10000000);
+    //bestLikelihoods = new long double [likelihoodsN];
+    //for (int i = 0; i < likelihoodsN; i++) { bestLikelihoods[i] = 10000000; }
+    for (int i = 0; i != likelihoodsN; i++) {
+        bestLikelihoods.push_back(10000000);
     }
-    for (int i = 0; i < resultsN; i++) { bestErrors[i] = 10000000; }
-    minNewError = 1000000;
-    minError = 1000000;
 }
 
 void ResultSimulatorFissures::SetupRandomNumberGenerator()
@@ -56,88 +53,37 @@ void ResultSimulatorFissures::SetupRandomNumberGenerator()
     apertureDistribution = new uniform_real_distribution<long double> (0.0, aperture+4 );
 }
 
-void ResultSimulatorFissures::Simulate()
-{
-    int cyclesN = ceil(double(simulationsN)/double(num_threads));
-    long double lastPercent = 0.0;
-    
-    threads = new thread[num_threads];
-    std::vector<WorkerThread*> workers;
-    for (int i = 0; i<num_threads; i++)
-    {
-        workers.push_back(new WorkerThread(i));
-        threads[i] = std::thread(&WorkerThread::WorkerLoop, workers[i]);
-    }
-    
-    for (int cycle = 0; cycle < cyclesN; cycle++)
-    {
-        for (int i = 0; i != num_threads; i++)
-        {
-            simulators.push_back(CreateSim(i));
-            workers[i]->AssignSimulator(simulators[i]);
-        }
-        
-        for (int i = 0; i != num_threads; i++)
-        {
-            while (!workers[i]->IsFinished())
-            {
-            }
-            cycleResults[(i)*(simDataN+resultsN)] = simulators[i]->GetError(0);
-            cycleResults[(i)*(simDataN+resultsN)+1] = simulators[i]->GetError(1);
-            cycleResults[(i)*(simDataN+resultsN)+2] = simulators[i]->GetError(2);
-            delete simulators[i];
-        }
-        
-        simulators.clear();
-        CheckBestSim();
-        
-        long double percent = double(cycle)/double(cyclesN);
-        if (settings->showProgress)
-        {
-            if ( percent > lastPercent )
-            {
-                settings->DrawSimulationProgressBar(40, percent, fenditureN);
-                lastPercent = percent + 0.01;
-            }
-        }
-    }
-    for (int i = 0; i<num_threads; i++)
-    {
-        workers[i]->Terminate();
-    }
-
-    std::cout << std::endl;
-    PrintEvaluation(std::cout);
-    PrintTopEvaluation(std::cout);
-    PrintNewEvaluation(std::cout);
-}
-
 void ResultSimulatorFissures::CheckBestSim()
 {
-    for (int i = 0; i < resultsN ; i++)
+    for (int i = 0; i < likelihoodsN ; i++)
     {
         double minErr = cycleResults[i];
         int minIndex = 0;
         for (int j=0; j < num_threads; j++)
         {
-            if (minErr > cycleResults[j*(simDataN+resultsN)+i])
+            if (minErr > cycleResults[j*(simDataN+likelihoodsN)+i])
             {
                 minIndex = j;
-                minErr = cycleResults[j*(simDataN+resultsN)+i];
+                minErr = cycleResults[j*(simDataN+likelihoodsN)+i];
             }
         }
-        if (minErr < bestErrors[i])
+        if (minErr < bestLikelihoods[i])
         {
-            bestErrors[i] = minErr;
-            for (int j = 0; j < simDataN+resultsN; j++)
+            bestLikelihoods[i] = minErr;
+            for (int j = 0; j < simDataN+likelihoodsN; j++)
             {
-                bestResults[(simDataN+resultsN)*i +j] = cycleResults[(minIndex)*(simDataN+resultsN)+j];
+                bestResults[(simDataN+likelihoodsN)*i +j] = cycleResults[(minIndex)*(simDataN+likelihoodsN)+j];
             }
         }
     }
-    minError = bestErrors[0];
-    minTopError = bestErrors[1];
-    minNewError = bestErrors[2];
+}
+
+void ResultSimulatorFissures::PostSimulation()
+{
+    std::cout << std::endl;
+    PrintEvaluation(std::cout);
+    PrintTopEvaluation(std::cout);
+    PrintNewEvaluation(std::cout);
 }
 
 ExperimentSimulator * ResultSimulatorFissures::CreateSim(int threadN)
@@ -155,10 +101,10 @@ ExperimentSimulator * ResultSimulatorFissures::CreateSim(int threadN)
     
     for (int i = 0; i < simDataN; i++)
     {
-        cycleResults[threadN*(simDataN+resultsN) +(resultsN+i)] = variables[i];
+        cycleResults[threadN*(simDataN+likelihoodsN) +(likelihoodsN+i)] = variables[i];
     }
     
-    ExperimentSimulator * sim = new ExperimentSimulator(experimentalData);
+    ExperimentSimulatorFissures * sim = new ExperimentSimulatorFissures(experimentalData);
     sim->uniqueID = lastId;
     sim->Setup(fenditureN, variables, 1);
     
@@ -170,7 +116,7 @@ void ResultSimulatorFissures::PrintSingleSimulation(int bestId, ostream& myout)
     long double variables[simDataN];
     for (int i = 0; i < simDataN; i++)
     {
-        variables[i] = bestResults[bestId*(simDataN+resultsN) +(resultsN+i)];
+        variables[i] = bestResults[bestId*(simDataN+likelihoodsN) +(likelihoodsN+i)];
     }
     
     myout << "Single Simulation with parameters for bestId "<< bestId << " with ID" << variables[simDataN-1] << endl;
@@ -187,7 +133,7 @@ void ResultSimulatorFissures::PrintSingleSimulation(int bestId, ostream& myout)
     
     cout << endl;
     
-    ExperimentSimulator * sim = new ExperimentSimulator(experimentalData);
+    ExperimentSimulatorFissures * sim = new ExperimentSimulatorFissures(experimentalData);
     sim->uniqueID = variables[simDataN-1];
     sim->Setup(fenditureN, variables, 1);
     sim->Work();
@@ -198,11 +144,11 @@ void ResultSimulatorFissures::PrintSingleSimulation(int bestId, ostream& myout)
 
 void ResultSimulatorFissures::Print(ostream& myout)
 {
-	for (int i = 0; i < resultsN; ++i)
+	for (int i = 0; i < likelihoodsN; ++i)
 	{
         myout << i << " \t ";
-        for (int j = 0; j != simDataN+resultsN; j++) {
-            myout << bestResults[i*(simDataN+resultsN)+j] << " \t ";
+        for (int j = 0; j != simDataN+likelihoodsN; j++) {
+            myout << bestResults[i*(simDataN+likelihoodsN)+j] << " \t ";
         }
         myout << endl;
 	}
@@ -212,18 +158,18 @@ void ResultSimulatorFissures::Print(ostream& myout)
 void ResultSimulatorFissures::PrintEvaluation(ostream& myout)
 {
     myout << "-----------------------------------" << endl;
-    myout << "the minimal difference for "<< fenditureN << " fenditures is: "<< minError << endl;
+    myout << "the maximum likelihood for "<< fenditureN << " fenditures is: "<< bestLikelihoods[0] << endl;
     PrintSingleSimulation(0);
 }
 
 void ResultSimulatorFissures::PrintTopEvaluation(ostream& myout)
 {
-    myout << "the minimal difference for "<< fenditureN << " fenditures with the top eval. is: "<<minTopError << endl;
+    myout << "the maximum likelihood for "<< fenditureN << " fenditures with the top eval. is: "<<bestLikelihoods[1] << endl;
     PrintSingleSimulation(1);
 }
 
 void ResultSimulatorFissures::PrintNewEvaluation(ostream& myout)
 {
-    myout << "the minimal difference for "<< fenditureN << " fenditures with the new eval. is: "<<minNewError << endl;
+    myout << "the maximum likelihood for "<< fenditureN << " fenditures with the new eval. is: "<<bestLikelihoods[2] << endl;
     PrintSingleSimulation(2);
 }
