@@ -18,7 +18,6 @@
 #include "CalculatorMax.h"
 #include "TransformerSimple.h"
 
-#include "ThreadedResultSimulatorGeneric2.h"
 #include "GlobalSettings.h"
 
 void usage(const char * pname);
