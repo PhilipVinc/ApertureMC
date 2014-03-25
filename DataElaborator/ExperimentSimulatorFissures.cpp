@@ -56,7 +56,6 @@ void ExperimentSimulatorFissures::SimulateExperiment()
     }
     
     // Rescale data
-    simulatedData->ComputeSplineCoefficients();
     CalculatorMax * cMax = new CalculatorMax(simulatedData);
     scaleValue = 1/cMax->GetMaxYPosition();
     TransformerSimple::ScaleY(simulatedData,scaleValue);
