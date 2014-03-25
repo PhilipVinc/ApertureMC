@@ -10,7 +10,6 @@
 #define __DataElaborator__ExperimentSimulatorFissures__
 
 #include <iostream>
-#include "DataSet.h"
 #include "PhysicalSceneFissures.h"
 #include "ExperimentSimulator.h"
 #include "StepLikelihoodCalculator.h"

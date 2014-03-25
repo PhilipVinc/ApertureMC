@@ -57,7 +57,7 @@ void ThreadedResultSimulator::Simulate()
             }
             for (int j = 0; j < likelihoodsN; j++)
             {
-                cycleResults[(i)*(simDataN+likelihoodsN)+j] = simulators[i]->GetError(j);
+                cycleResults[(i)*(simDataN+likelihoodsN)+j] = simulators[i]->GetLikelihood(j);
             }
             delete simulators[i];
         }

@@ -12,31 +12,18 @@
 #include <iostream>
 #include <vector>
 #include "PhysicalObject.h"
+#include "PhysicalScene.h"
 #include "Fissure.h"
 
-class PhysicalSceneFissures : public PhysicalObject
+class PhysicalSceneFissures : public PhysicalScene
 {
 public:
     PhysicalSceneFissures();
     ~PhysicalSceneFissures();
     
     /* ------------------------   Scene Management  ---------------------- */
-    int AddFunction(PhysicalObject * object);
-    PhysicalObject* GetObject(int id);
-    void RemoveFunction(int id);
-    int NumberOfObjects();
-    
     int AddFissure(long double position, long double intensity, long double halfAperture);
-    
-    /* ------------------------   Calculation Functions  ---------------------- */
-    long double operator()(long double value);
-    
-    /* ------------------------   Print Functions  ---------------------- */
-    void PrintFormula(std::ostream& myout);
-    
-protected:
-    std::vector<PhysicalObject*> components;
-    int lastId;
+
 };
 
 #endif /* defined(__DataElaborator__PhysicalSceneFissures__) */

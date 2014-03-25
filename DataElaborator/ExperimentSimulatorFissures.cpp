@@ -38,10 +38,11 @@ void ExperimentSimulatorFissures::Setup(int _fissureN, long double * _setupValue
 void ExperimentSimulatorFissures::CreateExperiment()
 {
     simulatedData = new DataSet();
-    scene =  new PhysicalSceneFissures();
+    PhysicalSceneFissures * _scene =  new PhysicalSceneFissures();
+    scene = _scene;
     for (int i = 0; i != fissureN; i++)
     {
-        scene->AddFissure(values[i*3], values[i*3+1], values[i*3+2]);
+        _scene->AddFissure(values[i*3], values[i*3+1], values[i*3+2]);
     }
 }
 
@@ -69,9 +70,9 @@ void ExperimentSimulatorFissures::Check()
     //likelihoodCalculators.push_back(new SplineDeltaCalculator(experimentalData, simulatedData, -0.03, 0.03, 0.001));
     likelihoodCalculators.push_back(new SplineLikelihoodCalculator(experimentalData, simulatedData, xMinIndex, xMaxIndex, 0.01));
     
-    GetError(0);
-    GetError(1);
-    GetError(2);
+    GetLikelihood(0);
+    GetLikelihood(1);
+    GetLikelihood(2);
     
     //PrintSimulatedDataToFile();
 }

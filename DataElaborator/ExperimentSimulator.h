@@ -12,7 +12,7 @@
 #include <iostream>
 #include <vector>
 #include "DataSet.h"
-#include "PhysicalSceneFissures.h"
+#include "PhysicalScene.h"
 #include "SplineLikelihoodCalculator.h"
 
 class ExperimentSimulator
@@ -24,8 +24,8 @@ public:
     void BaseSetup(long double range);
     void BaseSetup(long double _minX, long double _maxX);
     
-    int GetErrorsNumber();
-    long double GetError(int id);
+    int GetNumberOfLikelihoods();
+    long double GetLikelihood(int id);
     
     void Work();
     
@@ -38,7 +38,7 @@ public:
     int uniqueID;
     bool ready;
 protected:
-    PhysicalSceneFissures * scene;
+    PhysicalScene * scene;
     DataSet * experimentalData;
     DataSet * simulatedData;
     

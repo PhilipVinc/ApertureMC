@@ -73,10 +73,10 @@ void ExperimentSimulator::BaseSetup(long double _minX, long double _maxX)
     }
 }
 
-int ExperimentSimulator::GetErrorsNumber()
+int ExperimentSimulator::GetNumberOfLikelihoods()
 { return likelihoodCalculators.size(); }
 
-long double ExperimentSimulator::GetError(int id)
+long double ExperimentSimulator::GetLikelihood(int id)
 {
     return likelihoodCalculators[id]->GetDelta();
 }
