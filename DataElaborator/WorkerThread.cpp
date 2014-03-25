@@ -34,7 +34,7 @@ void WorkerThread::WorkerLoop()
 {
     while (!terminate)
     {
-        if (gotSimulator)
+        if (gotSimulator && (simulator != nullptr))
         {
             simulator->Work();
             ClearSimulator();
