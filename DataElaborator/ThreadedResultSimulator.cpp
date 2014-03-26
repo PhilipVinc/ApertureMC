@@ -52,8 +52,20 @@ void ThreadedResultSimulator::Simulate()
         
         for (int i = 0; i != num_threads; i++)
         {
+			int kk=0;
             while (!workers[i]->IsFinished())
             {
+				kk++;
+				if (kk > 10000000)
+				{
+					cout << "Error with worker "<<i<<". Resetted" << endl;
+					workers[i]->Terminate();
+					workers[i] = new WorkerThread(i);
+					threads[i].join();
+					threads[i] = std::thread(&WorkerThread::WorkerLoop, workers[i]);
+					simulators[i]->Work();
+					break;
+				}
             }
             for (int j = 0; j < likelihoodsN; j++)
             {

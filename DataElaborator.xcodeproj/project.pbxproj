@@ -43,6 +43,7 @@
 		4168297A18DDD63500EE461F /* PhysicalSceneFissures.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4168297418DDD63500EE461F /* PhysicalSceneFissures.cpp */; };
 		41740BB918E0AC4B00066413 /* ThreadedResultSimulator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41740BB718E0AC4B00066413 /* ThreadedResultSimulator.cpp */; };
 		41740BBC18E0C11E00066413 /* WorkerThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41740BBA18E0C11E00066413 /* WorkerThread.cpp */; };
+		41BB6C1418E2E3C40067508C /* CalculatorMaxSimple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41BB6C1218E2E3C40067508C /* CalculatorMaxSimple.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -121,6 +122,8 @@
 		41740BB818E0AC4B00066413 /* ThreadedResultSimulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadedResultSimulator.h; sourceTree = "<group>"; };
 		41740BBA18E0C11E00066413 /* WorkerThread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WorkerThread.cpp; sourceTree = "<group>"; };
 		41740BBB18E0C11E00066413 /* WorkerThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkerThread.h; sourceTree = "<group>"; };
+		41BB6C1218E2E3C40067508C /* CalculatorMaxSimple.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CalculatorMaxSimple.cpp; sourceTree = "<group>"; };
+		41BB6C1318E2E3C40067508C /* CalculatorMaxSimple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculatorMaxSimple.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -262,6 +265,8 @@
 				4168295618DDD62000EE461F /* CalculatorMaxMin.cpp */,
 				4168295718DDD62000EE461F /* CalculatorMax.h */,
 				4168295818DDD62000EE461F /* CalculatorMax.cpp */,
+				41BB6C1218E2E3C40067508C /* CalculatorMaxSimple.cpp */,
+				41BB6C1318E2E3C40067508C /* CalculatorMaxSimple.h */,
 				4168295918DDD62000EE461F /* Calculator.h */,
 				4168295A18DDD62000EE461F /* Calculator.cpp */,
 				4132C15018DED9A300E60ACF /* CalculatorSimple.cpp */,
@@ -420,6 +425,7 @@
 				415B178318E192C7007FFDE4 /* PhysicalScene.cpp in Sources */,
 				4109836418DF7C68005E8E10 /* LikelihoodCalculator.cpp in Sources */,
 				41740BBC18E0C11E00066413 /* WorkerThread.cpp in Sources */,
+				41BB6C1418E2E3C40067508C /* CalculatorMaxSimple.cpp in Sources */,
 				4168296818DDD62E00EE461F /* PhysicalObject.cpp in Sources */,
 				4168297718DDD63500EE461F /* TransformerSimple.cpp in Sources */,
 				4132C15218DED9A300E60ACF /* CalculatorSimple.cpp in Sources */,

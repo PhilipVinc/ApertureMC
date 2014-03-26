@@ -22,6 +22,7 @@ public:
     bool showProgress = false;
     int max_fend;
     int min_fend;
+	long double f1Range;
 	long double FISSURE_POS = 0.5;
     
     void DrawSimulationProgressBar(int len, long double percent);

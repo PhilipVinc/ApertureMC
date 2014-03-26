@@ -48,6 +48,7 @@ void ResultSimulatorFissures::SetupArrayResults()
 void ResultSimulatorFissures::SetupRandomNumberGenerator()
 {
 	rng.seed(5);
+	f1PosRange = GlobalSettings::get_instance().f1Range;
     
     posRangeDistribution = new uniform_real_distribution<long double> (-f1PosRange, f1PosRange);
     intensityDistribution = new uniform_real_distribution<long double> (0.0, 100.0 );

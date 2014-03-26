@@ -83,6 +83,10 @@ void ElaborateFile(string inputName, bool addXls = false)
     // Stampo i Comandi gnuplot
     ofstream plotFile(plotPath);
     plotFile << "#Gnuplot command:" << endl;
+	plotFile << "set terminal x11" << endl;
+	plotFile << "set title \"Grafico per " << inputName << "\"" << endl;
+	plotFile << "set xlabel \"Angolo (mStep)\"" << endl;
+	plotFile << "set ylabel \"Intensità Relativa I\\I0\"" << endl;
     plotFile << "plot \""<<splinePath<<"\" u 1:2 w l lc rgb \"red\", \"";
     plotFile << nuoviDatiPath<<"\" w p lc rgb \"black\", \"";
     plotFile << maxPath << "\" w p lc rgb \"blue\", \"";

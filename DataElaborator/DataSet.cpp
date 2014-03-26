@@ -22,7 +22,6 @@ DataSet::DataSet()
 	meanYDirty = true;
     splineDirty = true;
     n=0;
-    
 }
 
 DataSet::DataSet(string inputPath, bool enableDebug)
@@ -211,11 +210,12 @@ long double DataSet::SplineValue(long double x)
 	int i = n-2;
 	//if (isConstantXStep)
 	i = abs((x-xp[0])/(xp[1]-xp[0]))+1; // This only works for constant X-spaced data!
-    
+    if ( i > n-2 ) { i = n-2; }
+	
 	while ( i>0 )
 	{
 		//if ((( x > xp[i] ) && ( x < xp[i+1] )) || (( x < xp[i] ) && ( x > xp[i+1] )))
-		if ( i >n ) { i = 0; }
+		if ( i < 0 ) { i = n-2; }
  		if  ((x - xp[i]) > 0 )
 		{
 			break;

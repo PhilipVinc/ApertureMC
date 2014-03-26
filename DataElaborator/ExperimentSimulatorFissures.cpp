@@ -8,6 +8,7 @@
 
 #include "ExperimentSimulatorFissures.h"
 #include "CalculatorMax.h"
+#include "CalculatorMaxSimple.h"
 #include "TransformerSimple.h"
 #include "CalculatorSimple.h"
 #include "StepFunction.h"
@@ -60,7 +61,8 @@ void ExperimentSimulatorFissures::SimulateExperiment()
     }
     
     // Rescale data
-    CalculatorMax * cMax = new CalculatorMax(simulatedData);
+    //CalculatorMax * cMax = new CalculatorMax(simulatedData);
+    CalculatorMaxSimple * cMax = new CalculatorMaxSimple(simulatedData);
     scaleValue = 1/cMax->GetMaxYPosition();
     TransformerSimple::ScaleY(simulatedData,scaleValue);
     delete cMax;
@@ -114,7 +116,7 @@ void ExperimentSimulatorFissures::PrintSimulationFourierSpace()
 		pos += 0.1;
 	}
 	
-	CalculatorMax * cMax = new CalculatorMax(fourierData);
+	CalculatorMaxSimple * cMax = new CalculatorMaxSimple(fourierData);
     TransformerSimple::ScaleY(fourierData,1/cMax->GetMaxYPosition());
     delete cMax;
 

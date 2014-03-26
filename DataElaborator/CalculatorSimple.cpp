@@ -9,6 +9,7 @@
 #include "CalculatorSimple.h"
 
 #include <cmath>
+using namespace std;
 
 long double CalculatorSimple::SplineDiff(DataSet * data1, DataSet * data2, long double xMin, long double xMax, long double step)
 {
@@ -18,11 +19,13 @@ long double CalculatorSimple::SplineDiff(DataSet * data1, DataSet * data2, long 
     int stepN = 0;
     do
     {
+
         diff = fabs(data1->SplineValue(x) - data2->SplineValue(x));
+
         totalDiff += diff*diff;
         x += step;
         stepN ++;
-    } while (x <= xMax);
+    } while (x < xMax);
     
     totalDiff /= double(stepN);
     

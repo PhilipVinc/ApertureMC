@@ -29,6 +29,7 @@ public:
 protected:
     ExperimentSimulator * simulator;
     bool gotSimulator = false;
+	bool finished = false;
     bool terminate = false;
 };
 

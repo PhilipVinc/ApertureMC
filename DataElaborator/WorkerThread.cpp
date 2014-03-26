@@ -15,13 +15,13 @@ WorkerThread::WorkerThread(int _id)
 
 WorkerThread::~WorkerThread()
 {
-    Terminate();
 }
 
 void WorkerThread::AssignSimulator(ExperimentSimulator * sim)
 {
+	finished = false;
+	gotSimulator = true;
     simulator = sim;
-    gotSimulator = true;
 }
 
 void WorkerThread::ClearSimulator()
@@ -37,13 +37,15 @@ void WorkerThread::WorkerLoop()
         if (gotSimulator && (simulator != nullptr))
         {
             simulator->Work();
+			finished = true;
             ClearSimulator();
         }
+
     }
     delete this;
 }
 
-bool WorkerThread::IsFinished() { return (!gotSimulator); }
+bool WorkerThread::IsFinished() { return (finished); }
 
 void WorkerThread::Terminate()
 {

@@ -23,10 +23,10 @@ void usage(const char * pname);
 
 using namespace std;
 
-int MAX_FEND = 4;
-int MIN_FEND = 1;
-int SIM_PER_FEND = 1000;
-int NUM_THREADS = 3;
+int MAX_FEND = 100;
+int MIN_FEND = 100;
+int SIM_PER_FEND = 4000000;
+int NUM_THREADS = 7;
 
 void ElaborateFile(string inputName, bool addXls = false)
 {
@@ -127,15 +127,22 @@ int main(int argc, char * argv[])
 	int opt;
     string inputPath;
     bool addXls = false;
+	bool ideLaunch = false;
+	GlobalSettings::get_instance().f1Range = 2.5;
     GlobalSettings::get_instance().maxMinSearchSpan = 3;
     GlobalSettings::get_instance().showProgress = true;
 
 	// Handle command line options
-    while((opt = getopt(argc, argv, "i:f:n:m:j:s:pdxh?")) != -1)
+    while((opt = getopt(argc, argv, "if:n:m:j:s:pr:dxh?")) != -1)
     {
         switch (opt)
         {
             case 'i':
+				//NUM_THREADS = 1;
+				break;
+				inputPath = "data";
+				addXls = true;
+				ideLaunch = true;
                 break;
             case 'x':
                 addXls=true;
@@ -158,6 +165,9 @@ int main(int argc, char * argv[])
             case 'p':
                 GlobalSettings::get_instance().showProgress = true;
                 break;
+			case 'r':
+                GlobalSettings::get_instance().f1Range = stof(optarg);
+                break;
             case 'h':
             case '?':
             default:
@@ -167,8 +177,10 @@ int main(int argc, char * argv[])
     }
     GlobalSettings::get_instance().max_fend= MAX_FEND;
     GlobalSettings::get_instance().min_fend= MIN_FEND;
-    addXls=true;
-    inputPath = "data";
+	if (!ideLaunch)
+	{
+		cout << "Inserire nome file [se si usa -x, senza estensione]: "; cin >> inputPath;
+	}
     ElaborateFile(inputPath, addXls);
 	return 0;
 }
