@@ -10,9 +10,6 @@
 #define __DataElaborator__ElaboratorMaxMin__
 
 #include <iostream>
-#include <fstream>
-#include <set>
-#include <map>
 
 #include "Calculator.h"
 

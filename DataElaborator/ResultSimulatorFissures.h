@@ -9,15 +9,13 @@
 #ifndef __DataElaborator__ResultSimulatorFissures__
 #define __DataElaborator__ResultSimulatorFissures__
 
-#include <iostream>
-#include <fstream>
-#include <thread>
-#include <vector>
-#include <random>
-
 #include "ThreadedResultSimulator.h"
 #include "ExperimentSimulatorFissures.h"
 #include "GlobalSettings.h"
+
+#include <iostream>
+#include <vector>
+#include <random>
 
 class ResultSimulatorFissures : public ThreadedResultSimulator
 {
@@ -49,7 +47,7 @@ protected:
     int dataPerFend = 3;
     
     /* ------------------------  Simulation setup data ---------------------- */
-    long double f1PosRange = 0.5;
+    long double f1PosRange = 2.5;
     long double aperture = 14;
     int fenditureN=2;
     

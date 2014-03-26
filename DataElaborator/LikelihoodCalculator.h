@@ -9,7 +9,6 @@
 #ifndef __DataElaborator__LikelihoodCalculator__
 #define __DataElaborator__LikelihoodCalculator__
 
-#include <iostream>
 #include <cmath>
 #include "DataSet.h"
 

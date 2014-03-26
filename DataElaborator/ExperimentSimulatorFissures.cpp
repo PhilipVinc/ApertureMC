@@ -7,10 +7,13 @@
 //
 
 #include "ExperimentSimulatorFissures.h"
-#include <cmath>
 #include "CalculatorMax.h"
 #include "TransformerSimple.h"
 #include "CalculatorSimple.h"
+#include "StepFunction.h"
+#include "GlobalSettings.h"
+
+#include <cmath>
 
 /* ------------------------   Init Functions ---------------------- */
 ExperimentSimulatorFissures::ExperimentSimulatorFissures(DataSet * expData) : ExperimentSimulator(expData)
@@ -19,6 +22,7 @@ ExperimentSimulatorFissures::ExperimentSimulatorFissures(DataSet * expData) : Ex
 
 ExperimentSimulatorFissures::~ExperimentSimulatorFissures()
 {
+	delete[] values;
 }
 
 /* Setup() is called right after object creation. Should be merged. Usage is not clear */
@@ -84,11 +88,45 @@ void ExperimentSimulatorFissures::PrintSimulatedDataToFile()
     simulatedData->PrintData(datFile);
     datFile.close();
     
-    std::ofstream splineFile("ssp-f"+std::to_string(fissureN)+"-"+ std::to_string(uniqueID)+".dat");
+/*    std::ofstream splineFile("ssp-f"+std::to_string(fissureN)+"-"+ std::to_string(uniqueID)+".dat");
     splineFile << "#Simulated data with id:"<< uniqueID<< std::endl;
     splineFile << "# "; scene->PrintFormula(splineFile); splineFile << "*" << scaleValue << std::endl;
     simulatedData->PrintSplineWithDerivate1(splineFile);
-    splineFile.close();
+    splineFile.close(); */
+}
+
+void ExperimentSimulatorFissures::PrintSimulationFourierSpace()
+{
+	DataSet * fourierData = new DataSet();
+	
+	PhysicalScene * _scene =  new PhysicalScene();
+	for (int i = 0; i != fissureN; i++)
+	{
+		_scene->AddFunction(new StepFunction(values[i*3], values[i*3+2], values[i*3+1]));
+	}
+	
+	long double pos = -30.0; //-GlobalSettings::get_instance().FISSURE_POS;
+	long double posMax = -pos;
+	
+	while (pos < posMax)
+	{
+		fourierData->AddMeasure(pos, (*_scene)(pos));
+		pos += 0.1;
+	}
+	
+	CalculatorMax * cMax = new CalculatorMax(fourierData);
+    TransformerSimple::ScaleY(fourierData,1/cMax->GetMaxYPosition());
+    delete cMax;
+
+	
+	std::ofstream datFile("fou-f"+std::to_string(fissureN)+"-"+ std::to_string(uniqueID)+".dat");
+    datFile << "#Simulated data with id:"<< uniqueID<< std::endl;
+    datFile << "# "; scene->PrintFormula(datFile); datFile << "*" << scaleValue << std::endl;
+    fourierData->PrintData(datFile);
+    datFile.close();
+	
+	delete fourierData;
+	delete _scene;
 }
 
 

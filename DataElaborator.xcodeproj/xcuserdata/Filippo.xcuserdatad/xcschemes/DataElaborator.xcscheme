@@ -20,20 +20,6 @@
                ReferencedContainer = "container:DataElaborator.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4132C15918DF385600E60ACF"
-               BuildableName = "ElaboratoreFenditure"
-               BlueprintName = "ElaboratoreFenditure"
-               ReferencedContainer = "container:DataElaborator.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

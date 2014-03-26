@@ -10,8 +10,6 @@
 #include <fstream>
 #include <libgen.h>
 #include <unistd.h>
-#include <unistd.h>
-#include <vector>
 
 #include "DataSet.h"
 #include "CalculatorMaxMin.h"
@@ -27,7 +25,7 @@ using namespace std;
 
 int MAX_FEND = 4;
 int MIN_FEND = 1;
-int SIM_PER_FEND = 100000;
+int SIM_PER_FEND = 1000;
 int NUM_THREADS = 3;
 
 void ElaborateFile(string inputName, bool addXls = false)
@@ -67,6 +65,7 @@ void ElaborateFile(string inputName, bool addXls = false)
     
     for (int i = 0; i < (MAX_FEND-MIN_FEND+1); i++)
     {
+		GlobalSettings::get_instance().currentIteration = i+1;
         sims.push_back( new ResultSimulatorFissures(data, i+MIN_FEND, SIM_PER_FEND, NUM_THREADS));
         sims[i]->Simulate();
         ofstream simFile("Simulation-f"+to_string(i+MIN_FEND));

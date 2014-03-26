@@ -9,7 +9,6 @@
 #ifndef __DataElaborator__CalculatorMax__
 #define __DataElaborator__CalculatorMax__
 
-#include <iostream>
 #include "Calculator.h"
 
 class CalculatorMax : public Calculator

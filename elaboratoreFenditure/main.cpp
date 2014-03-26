@@ -24,11 +24,6 @@ void usage(const char * pname);
 
 using namespace std;
 
-int MAX_FEND = 16;
-int MIN_FEND = 1;
-int SIM_PER_FEND = 1000;
-int NUM_THREADS = 1;
-
 void ElaborateFile(string inputName, bool addXls = false)
 {
     string inputPath = inputName;
@@ -46,7 +41,7 @@ void ElaborateFile(string inputName, bool addXls = false)
     string plotPath = "plot-" + inputName + ".gnu";
     
     DataSet * data = new DataSet(inputPath);
-    data->ComputeSplineCoefficients();
+    //data->ComputeSplineCoefficients();
     
     //Find the center and shift
     CalculatorMax * cMax = new CalculatorMax(data);
@@ -120,18 +115,6 @@ int main(int argc, char * argv[])
                 break;
             case 'x':
                 addXls=true;
-                break;
-            case 'f':
-                MAX_FEND = stoi(optarg);
-                break;
-            case 'm':
-                MIN_FEND = stoi(optarg);
-                break;
-            case 'n':
-                SIM_PER_FEND = stoi(optarg);
-                break;
-            case 'j':
-                NUM_THREADS = stoi(optarg);
                 break;
             case 's':
                 GlobalSettings::get_instance().maxMinSearchSpan = stoi(optarg);

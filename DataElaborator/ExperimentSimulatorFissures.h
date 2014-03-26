@@ -10,6 +10,7 @@
 #define __DataElaborator__ExperimentSimulatorFissures__
 
 #include <iostream>
+
 #include "PhysicalSceneFissures.h"
 #include "ExperimentSimulator.h"
 #include "StepLikelihoodCalculator.h"
@@ -29,12 +30,14 @@ public:
     void Check();
     
     void PrintSimulatedDataToFile();
+	void PrintSimulationFourierSpace();
     
     int uniqueID;
     
 protected:
     int fissureN;
     
+	long double * values;
     long double scaleValue;
 };
 

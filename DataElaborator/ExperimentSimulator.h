@@ -9,7 +9,6 @@
 #ifndef __DataElaborator__ExperimentSimulator__
 #define __DataElaborator__ExperimentSimulator__
 
-#include <iostream>
 #include <vector>
 #include "DataSet.h"
 #include "PhysicalScene.h"
@@ -44,7 +43,6 @@ protected:
     
     std::vector<LikelihoodCalculator*> likelihoodCalculators;
     
-    long double * values;
     long double range;
     int xMinIndex;
     int xMaxIndex;

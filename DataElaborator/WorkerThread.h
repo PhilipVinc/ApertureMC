@@ -9,7 +9,6 @@
 #ifndef __DataElaborator__WorkerThread__
 #define __DataElaborator__WorkerThread__
 
-#include <iostream>
 #include "ExperimentSimulator.h"
 
 class WorkerThread

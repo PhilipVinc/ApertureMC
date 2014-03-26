@@ -11,9 +11,6 @@
 #include <cmath>
 #include <iostream>
 #include <fstream>
-#include <libgen.h>
-#include <unistd.h>
-#include <unistd.h>
 
 using namespace std;
 
@@ -212,11 +209,13 @@ long double DataSet::SplineValue(long double x)
     
 	// Select the interval
 	int i = n-2;
-    i = abs((x-xp[0])/(xp[1]-xp[0]))+1; // This only works for constant X-spaced data!
+	//if (isConstantXStep)
+	i = abs((x-xp[0])/(xp[1]-xp[0]))+1; // This only works for constant X-spaced data!
     
 	while ( i>0 )
 	{
 		//if ((( x > xp[i] ) && ( x < xp[i+1] )) || (( x < xp[i] ) && ( x > xp[i+1] )))
+		if ( i >n ) { i = 0; }
  		if  ((x - xp[i]) > 0 )
 		{
 			break;
@@ -258,7 +257,6 @@ long double DataSet::SplineDerivate1Zero(int index, int recursion)
     if (index==0) index++;
 	long double a = xp[index-1];
 	long double b = xp[index+1];
-	//cout << "Investigating x-= " << xp[index-1] << "\t x+= " << xp[index+1] << endl;
     
 	if( SplineDerivate1(a)*SplineDerivate1(b) < 0.0 )
 	{

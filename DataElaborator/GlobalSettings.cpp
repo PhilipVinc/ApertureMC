@@ -29,13 +29,13 @@ void GlobalSettings::DrawProgressBar(int len, long double percent, int iter, int
             progress += " ";
         }
     }
-    std::cout << "[" << progress << "] " << (static_cast<int>(100 * percent)) << "%";
+    std::cout << "[" << progress << "] " << (static_cast<int>(100 * percent))<<"."<<(static_cast<int>(10000 * percent - static_cast<int>(percent * 100)*100)) << "%";
     std::cout << " \t\t Simulation - " << iter << " / " << total;
     
     std::flush(std::cout); // Required.
 }
 
-void GlobalSettings::DrawSimulationProgressBar(int len, long double percent, int iter)
+void GlobalSettings::DrawSimulationProgressBar(int len, long double percent)
 {
-    DrawProgressBar(len, percent, iter-min_fend+1, max_fend-min_fend+1);
+    DrawProgressBar(len, percent, currentIteration, max_fend-min_fend+1);
 }

@@ -70,8 +70,8 @@ void ThreadedResultSimulator::Simulate()
         {
             if ( percent > lastPercent )
             {
-                settings->DrawSimulationProgressBar(40, percent, 4);
-                lastPercent = percent + 0.01;
+                settings->DrawSimulationProgressBar(100, percent);
+                lastPercent = percent + 0.001;
             }
         }
     }

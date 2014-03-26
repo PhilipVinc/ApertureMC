@@ -8,6 +8,7 @@
 
 #include "ResultSimulatorFissures.h"
 #include "WorkerThread.h"
+
 using namespace std;
 
 /* ------------------------   Init Functions ---------------------- */
@@ -136,9 +137,12 @@ void ResultSimulatorFissures::PrintSingleSimulation(int bestId, ostream& myout)
     sim->Setup(fenditureN, variables, 1);
     sim->Work();
     sim->PrintSimulatedDataToFile();
+	sim->PrintSimulationFourierSpace();
     
     delete sim;
 }
+
+
 
 void ResultSimulatorFissures::Print(ostream& myout)
 {

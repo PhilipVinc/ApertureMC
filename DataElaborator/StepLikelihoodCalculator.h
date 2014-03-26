@@ -9,7 +9,6 @@
 #ifndef __DataElaborator__StepLikelihoodCalculator__
 #define __DataElaborator__StepLikelihoodCalculator__
 
-#include <iostream>
 #include "LikelihoodCalculator.h"
 
 class StepLikelihoodCalculator : public LikelihoodCalculator

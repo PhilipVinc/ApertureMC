@@ -9,7 +9,6 @@
 #ifndef __DataElaborator__CalculatorSimple__
 #define __DataElaborator__CalculatorSimple__
 
-#include <iostream>
 #include "DataSet.h"
 
 class CalculatorSimple

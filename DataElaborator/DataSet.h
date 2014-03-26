@@ -11,13 +11,12 @@
 
 #include <iostream>
 #include <fstream>
-#include <set>
-#include <map>
 #include <vector>
+
 struct Measure
 {
 	long double position;
-	long double intensity;
+	long double value;
 };
 
 class DataSet
@@ -68,6 +67,7 @@ private:
 	long double meanY;
     
     bool splineDirty;
+	bool isConstantXStep = true;
     
     std::vector<long double>  xp;
     std::vector<long double>  yp;

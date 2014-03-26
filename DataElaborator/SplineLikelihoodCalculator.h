@@ -9,7 +9,6 @@
 #ifndef __DataElaborator__SplineLikelihoodCalculator__
 #define __DataElaborator__SplineLikelihoodCalculator__
 
-#include <iostream>
 #include "LikelihoodCalculator.h"
 
 class SplineLikelihoodCalculator : public LikelihoodCalculator

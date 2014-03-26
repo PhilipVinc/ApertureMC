@@ -8,7 +8,6 @@
 
 #include "ExperimentSimulator.h"
 
-#include <string>
 
 /* ------------------------   Init Functions ---------------------- */
 ExperimentSimulator::ExperimentSimulator(DataSet * expData)
@@ -19,7 +18,6 @@ ExperimentSimulator::ExperimentSimulator(DataSet * expData)
 
 ExperimentSimulator::~ExperimentSimulator()
 {
-    delete [] values;
     delete scene;
     delete simulatedData;
     

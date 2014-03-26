@@ -9,7 +9,6 @@
 #ifndef __DataElaborator__TransformerSimple__
 #define __DataElaborator__TransformerSimple__
 
-#include <iostream>
 #include "DataSet.h"
 
 class TransformerSimple

@@ -18,11 +18,13 @@ public:
 	bool method() { return true; };
     
     int maxMinSearchSpan = 4;
+	int currentIteration;
     bool showProgress = false;
     int max_fend;
     int min_fend;
+	long double FISSURE_POS = 0.5;
     
-    void DrawSimulationProgressBar(int len, long double percent, int iter);
+    void DrawSimulationProgressBar(int len, long double percent);
     void DrawProgressBar(int len, long double percent, int iter, int total);
     
 private:

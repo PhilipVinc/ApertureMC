@@ -9,8 +9,6 @@
 #ifndef __DataElaborator__PhysicalSceneFissures__
 #define __DataElaborator__PhysicalSceneFissures__
 
-#include <iostream>
-#include <vector>
 #include "PhysicalObject.h"
 #include "PhysicalScene.h"
 #include "Fissure.h"
