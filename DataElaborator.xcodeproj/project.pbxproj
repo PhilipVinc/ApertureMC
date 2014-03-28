@@ -13,6 +13,8 @@
 		4109836A18DF7F2E005E8E10 /* SplineLikelihoodCalculator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4109836818DF7F2E005E8E10 /* SplineLikelihoodCalculator.cpp */; };
 		4124B20518E2C9C200DA63F6 /* Function.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4124B20318E2C9C200DA63F6 /* Function.cpp */; };
 		4124B20818E2C9FA00DA63F6 /* StepFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4124B20618E2C9FA00DA63F6 /* StepFunction.cpp */; };
+		41323FE518E4412800B02E4A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41323FE418E4412800B02E4A /* main.cpp */; };
+		41323FE718E4412800B02E4A /* ElaboratoreCoseni.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 41323FE618E4412800B02E4A /* ElaboratoreCoseni.1 */; };
 		4132C15218DED9A300E60ACF /* CalculatorSimple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4132C15018DED9A300E60ACF /* CalculatorSimple.cpp */; };
 		4132C15518DEE5B700E60ACF /* ResultSimulatorFissures.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4132C15318DEE5B700E60ACF /* ResultSimulatorFissures.cpp */; };
 		4132C15D18DF385600E60ACF /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4132C15C18DF385600E60ACF /* main.cpp */; };
@@ -44,9 +46,29 @@
 		41740BB918E0AC4B00066413 /* ThreadedResultSimulator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41740BB718E0AC4B00066413 /* ThreadedResultSimulator.cpp */; };
 		41740BBC18E0C11E00066413 /* WorkerThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41740BBA18E0C11E00066413 /* WorkerThread.cpp */; };
 		41BB6C1418E2E3C40067508C /* CalculatorMaxSimple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41BB6C1218E2E3C40067508C /* CalculatorMaxSimple.cpp */; };
+		41D0C00818E443260091462B /* GlobalSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4132C16B18DF3ADC00E60ACF /* GlobalSettings.cpp */; };
+		41D0C00918E4432A0091462B /* DataSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4168296718DDD62E00EE461F /* DataSet.cpp */; };
+		41D0C00A18E4432D0091462B /* TransformerSimple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4168296E18DDD63500EE461F /* TransformerSimple.cpp */; };
+		41D0C00B18E443300091462B /* Transformer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4168297018DDD63500EE461F /* Transformer.cpp */; };
+		41D0C00C18E443320091462B /* CalculatorMaxMin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4168295618DDD62000EE461F /* CalculatorMaxMin.cpp */; };
+		41D0C00D18E443340091462B /* CalculatorMax.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4168295818DDD62000EE461F /* CalculatorMax.cpp */; };
+		41D0C00E18E443370091462B /* CalculatorMaxSimple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41BB6C1218E2E3C40067508C /* CalculatorMaxSimple.cpp */; };
+		41D0C00F18E443370091462B /* CalculatorMaxSimple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41BB6C1218E2E3C40067508C /* CalculatorMaxSimple.cpp */; };
+		41D0C01018E4433A0091462B /* Calculator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4168295A18DDD62000EE461F /* Calculator.cpp */; };
+		41D0C01118E4433D0091462B /* CalculatorSimple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4132C15018DED9A300E60ACF /* CalculatorSimple.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		41323FE018E4412800B02E4A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				41323FE718E4412800B02E4A /* ElaboratoreCoseni.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		4132C15818DF385600E60ACF /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -82,6 +104,9 @@
 		4124B20418E2C9C200DA63F6 /* Function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Function.h; sourceTree = "<group>"; };
 		4124B20618E2C9FA00DA63F6 /* StepFunction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StepFunction.cpp; sourceTree = "<group>"; };
 		4124B20718E2C9FA00DA63F6 /* StepFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StepFunction.h; sourceTree = "<group>"; };
+		41323FE218E4412800B02E4A /* ElaboratoreCoseni */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ElaboratoreCoseni; sourceTree = BUILT_PRODUCTS_DIR; };
+		41323FE418E4412800B02E4A /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		41323FE618E4412800B02E4A /* ElaboratoreCoseni.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = ElaboratoreCoseni.1; sourceTree = "<group>"; };
 		4132C15018DED9A300E60ACF /* CalculatorSimple.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CalculatorSimple.cpp; sourceTree = "<group>"; };
 		4132C15118DED9A300E60ACF /* CalculatorSimple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculatorSimple.h; sourceTree = "<group>"; };
 		4132C15318DEE5B700E60ACF /* ResultSimulatorFissures.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ResultSimulatorFissures.cpp; sourceTree = "<group>"; };
@@ -127,6 +152,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		41323FDF18E4412800B02E4A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4132C15718DF385600E60ACF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -168,6 +200,15 @@
 			name = "Fourier Space";
 			sourceTree = "<group>";
 		};
+		41323FE318E4412800B02E4A /* ElaboratoreCoseni */ = {
+			isa = PBXGroup;
+			children = (
+				41323FE418E4412800B02E4A /* main.cpp */,
+				41323FE618E4412800B02E4A /* ElaboratoreCoseni.1 */,
+			);
+			path = ElaboratoreCoseni;
+			sourceTree = "<group>";
+		};
 		4132C15B18DF385600E60ACF /* ElaboratoreFenditure */ = {
 			isa = PBXGroup;
 			children = (
@@ -192,6 +233,7 @@
 			children = (
 				4168294B18DDD5AE00EE461F /* DataElaborator */,
 				4132C15B18DF385600E60ACF /* ElaboratoreFenditure */,
+				41323FE318E4412800B02E4A /* ElaboratoreCoseni */,
 				4168294A18DDD5AE00EE461F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -201,6 +243,7 @@
 			children = (
 				4168294918DDD5AE00EE461F /* DataElaborator */,
 				4132C15A18DF385600E60ACF /* ElaboratoreFenditure */,
+				41323FE218E4412800B02E4A /* ElaboratoreCoseni */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -328,6 +371,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		41323FE118E4412800B02E4A /* ElaboratoreCoseni */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 41323FEA18E4412800B02E4A /* Build configuration list for PBXNativeTarget "ElaboratoreCoseni" */;
+			buildPhases = (
+				41323FDE18E4412800B02E4A /* Sources */,
+				41323FDF18E4412800B02E4A /* Frameworks */,
+				41323FE018E4412800B02E4A /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ElaboratoreCoseni;
+			productName = ElaboratoreCoseni;
+			productReference = 41323FE218E4412800B02E4A /* ElaboratoreCoseni */;
+			productType = "com.apple.product-type.tool";
+		};
 		4132C15918DF385600E60ACF /* ElaboratoreFenditure */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4132C16018DF385600E60ACF /* Build configuration list for PBXNativeTarget "ElaboratoreFenditure" */;
@@ -385,15 +445,34 @@
 			targets = (
 				4168294818DDD5AE00EE461F /* DataElaborator */,
 				4132C15918DF385600E60ACF /* ElaboratoreFenditure */,
+				41323FE118E4412800B02E4A /* ElaboratoreCoseni */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		41323FDE18E4412800B02E4A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				41D0C00B18E443300091462B /* Transformer.cpp in Sources */,
+				41D0C00C18E443320091462B /* CalculatorMaxMin.cpp in Sources */,
+				41D0C00F18E443370091462B /* CalculatorMaxSimple.cpp in Sources */,
+				41D0C01018E4433A0091462B /* Calculator.cpp in Sources */,
+				41323FE518E4412800B02E4A /* main.cpp in Sources */,
+				41D0C01118E4433D0091462B /* CalculatorSimple.cpp in Sources */,
+				41D0C00818E443260091462B /* GlobalSettings.cpp in Sources */,
+				41D0C00918E4432A0091462B /* DataSet.cpp in Sources */,
+				41D0C00D18E443340091462B /* CalculatorMax.cpp in Sources */,
+				41D0C00A18E4432D0091462B /* TransformerSimple.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4132C15618DF385600E60ACF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41D0C00E18E443370091462B /* CalculatorMaxSimple.cpp in Sources */,
 				4132C16A18DF3ABF00E60ACF /* TransformerSimple.cpp in Sources */,
 				4132C16818DF3ABA00E60ACF /* CalculatorMaxMin.cpp in Sources */,
 				4132C16318DF3AA100E60ACF /* DataSet.cpp in Sources */,
@@ -442,6 +521,24 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		41323FE818E4412800B02E4A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		41323FE918E4412800B02E4A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		4132C16118DF385600E60ACF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -547,6 +644,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		41323FEA18E4412800B02E4A /* Build configuration list for PBXNativeTarget "ElaboratoreCoseni" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				41323FE818E4412800B02E4A /* Debug */,
+				41323FE918E4412800B02E4A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4132C16018DF385600E60ACF /* Build configuration list for PBXNativeTarget "ElaboratoreFenditure" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -52,7 +52,7 @@ void CalculatorMax::Elaborate()
 
 		}
 	}
-		if (debug) debugStream << "Il dato piu alto è a x= " << data->x(maxIndex) << "\t y= " << data->y(maxIndex) << std::endl;
+	if (debug) debugStream << "Il dato piu alto è a x= " << data->x(maxIndex) << "\t y= " << data->y(maxIndex) << std::endl;
     
 	maxXPosition = data->SplineDerivate1Zero(maxIndex);
 	

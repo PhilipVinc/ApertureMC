@@ -18,6 +18,8 @@ public:
     static void ShiftY(DataSet * data, long double value);
     static void ScaleX(DataSet * data, long double value);
     static void ScaleY(DataSet * data, long double value);
+	static void ScaleXCos2(DataSet * data);
+	static void ScaleYCos2(DataSet * data);
 };
 
 #endif /* defined(__DataElaborator__TransformerSimple__) */

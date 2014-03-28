@@ -23,10 +23,11 @@ void usage(const char * pname);
 
 using namespace std;
 
-int MAX_FEND = 100;
-int MIN_FEND = 100;
-int SIM_PER_FEND = 4000000;
+int MAX_FEND = 2;
+int MIN_FEND = 2;
+int SIM_PER_FEND = 1000;
 int NUM_THREADS = 7;
+int DEFAULT_SEED = 5;
 
 void ElaborateFile(string inputName, bool addXls = false)
 {
@@ -159,14 +160,14 @@ int main(int argc, char * argv[])
             case 'j':
                 NUM_THREADS = stoi(optarg);
                 break;
-            case 's':
-                GlobalSettings::get_instance().maxMinSearchSpan = stoi(optarg);
-                break;
             case 'p':
                 GlobalSettings::get_instance().showProgress = true;
                 break;
 			case 'r':
                 GlobalSettings::get_instance().f1Range = stof(optarg);
+                break;
+			case 's':
+                DEFAULT_SEED = stoi(optarg);
                 break;
             case 'h':
             case '?':
@@ -177,6 +178,7 @@ int main(int argc, char * argv[])
     }
     GlobalSettings::get_instance().max_fend= MAX_FEND;
     GlobalSettings::get_instance().min_fend= MIN_FEND;
+	GlobalSettings::get_instance().seed = DEFAULT_SEED;
 	if (!ideLaunch)
 	{
 		cout << "Inserire nome file [se si usa -x, senza estensione]: "; cin >> inputPath;
@@ -195,4 +197,5 @@ void usage(const char * pname)
     std::cerr << "[-j int] numero di job paralleli (suggerito: threads -1). Default: "<< NUM_THREADS <<std::endl;
     std::cerr << "[-m int] numero di fenditure minime da simulare. Default: "<< MIN_FEND << std::endl;
     std::cerr << "[-f int] numero di fenditure massime da simulare. Default: "<< MAX_FEND << std::endl;
+	std::cerr << "[-s int] Seed. Default: "<< DEFAULT_SEED << std::endl;
 }

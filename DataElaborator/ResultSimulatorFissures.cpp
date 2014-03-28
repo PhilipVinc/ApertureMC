@@ -47,7 +47,7 @@ void ResultSimulatorFissures::SetupArrayResults()
 
 void ResultSimulatorFissures::SetupRandomNumberGenerator()
 {
-	rng.seed(5);
+	rng.seed(GlobalSettings::get_instance().seed);
 	f1PosRange = GlobalSettings::get_instance().f1Range;
     
     posRangeDistribution = new uniform_real_distribution<long double> (-f1PosRange, f1PosRange);
@@ -106,7 +106,7 @@ ExperimentSimulator * ResultSimulatorFissures::CreateSim(int threadN)
     
     ExperimentSimulatorFissures * sim = new ExperimentSimulatorFissures(experimentalData);
     sim->uniqueID = lastId;
-    sim->Setup(fenditureN, variables, 1);
+    sim->Setup(fenditureN, variables, 1.0);
     
     return sim;
 }
