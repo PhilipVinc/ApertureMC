@@ -10,6 +10,7 @@
 #define __DataElaborator__ElaboratorMaxMin__
 
 #include <iostream>
+#include <vector>
 
 #include "Calculator.h"
 
@@ -25,12 +26,26 @@ public:
 	void PrintData(std::ostream& myout);
 	void PrintMinPoints(std::ostream& myout);
 	void PrintMaxPoints(std::ostream& myout);
+	
+	int GetMaxNumber();
+	int GetMinNumber();
+	
+	long double GetMaxXPosition(int number);
+	long double GetMinXPosition(int number);
+	long double GetMaxXSplinePosition(int number);
+	long double GetMinXSplinePosition(int number);
+	
+	long double GetMaxYPosition(int number);
+	long double GetMinYPosition(int number);
+	long double GetMaxYSplinePosition(int number);
+	long double GetMinYSplinePosition(int number);
+	
     
 private:
 	void FindMaxMin();
     
-	int * maxIndex;
-	int * minIndex;
+	std::vector<int> maxIndex;
+	std::vector<int> minIndex;
 	int minN;
 	int maxN;
     

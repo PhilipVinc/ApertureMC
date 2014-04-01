@@ -25,7 +25,7 @@ using namespace std;
 
 int MAX_FEND = 2;
 int MIN_FEND = 2;
-int SIM_PER_FEND = 1000;
+int SIM_PER_FEND = 100000;
 int NUM_THREADS = 7;
 int DEFAULT_SEED = 5;
 
@@ -52,7 +52,7 @@ void ElaborateFile(string inputName, bool addXls = false)
     DataSet * dataFondo = new DataSet("fondo.xls");
     TransformerSimple::ShiftY(data, -dataFondo->MeanY());
     TransformerSimple::ScaleY(data, 1.0/cMax->GetMaxYPosition());
-    TransformerSimple::ScaleX(data, 1.0/1500.0);
+    TransformerSimple::ScaleX(data, 1.0/1000.0);
     data->ComputeSplineCoefficients();
     delete cMax;
     

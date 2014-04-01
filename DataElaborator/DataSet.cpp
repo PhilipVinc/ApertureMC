@@ -230,6 +230,35 @@ long double DataSet::SplineValue(long double x)
 	return result;
 }
 
+/*
+long double DataSet::SplineValueInverse(long double y)
+{
+    if(splineDirty) ComputeSplineCoefficients();
+    
+	// Select the interval
+	int i = n-2;
+	//if (isConstantXStep)
+	i = abs((x-xp[0])/(xp[1]-xp[0]))+1; // This only works for constant X-spaced data!
+    if ( i > n-2 ) { i = n-2; }
+	
+	while ( i>0 )
+	{
+		//if ((( x > xp[i] ) && ( x < xp[i+1] )) || (( x < xp[i] ) && ( x > xp[i+1] )))
+		if ( i < 0 ) { i = n-2; }
+ 		if  ((x - xp[i]) > 0 )
+		{
+			break;
+		}
+		i--;
+	}
+	long double h = xp[i+1] - xp[i];
+	long double temp = zs[i]/2.0 + (x-xp[i]) * (zs[i+1] - zs[i]) / (6.0*h);
+	temp = -(h/6.0) * (zs[i+1] + 2.0*zs[i]) + (yp[i+1] - yp[i]) / h + (x - xp[i])*temp;
+	long double result = (yp[i] + (x - xp[i]) * temp);
+    
+	return result;
+}*/
+
 long double DataSet::SplineDerivate1(long double x)
 {
     if(splineDirty) ComputeSplineCoefficients();
@@ -262,7 +291,7 @@ long double DataSet::SplineDerivate1Zero(int index, int recursion)
 	{
 		long double c ;
 		long double err = 100;
-		while( err > 0.0001)
+		while( err > 0.0000001)
 		{
 			c = (b+a)/2;
 			(SplineDerivate1(a)*SplineDerivate1(c)) < 0 ? b=c : a=c;

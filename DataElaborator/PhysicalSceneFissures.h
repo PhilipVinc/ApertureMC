@@ -12,6 +12,7 @@
 #include "PhysicalObject.h"
 #include "PhysicalScene.h"
 #include "Fissure.h"
+#include "ConstantValue.h"
 
 class PhysicalSceneFissures : public PhysicalScene
 {
@@ -21,7 +22,7 @@ public:
     
     /* ------------------------   Scene Management  ---------------------- */
     int AddFissure(long double position, long double intensity, long double halfAperture);
-
+	int AddConstant(long double intensity);
 };
 
 #endif /* defined(__DataElaborator__PhysicalSceneFissures__) */

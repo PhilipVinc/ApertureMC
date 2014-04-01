@@ -29,10 +29,11 @@ ExperimentSimulatorFissures::~ExperimentSimulatorFissures()
 /* Setup() is called right after object creation. Should be merged. Usage is not clear */
 void ExperimentSimulatorFissures::Setup(int _fissureN, long double * _setupValues, long double _range)
 {
+	int valuesPassed = _fissureN*3+1;
     // Find the
     fissureN = _fissureN;
-    values = new long double[fissureN*3];
-    for (int i = 0; i != fissureN*3; i++)
+    values = new long double[valuesPassed];
+    for (int i = 0; i != valuesPassed; i++)
     {
         values[i]= _setupValues[i];
     }
@@ -49,6 +50,7 @@ void ExperimentSimulatorFissures::CreateExperiment()
     {
         _scene->AddFissure(values[i*3], values[i*3+1], values[i*3+2]);
     }
+	_scene->AddConstant(values[fissureN*3]);
 }
 
 void ExperimentSimulatorFissures::SimulateExperiment()
@@ -106,6 +108,7 @@ void ExperimentSimulatorFissures::PrintSimulationFourierSpace()
 	{
 		_scene->AddFunction(new StepFunction(values[i*3], values[i*3+2], values[i*3+1]));
 	}
+	_scene->AddFunction(new StepFunction(0,200,values[fissureN*3]));
 	
 	long double pos = -30.0; //-GlobalSettings::get_instance().FISSURE_POS;
 	long double posMax = -pos;

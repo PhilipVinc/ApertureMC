@@ -11,10 +11,11 @@
 using namespace std;
 
 const
-Elaborator::Elaborator(DataSet * input)
+Elaborator::Elaborator(DataSet * input1, DataSet * input2)
 {
 	debug = false;
-	inputData = input;
+	inputData1 = input1;
+	inputData2 = input2;
 }
 
 Elaborator::~Elaborator()

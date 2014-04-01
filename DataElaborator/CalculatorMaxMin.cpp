@@ -24,8 +24,8 @@ CalculatorMaxMin::~CalculatorMaxMin()
     delete [] xMin;
     delete [] yMax;
     delete [] yMin;
-    delete [] maxIndex;
-    delete [] minIndex;
+    maxIndex.clear();
+    minIndex.clear();
 }
 
 //--------------- Elaboration Functions -------------------------
@@ -53,9 +53,6 @@ void CalculatorMaxMin::Elaborate()
 
 void CalculatorMaxMin::FindMaxMin()
 {
-	maxIndex = new int[100];
-	minIndex = new int[100];
-    
 	//int spanLength = 4;
     int spanLength = GlobalSettings::get_instance().maxMinSearchSpan;
 	minN = 0; maxN = 0;
@@ -65,7 +62,7 @@ void CalculatorMaxMin::FindMaxMin()
 		bool acceptMinimum = true;
 		for (int j = 1; j <= spanLength; j++)
 		{
-			if ( !(data->y(i) < data->y(i+j)) || !(data->y(i) < data->y(i-j)) )
+			if ( !(data->y(i) <= data->y(i+j)) || !(data->y(i) <= data->y(i-j)) )
 			{
 				acceptMinimum = false;
 				break;
@@ -73,7 +70,8 @@ void CalculatorMaxMin::FindMaxMin()
 		}
 		if (acceptMinimum)
 		{
-			minIndex[minN] = i;
+			minIndex.push_back(i);
+			i++;
 			minN++;
 			//cout << "Min at x=" << data->xp[i] << endl;
             
@@ -83,7 +81,7 @@ void CalculatorMaxMin::FindMaxMin()
 			bool acceptMaximum = true;
 			for (int j = 1; j <= spanLength; j++)
 			{
-				if ( !(data->y(i) > data->y(i+j)) || !(data->y(i) > data->y(i-j)) )
+				if ( !(data->y(i) >= data->y(i+j)) || !(data->y(i) >= data->y(i-j)) )
 				{
 					acceptMaximum = false;
 					break;
@@ -91,7 +89,8 @@ void CalculatorMaxMin::FindMaxMin()
 			}
 			if (acceptMaximum)
 			{
-				maxIndex[maxN] = i;
+				maxIndex.push_back(i);
+				i++;
 				maxN++;
 				//cout << "Max at x=" << data->xp[i] << endl;
 			}
@@ -103,6 +102,57 @@ void CalculatorMaxMin::Apply()
 {
     
 }
+
+int CalculatorMaxMin::GetMaxNumber()
+{
+	return maxIndex.size();
+}
+
+int CalculatorMaxMin::GetMinNumber()
+{
+	return minIndex.size();
+}
+
+long double CalculatorMaxMin::GetMaxXPosition(int number)
+{
+	return data->x(maxIndex[number]);
+}
+
+long double CalculatorMaxMin::GetMinXPosition(int number)
+{
+	return data->x(minIndex[number]);
+}
+
+long double CalculatorMaxMin::GetMaxXSplinePosition(int number)
+{
+	return xMax[number];
+}
+
+long double CalculatorMaxMin::GetMinXSplinePosition(int number)
+{
+	return xMin[number];
+}
+
+long double CalculatorMaxMin::GetMaxYPosition(int number)
+{
+	return data->y(maxIndex[number]);
+}
+
+long double CalculatorMaxMin::GetMinYPosition(int number)
+{
+	return data->y(minIndex[number]);
+}
+
+long double CalculatorMaxMin::GetMaxYSplinePosition(int number)
+{
+	return yMax[number];
+}
+
+long double CalculatorMaxMin::GetMinYSplinePosition(int number)
+{
+	return yMin[number];
+}
+
 
 void CalculatorMaxMin::PrintData(ostream& myout)
 {

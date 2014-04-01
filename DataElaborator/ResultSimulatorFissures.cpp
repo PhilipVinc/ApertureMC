@@ -27,7 +27,7 @@ ResultSimulatorFissures::~ResultSimulatorFissures()
 
 void ResultSimulatorFissures::SetupArrayResults()
 {
-    simDataN = dataPerFend*fenditureN +1;
+    simDataN = dataPerFend*fenditureN +1+1;
     //results = new long double [(simulationsN+num_threads)*(simDataN+likelihoodsN)]; // longer so we just do some more simulations and there is no overflow risk.
     //cycleResults = new long double [(num_threads)*(simDataN+likelihoodsN)];
     for (int i = 0; i !=(num_threads)*(simDataN+likelihoodsN); i++) {
@@ -53,6 +53,7 @@ void ResultSimulatorFissures::SetupRandomNumberGenerator()
     posRangeDistribution = new uniform_real_distribution<long double> (-f1PosRange, f1PosRange);
     intensityDistribution = new uniform_real_distribution<long double> (0.0, 100.0 );
     apertureDistribution = new uniform_real_distribution<long double> (0.0, aperture+4 );
+	constantIntensityDistribution = new uniform_real_distribution<long double>(0.0, 20.0*double(fenditureN));
 }
 
 void ResultSimulatorFissures::CheckBestSim()
@@ -97,6 +98,7 @@ ExperimentSimulator * ResultSimulatorFissures::CreateSim(int threadN)
         variables[i*dataPerFend + 1 ] = (*intensityDistribution)(rng);
         variables[i*dataPerFend + 2 ] = (*apertureDistribution)(rng);///(i+1);
     }
+	variables[fenditureN*dataPerFend]= (*constantIntensityDistribution)(rng);
     variables[1] = 100.0;
     
     for (int i = 0; i < simDataN; i++)
@@ -106,7 +108,7 @@ ExperimentSimulator * ResultSimulatorFissures::CreateSim(int threadN)
     
     ExperimentSimulatorFissures * sim = new ExperimentSimulatorFissures(experimentalData);
     sim->uniqueID = lastId;
-    sim->Setup(fenditureN, variables, 1.0);
+    sim->Setup(fenditureN, variables, sim_range);
     
     return sim;
 }
@@ -130,20 +132,19 @@ void ResultSimulatorFissures::PrintSingleSimulation(int bestId, ostream& myout)
         }
         cout << endl;
     }
+	cout << "I_0 cost = "<< variables[fenditureN*dataPerFend]<<endl;
     
     cout << endl;
     
     ExperimentSimulatorFissures * sim = new ExperimentSimulatorFissures(experimentalData);
     sim->uniqueID = variables[simDataN-1];
-    sim->Setup(fenditureN, variables, 1);
+    sim->Setup(fenditureN, variables, sim_range);
     sim->Work();
     sim->PrintSimulatedDataToFile();
 	sim->PrintSimulationFourierSpace();
     
     delete sim;
 }
-
-
 
 void ResultSimulatorFissures::Print(ostream& myout)
 {

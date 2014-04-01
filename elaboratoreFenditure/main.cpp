@@ -42,7 +42,7 @@ void ElaborateFile(string inputName, bool addXls = false)
     string plotPath = "plot-" + inputName + ".gnu";
     
     DataSet * data = new DataSet(inputPath);
-    //data->ComputeSplineCoefficients();
+    data->ComputeSplineCoefficients();
     
     //Find the center and shift
     CalculatorMax * cMax = new CalculatorMax(data);

@@ -11,8 +11,11 @@
 		4109836418DF7C68005E8E10 /* LikelihoodCalculator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4109836218DF7C68005E8E10 /* LikelihoodCalculator.cpp */; };
 		4109836718DF7D96005E8E10 /* StepLikelihoodCalculator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4109836518DF7D96005E8E10 /* StepLikelihoodCalculator.cpp */; };
 		4109836A18DF7F2E005E8E10 /* SplineLikelihoodCalculator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4109836818DF7F2E005E8E10 /* SplineLikelihoodCalculator.cpp */; };
+		411D76A218E6CFD000FAA2DE /* ElaboratorSfasamento.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 411D76A018E6CFD000FAA2DE /* ElaboratorSfasamento.cpp */; };
+		411D76A318E6D0D100FAA2DE /* Elaborator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4168296518DDD62E00EE461F /* Elaborator.cpp */; };
 		4124B20518E2C9C200DA63F6 /* Function.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4124B20318E2C9C200DA63F6 /* Function.cpp */; };
 		4124B20818E2C9FA00DA63F6 /* StepFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4124B20618E2C9FA00DA63F6 /* StepFunction.cpp */; };
+		413043D018EA0794009A7B80 /* ConstantValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 413043CE18EA0794009A7B80 /* ConstantValue.cpp */; };
 		41323FE518E4412800B02E4A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 41323FE418E4412800B02E4A /* main.cpp */; };
 		41323FE718E4412800B02E4A /* ElaboratoreCoseni.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 41323FE618E4412800B02E4A /* ElaboratoreCoseni.1 */; };
 		4132C15218DED9A300E60ACF /* CalculatorSimple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4132C15018DED9A300E60ACF /* CalculatorSimple.cpp */; };
@@ -100,10 +103,14 @@
 		4109836618DF7D96005E8E10 /* StepLikelihoodCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StepLikelihoodCalculator.h; sourceTree = "<group>"; };
 		4109836818DF7F2E005E8E10 /* SplineLikelihoodCalculator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SplineLikelihoodCalculator.cpp; sourceTree = "<group>"; };
 		4109836918DF7F2E005E8E10 /* SplineLikelihoodCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplineLikelihoodCalculator.h; sourceTree = "<group>"; };
+		411D76A018E6CFD000FAA2DE /* ElaboratorSfasamento.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ElaboratorSfasamento.cpp; sourceTree = "<group>"; };
+		411D76A118E6CFD000FAA2DE /* ElaboratorSfasamento.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElaboratorSfasamento.h; sourceTree = "<group>"; };
 		4124B20318E2C9C200DA63F6 /* Function.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Function.cpp; sourceTree = "<group>"; };
 		4124B20418E2C9C200DA63F6 /* Function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Function.h; sourceTree = "<group>"; };
 		4124B20618E2C9FA00DA63F6 /* StepFunction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StepFunction.cpp; sourceTree = "<group>"; };
 		4124B20718E2C9FA00DA63F6 /* StepFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StepFunction.h; sourceTree = "<group>"; };
+		413043CE18EA0794009A7B80 /* ConstantValue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConstantValue.cpp; sourceTree = "<group>"; };
+		413043CF18EA0794009A7B80 /* ConstantValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstantValue.h; sourceTree = "<group>"; };
 		41323FE218E4412800B02E4A /* ElaboratoreCoseni */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ElaboratoreCoseni; sourceTree = BUILT_PRODUCTS_DIR; };
 		41323FE418E4412800B02E4A /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		41323FE618E4412800B02E4A /* ElaboratoreCoseni.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = ElaboratoreCoseni.1; sourceTree = "<group>"; };
@@ -297,6 +304,8 @@
 			children = (
 				4168296418DDD62E00EE461F /* Elaborator.h */,
 				4168296518DDD62E00EE461F /* Elaborator.cpp */,
+				411D76A118E6CFD000FAA2DE /* ElaboratorSfasamento.h */,
+				411D76A018E6CFD000FAA2DE /* ElaboratorSfasamento.cpp */,
 			);
 			name = "Data Cruncher";
 			sourceTree = "<group>";
@@ -344,6 +353,8 @@
 				4168296118DDD62E00EE461F /* Fissure.cpp */,
 				415B178118E192C7007FFDE4 /* PhysicalScene.cpp */,
 				415B178218E192C7007FFDE4 /* PhysicalScene.h */,
+				413043CE18EA0794009A7B80 /* ConstantValue.cpp */,
+				413043CF18EA0794009A7B80 /* ConstantValue.h */,
 			);
 			name = PhysicalObjects;
 			sourceTree = "<group>";
@@ -456,6 +467,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				41D0C00B18E443300091462B /* Transformer.cpp in Sources */,
+				411D76A218E6CFD000FAA2DE /* ElaboratorSfasamento.cpp in Sources */,
+				411D76A318E6D0D100FAA2DE /* Elaborator.cpp in Sources */,
 				41D0C00C18E443320091462B /* CalculatorMaxMin.cpp in Sources */,
 				41D0C00F18E443370091462B /* CalculatorMaxSimple.cpp in Sources */,
 				41D0C01018E4433A0091462B /* Calculator.cpp in Sources */,
@@ -515,6 +528,7 @@
 				4132C15518DEE5B700E60ACF /* ResultSimulatorFissures.cpp in Sources */,
 				4168296918DDD62E00EE461F /* Fissure.cpp in Sources */,
 				4168296A18DDD62E00EE461F /* ExperimentSimulatorFissures.cpp in Sources */,
+				413043D018EA0794009A7B80 /* ConstantValue.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -637,6 +651,7 @@
 		4168295418DDD5AE00EE461F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_OPTIMIZATION_LEVEL = 2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

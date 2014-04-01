@@ -17,17 +17,18 @@
 class Elaborator
 {
 public:
-	Elaborator(DataSet * input);
+	Elaborator(DataSet * input, DataSet * input2);
 	~Elaborator();
     
 	void EnableDebug();
 	void DisableDebug();
     
 	virtual void Elaborate() =0;
-	virtual void Apply() =0;
+	//virtual void Apply() =0;
     
 protected:
-	DataSet * inputData;
+	DataSet * inputData1;
+	DataSet * inputData2;
 	
 	// Debug Variables
 	bool debug;

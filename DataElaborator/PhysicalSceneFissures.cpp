@@ -27,3 +27,10 @@ int PhysicalSceneFissures::AddFissure(long double position, long double intensit
     components.push_back(newFissure);
     return components.size();
 }
+
+int PhysicalSceneFissures::AddConstant(long double intensity)
+{
+	ConstantValue * newConstantValue = new ConstantValue(intensity);
+	components.push_back(newConstantValue);
+	return components.size();
+}

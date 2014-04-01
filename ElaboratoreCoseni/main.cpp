@@ -39,6 +39,7 @@ void ElaborateFile(string inputName, bool addXls = false)
     
     string nuoviDatiPath = inputName + ".dat";
 	string linearizzatiPath = inputName + "-lineari.dat";
+	string splinePath = inputName + "-spline.dat";
     string plotPath = "plot-" + inputName + ".gnu";
     
     DataSet * data = new DataSet(inputPath);
@@ -51,15 +52,40 @@ void ElaborateFile(string inputName, bool addXls = false)
 	//Find the center and shift
     CalculatorMaxSimple * cMax = new CalculatorMaxSimple(data);
 	TransformerSimple::ScaleY(data, 1.0/cMax->GetMaxYPosition());
-	TransformerSimple::ShiftX(data, -cMax->GetMaxXPosition());
 	delete cMax;
 	TransformerSimple::ScaleX(data, M_PI/180.0);
+	
+	//Stampa la spline
+    ofstream splineFile(splinePath);
+	splineFile << "# Theta (rad) \t I/I0" << endl;
+    data->PrintSpline(splineFile);
+    splineFile.close();
 	
 	//Stampa i dati magicati
     ofstream datFile(nuoviDatiPath);
 	datFile << "# Theta (rad) \t I/I0" << endl;
     data->PrintData(datFile);
     datFile.close();
+	
+	CalculatorMaxMin * cMaxMin = new CalculatorMaxMin(data);
+	cMaxMin->Elaborate();
+	cout << "Massimo posizionato a: " << cMaxMin->GetMaxXPosition(0) <<" radianti" << endl;
+	cout << "\t\t\t x \t\t\t y"<< endl;
+	cout << "Max 1: \t" << cMaxMin->GetMaxXSplinePosition(0) << " \t\t" << cMaxMin->GetMaxYSplinePosition(0) << endl;
+	cout << "Max 2: \t" << cMaxMin->GetMaxXSplinePosition(1) << " \t\t" << cMaxMin->GetMaxYSplinePosition(1) << endl;
+
+	cout << "Min 1: \t" << cMaxMin->GetMinXSplinePosition(0) << " \t\t" << cMaxMin->GetMinYSplinePosition(0) << endl;
+	cout << "Min 2: \t" << cMaxMin->GetMinXSplinePosition(1) << " \t\t" << cMaxMin->GetMinYSplinePosition(1) << endl;
+	TransformerSimple::ShiftX(data, -cMaxMin->GetMaxXPosition(0));
+	delete cMaxMin;
+	
+	/*
+	splinePath = inputName + "-shifted-spline.dat";
+	//Stampa la spline
+    ofstream splineFile2(splinePath);
+	splineFile2 << "# Theta (rad) \t I/I0" << endl;
+    data->PrintSpline(splineFile2);
+    splineFile2.close();*/
 	
 	TransformerSimple::ScaleXCos2(data);
 	
