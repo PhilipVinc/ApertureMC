@@ -51,7 +51,7 @@ protected:
     long double f1PosRange = 3.2;
     long double aperture = 17;
     int fenditureN=2;
-	long double sim_range = 2.0;
+	long double sim_range = 1.2;
     
     void SetupArrayResults();
     std::vector <long double> bestResults;//long double * bestResults;

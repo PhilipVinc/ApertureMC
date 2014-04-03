@@ -98,7 +98,8 @@ ExperimentSimulator * ResultSimulatorFissures::CreateSim(int threadN)
         variables[i*dataPerFend + 1 ] = (*intensityDistribution)(rng);
         variables[i*dataPerFend + 2 ] = (*apertureDistribution)(rng);///(i+1);
     }
-	variables[fenditureN*dataPerFend]= (*constantIntensityDistribution)(rng);
+	//variables[fenditureN*dataPerFend]= (*constantIntensityDistribution)(rng);
+	variables[fenditureN*dataPerFend]= 0.0;
     variables[1] = 100.0;
     
     for (int i = 0; i < simDataN; i++)
