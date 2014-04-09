@@ -44,6 +44,8 @@ protected:
     std::uniform_real_distribution<long double>* intensityDistribution;
     std::uniform_real_distribution<long double>* apertureDistribution;
 	std::uniform_real_distribution<long double>* constantIntensityDistribution;
+	std::uniform_real_distribution<long double>* rescaleCenterDistribution;
+	std::uniform_real_distribution<long double>* rescaleAngleDistribution;
     
     int dataPerFend = 3;
     
@@ -51,7 +53,7 @@ protected:
     long double f1PosRange = 3.2;
     long double aperture = 17;
     int fenditureN=2;
-	long double sim_range = 1.2;
+	long double sim_range = 1.5;
     
     void SetupArrayResults();
     std::vector <long double> bestResults;//long double * bestResults;

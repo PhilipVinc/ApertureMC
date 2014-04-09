@@ -26,13 +26,14 @@ Fissure::~Fissure()
 
 long double Fissure::operator()(long double x)
 {
-    long double value = 4*relativeIntensity*relativeIntensity*sin((x-position)*halfAperture)*sin((x-position)*halfAperture)/(x-position)/(x-position);
+    //long double value = 4*relativeIntensity*relativeIntensity*sin((x-position)*halfAperture)*sin((x-position)*halfAperture)/(x-position)/(x-position);
+	long double value = 2*relativeIntensity*sin((x-position)*halfAperture)/(x-position);
     //double value = 4*relativeIntensity*sin((x-position)*halfAperture)/(x-position);
     return value;
 }
 
 void Fissure::PrintFormula(std::ostream& myout)
 {
-    myout << "4*"<< relativeIntensity*relativeIntensity << "*(sin( (x - " << position << " )*" <<halfAperture << "))**2 /(( x-"<< position <<")**2)";
+    myout << "2*"<< relativeIntensity << "*sin( (x - " << position << " )*" <<halfAperture << ") /( x-"<< position <<")";
 }
 

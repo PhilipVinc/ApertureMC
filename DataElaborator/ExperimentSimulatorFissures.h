@@ -29,6 +29,8 @@ public:
     void SimulateExperiment();
     void Check();
     
+	void RescaleExperiment();
+	
     void PrintSimulatedDataToFile();
 	void PrintSimulationFourierSpace();
     
@@ -39,6 +41,9 @@ protected:
     
 	long double * values;
     long double scaleValue;
+	
+	long double rescaleCenter;
+	long double rescaleAngle;
 };
 
 

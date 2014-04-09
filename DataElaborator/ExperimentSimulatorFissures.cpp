@@ -29,7 +29,7 @@ ExperimentSimulatorFissures::~ExperimentSimulatorFissures()
 /* Setup() is called right after object creation. Should be merged. Usage is not clear */
 void ExperimentSimulatorFissures::Setup(int _fissureN, long double * _setupValues, long double _range)
 {
-	int valuesPassed = _fissureN*3+1;
+	int valuesPassed = _fissureN*3+1+2;
     // Find the
     fissureN = _fissureN;
     values = new long double[valuesPassed];
@@ -37,6 +37,7 @@ void ExperimentSimulatorFissures::Setup(int _fissureN, long double * _setupValue
     {
         values[i]= _setupValues[i];
     }
+	
     
     BaseSetup(_range);
 }
@@ -51,6 +52,8 @@ void ExperimentSimulatorFissures::CreateExperiment()
         _scene->AddFissure(values[i*3], values[i*3+1], values[i*3+2]);
     }
 	_scene->AddConstant(values[fissureN*3]);
+	rescaleCenter = values[fissureN*3+1];
+	rescaleAngle = values[fissureN*3+2];
 }
 
 void ExperimentSimulatorFissures::SimulateExperiment()
@@ -61,6 +64,8 @@ void ExperimentSimulatorFissures::SimulateExperiment()
         long double value = (*scene)(position);
         simulatedData->AddMeasure(position, value);
     }
+	
+	//RescaleExperiment();
     
     // Rescale data
     //CalculatorMax * cMax = new CalculatorMax(simulatedData);
@@ -68,6 +73,15 @@ void ExperimentSimulatorFissures::SimulateExperiment()
     scaleValue = 1/cMax->GetMaxYPosition();
     TransformerSimple::ScaleY(simulatedData,scaleValue);
     delete cMax;
+}
+
+void ExperimentSimulatorFissures::RescaleExperiment()
+{
+	for (int i = 0; i < simulatedData->n; i++)
+	{
+		long double newValue = (simulatedData->x(i)-rescaleCenter)*cosl(rescaleAngle);
+		simulatedData->setX(i, newValue);
+	}
 }
 
 void ExperimentSimulatorFissures::Check()

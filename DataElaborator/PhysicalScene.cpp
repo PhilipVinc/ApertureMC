@@ -7,6 +7,7 @@
 //
 
 #include "PhysicalScene.h"
+#include <cmath>
 
 using namespace std;
 
@@ -63,6 +64,7 @@ long double PhysicalScene::operator()(long double x)
     {
         result += (*components[i])(x);
     }
+	result = result*result;
     return result;
 }
 

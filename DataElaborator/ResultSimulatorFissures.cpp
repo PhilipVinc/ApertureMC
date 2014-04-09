@@ -27,7 +27,7 @@ ResultSimulatorFissures::~ResultSimulatorFissures()
 
 void ResultSimulatorFissures::SetupArrayResults()
 {
-    simDataN = dataPerFend*fenditureN +1+1;
+    simDataN = dataPerFend*fenditureN +1+1+2;
     //results = new long double [(simulationsN+num_threads)*(simDataN+likelihoodsN)]; // longer so we just do some more simulations and there is no overflow risk.
     //cycleResults = new long double [(num_threads)*(simDataN+likelihoodsN)];
     for (int i = 0; i !=(num_threads)*(simDataN+likelihoodsN); i++) {
@@ -54,6 +54,9 @@ void ResultSimulatorFissures::SetupRandomNumberGenerator()
     intensityDistribution = new uniform_real_distribution<long double> (0.0, 100.0 );
     apertureDistribution = new uniform_real_distribution<long double> (0.0, aperture+4 );
 	constantIntensityDistribution = new uniform_real_distribution<long double>(0.0, 20.0*double(fenditureN));
+	
+	rescaleCenterDistribution = new uniform_real_distribution<long double>(-0.4,0.4);
+	rescaleAngleDistribution = new uniform_real_distribution<long double>(-0.1,0.1);
 }
 
 void ResultSimulatorFissures::CheckBestSim()
@@ -100,7 +103,9 @@ ExperimentSimulator * ResultSimulatorFissures::CreateSim(int threadN)
     }
 	//variables[fenditureN*dataPerFend]= (*constantIntensityDistribution)(rng);
 	variables[fenditureN*dataPerFend]= 0.0;
-    variables[1] = 100.0;
+	variables[fenditureN*dataPerFend+1] = (*rescaleCenterDistribution)(rng);
+	variables[fenditureN*dataPerFend+2] = (*rescaleAngleDistribution)(rng);
+	// variables[1] = 100.0;
     
     for (int i = 0; i < simDataN; i++)
     {
@@ -134,6 +139,8 @@ void ResultSimulatorFissures::PrintSingleSimulation(int bestId, ostream& myout)
         cout << endl;
     }
 	cout << "I_0 cost = "<< variables[fenditureN*dataPerFend]<<endl;
+	cout << "RescaleCenter = "<< variables[fenditureN*dataPerFend+1]<<endl;
+	cout << "RescaleAngle = "<< variables[fenditureN*dataPerFend+2]<<endl;
     
     cout << endl;
     
